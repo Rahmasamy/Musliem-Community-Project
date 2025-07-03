@@ -1,6 +1,6 @@
 // src/components/AuthWrapper.js
 import React from 'react';
-import backgroundImg from '../../assets/backgound-img.png';
+import backgroundImg from '../../assets/imgs/backgound-img.png';
 
 const AuthWrapper: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
   return (
@@ -16,7 +16,12 @@ const AuthWrapper: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
         backgroundSize: 'contain',
       }}
     >
+         <div className="LoginContainer w-[91%] max-w-6xl min-h-[90vh]  flex justify-between items-center"
+
+
+      >
       {children}
+      </div>
     </div>
   );
 };

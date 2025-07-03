@@ -1,6 +1,6 @@
 import { LogoProps } from '@/components/interfaces/logo.types'
 import React, { Fragment } from 'react'
-import Logo from '@/assets/logo.png'
+import Logo from '@/assets/imgs/logo.png'
 const LogoComponent:React.FC<LogoProps> = ({desc}) => {
 return (
     <Fragment>

@@ -6,10 +6,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 export default function AppRoutes() {
   return (
     <BrowserRouter>
-    <Routes>
-         <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-    </Routes>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </BrowserRouter>
   )
 }

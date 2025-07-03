@@ -10,10 +10,7 @@ export default function Login() {
   return (
     <AuthWrapper>
 
-      <div className="LoginContainer w-[91%] max-w-6xl min-h-[90vh]  flex justify-between items-center"
-
-
-      >
+     
         <LeftAuthContainer>
           <LoginForm />
 
@@ -26,7 +23,7 @@ export default function Login() {
 
 
 
-      </div>
+   
     </AuthWrapper>
 
   )
