@@ -1,10 +1,10 @@
 import RightAuthImgComponent from '@/components/common/RightAuthImgComponent/RightAuthImgComponent'
-import React from 'react'
-
+import './RightAvatar.css'
+import AvatarImg from '@/assets/imgs/Avatarimg.png'
 export default function RightAvatar() {
   return (
-    <div>
-        <RightAuthImgComponent src='' alt='' />
-    </div>
+    <>
+        <RightAuthImgComponent src={AvatarImg} alt='Register Image' className='registimg' />
+    </>
   )
 }

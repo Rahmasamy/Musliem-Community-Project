@@ -37,9 +37,9 @@ export default function LoginForm() {
 
                     <span className='forgerPassSpan'>
 
-                        <a href="#" >
+                        <Link to="/forget-pass" >
                             Forget Password?
-                        </a>
+                        </Link>
                     </span>
                     <div className="AuthBtnContainer w-full flex justify-center items-center ">
 

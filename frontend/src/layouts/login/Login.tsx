@@ -1,7 +1,6 @@
 
 import LoginAvatar from '@/features/login/LoginAvatar'
 import LoginForm from '@/features/login/LoginForm'
-import backgoundImg from '../../assets/backgound-img.png'
 import './Login.css'
 import AuthWrapper from '@/components/common/AuthWrapper'
 import RightAuthContainer from '@/components/common/RigtAuthContainer'

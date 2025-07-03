@@ -9,5 +9,6 @@ export interface inputFieldInterface {
   onChange?: (e:React.ChangeEvent<HTMLInputElement>) => void;
   error?:string;
   required?: boolean;
-  icon?: ReactNode
+  icon?: ReactNode;
+  accepts?: string;
 }

@@ -1,0 +1,30 @@
+.verify-container {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    padding: 10px;
+}
+
+
+.otp-box {
+      background-color: #e6e3e3;
+ width: 80px;
+ border-radius: 12px;
+    height: 50px;
+  text-align: center;
+  font-size: 24px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+
+.AvatarLoginContainer .verifyimg {
+    height: 600px;
+    max-width: 100%;
+    object-fit: cover;
+    width: 80%;
+    border-radius: 17px;
+}

@@ -1,20 +1,25 @@
 import AuthWrapper from '@/components/common/AuthWrapper'
+import GoBack from '@/components/common/GoBack/GoBack'
 import LeftAuthContainer from '@/components/common/LeftAuthContainer'
 import RightAuthContainer from '@/components/common/RigtAuthContainer'
-import RegisterFeature from '@/features/register/RegisteRFeature'
-import RightAvatar from '@/features/register/RightAvatar'
-import './Register.css'
-export default function Register() {
+import LeftVerify from '@/features/verifyAccount/LeftVerify'
+import RightVerify from '@/features/verifyAccount/RightVerify'
+import React from 'react'
+
+export default function VerifyAccount() {
   return (
+    <>
+    <GoBack/>
     <AuthWrapper>
 <LeftAuthContainer>
 
-   <RegisterFeature/>
+   <LeftVerify/>
 </LeftAuthContainer>
 <RightAuthContainer>
     
-  <RightAvatar/>
+  <RightVerify/>
 </RightAuthContainer>
     </AuthWrapper>
+    </>
   )
 }

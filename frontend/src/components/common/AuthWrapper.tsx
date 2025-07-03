@@ -5,7 +5,7 @@ import backgroundImg from '../../assets/imgs/backgound-img.png';
 const AuthWrapper: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
   return (
     <div
-      className="BigContainer flex flex-col items-center justify-center min-h-screen overflow-hidden"
+      className="BigContainer flex flex-col items-center justify-center min-h-screen overflow-hidden w-full"
       style={{
         backgroundImage: `
           linear-gradient(rgb(255 255 255 / 10%), rgb(255, 255, 255)), 

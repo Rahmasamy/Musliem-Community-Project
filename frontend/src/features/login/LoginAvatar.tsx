@@ -1,6 +1,6 @@
 import React from 'react'
-import loginBg from '../../assets/login.png'
-import Group from '../../assets/Group 3.png'
+import loginBg from '../../assets/imgs/login.png'
+import Group from '../../assets/imgs/Group 3.png'
 import persons from '../../assets/icons/persons.png'
 import mosque from '../../assets/icons/mosque.png'
 import dollars from '../../assets/icons/dollars.png'

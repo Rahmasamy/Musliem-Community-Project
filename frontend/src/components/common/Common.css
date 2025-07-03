@@ -29,3 +29,15 @@
     color: white;
     cursor: pointer;
 }
+
+
+.file-upload-labell {
+  background-color: #000000;
+  border: 1px dashed #ccc;
+  padding: 10px;
+  border-radius: 6px;
+}
+.fileIcon {
+  font-size: 20px;
+  color: #1c7a80;
+}

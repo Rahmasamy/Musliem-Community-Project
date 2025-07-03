@@ -1,0 +1,118 @@
+textarea {
+    background-color: #f3f3f3;
+    border: none;
+    border-radius: 14px;
+    outline: none;
+}
+.input-radio-group {
+  margin-bottom: 1rem;
+}
+
+.input-radio-group .inputContainer {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.input-radio-group input[type="radio"] {
+  accent-color: #1c7a80; /* custom color */
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  background-color: linear-gradient(to right, #1c7a80,white);
+  margin-right: 4px;
+}
+.radioinputfield {
+    padding: 5px 0;
+
+}
+
+.single-input {
+  margin-left: 3px;
+  padding: 8px;
+  border-radius: 11px;
+  background-color: #f3f3f3;
+}
+.single-input:hover {
+
+    background-image: linear-gradient(to right, #145054, #28a2abbf);
+    transition: 0.5ms;
+}
+.input-radio-group label {
+  font-size: 14px;
+  margin-right: 1rem;
+  cursor: pointer;
+  
+}
+
+/* Style for the textarea */
+textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  resize: vertical;
+}
+
+/* Checkbox styling */
+.checkBox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkBox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #FF9A0B;
+}
+
+.checkBox label {
+  font-size: 14px;
+}
+
+.checkBox a {
+  color: #1c7a80;
+  text-decoration: underline;
+}
+
+/* General form layout */
+.inputFields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-start;
+  width: 100%;
+}
+.input-radio-group p,.Bio label {
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 1.1;
+
+}
+/* ملف Stepper.css أو أي ملف بتستورده بعد استيراد مكتبة الـ Stepper */
+.stepper-custom .stepper-horizontal .step .step-circle {
+  color: #000;                 /* النصّ الأسود الافتراضي */
+  background-color: #89cdd3;   /* خلفيّة الدائرة الافتراضية */
+}
+
+/* الدائرة النشطة أو المكتملة */
+.stepper-custom .stepper-horizontal .step.active  .step-circle,
+.stepper-custom .stepper-horizontal .step.done    .step-circle {
+  background-color: #1c7a80;
+  color: #fff;                 /* النصّ أبيض */
+  font-weight: 700;            /* عريض */
+}
+
+/* عناوين الخطوات */
+.stepper-custom .stepper-horizontal .step .step-title {
+  color: #000;
+}
+
+/* عنوان الخطوة النشطة */
+.stepper-custom .stepper-horizontal .step.active .step-title {
+  font-weight: 700;            /* عريض */
+}

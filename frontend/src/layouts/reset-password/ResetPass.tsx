@@ -1,20 +1,27 @@
 import AuthWrapper from '@/components/common/AuthWrapper'
+import GoBack from '@/components/common/GoBack/GoBack'
 import LeftAuthContainer from '@/components/common/LeftAuthContainer'
 import RightAuthContainer from '@/components/common/RigtAuthContainer'
-import RegisterFeature from '@/features/register/RegisteRFeature'
-import RightAvatar from '@/features/register/RightAvatar'
-import './Register.css'
-export default function Register() {
+import LeftReset from '@/features/reset-pass/LeftReset'
+import RightRest from '@/features/reset-pass/RightRest'
+import React from 'react'
+
+export default function ResetPass() {
   return (
-    <AuthWrapper>
+    <>
+    <GoBack/>
+      <AuthWrapper>
 <LeftAuthContainer>
 
-   <RegisterFeature/>
+   <LeftReset/>
 </LeftAuthContainer>
 <RightAuthContainer>
     
-  <RightAvatar/>
+  <RightRest/>
 </RightAuthContainer>
     </AuthWrapper>
+    </>
+
+
   )
 }
