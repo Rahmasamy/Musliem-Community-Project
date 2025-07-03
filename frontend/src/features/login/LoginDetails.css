@@ -1,0 +1,122 @@
+.LoginAvatarImgs {
+    width: 100%;
+
+    max-width: 100%;
+}
+
+.span-welcome {
+    font-weight: bold;
+    font-size: large;
+    padding-right: 2px;
+}
+
+.LoginForm h2 {
+    font-family: "Cinzel", serif !important;
+}
+
+.LoginForm p {
+    padding: 6px;
+}
+
+.LoginForm {
+    padding-left: 10px;
+}
+
+.inputFields {
+    /* background-color: aqua; */
+    padding: 4px 0 0 4px;
+}
+
+.AuthBtnContainer {
+    padding: 7px 0;
+
+}
+
+.CreatAcountSpan a {
+    color: #FF9A0B !important;
+    text-decoration: underline;
+}
+
+.forgerPassSpan a {
+    color: black;
+
+}
+
+.CreatAcountSpan,
+.forgerPassSpan a,
+.Register {
+    font-size: 13px;
+    line-height: 1.2h;
+    padding: 3px;
+}
+
+.outer-ellipse {
+    width: 400px;
+    height: 300px;
+    border: 2px solid #ffbb5bba;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.inner-ellipse {
+    width: 210px;
+    height: 140px;
+    border: 2px solid #ffbb5bc4;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+}
+
+.LoginAvatarImgs .img1,
+.img2 {
+
+    width: 320px;
+    height: 212px;
+    z-index: 2;
+    position: absolute;
+}
+
+.LoginAvatarImgs .img1 {
+
+   bottom: 57%;
+    right: 35%;
+}
+
+.LoginAvatarImgs .img2 {
+
+    top: 44%;
+    left: 40%;
+}
+
+.icon1,
+.icon2,
+.icon3,.messageSpan {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    position: absolute;
+
+
+}
+
+.icon2 {
+    right: -9px;
+}
+
+.icon1 {
+    right: 76px;
+    top: -19px;
+}
+
+.icon3 {
+    bottom: 110px;
+    left: -21px;
+}
+.messageSpan {
+    bottom: 14px;
+    left: 61px;
+    font-size: 40px;
+}

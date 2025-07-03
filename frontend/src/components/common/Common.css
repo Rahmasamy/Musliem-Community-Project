@@ -1,0 +1,31 @@
+.inputFieldCommon {
+    border-radius: 12px;
+    padding: 10px 12px;
+    border: 0;
+    outline: none;
+    background-color: #F3F3F3;
+}
+.inputFieldCommon:focus {
+    border: 2px solid #1C7A80;
+}
+.label {
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 1.lh;
+    padding: 5px;
+}
+.iconinput {
+    position: absolute;
+    top: 9px;
+    left: 7px;
+}
+.inputFieldCommon::placeholder {
+    padding-left: 15px;
+}
+.AuthButton {
+    padding: 10px;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+}

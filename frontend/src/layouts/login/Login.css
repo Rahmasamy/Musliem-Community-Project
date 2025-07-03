@@ -1,0 +1,11 @@
+
+.LeftLoginContainer {
+    /* background-color: green; */
+    height: 100%;
+    width: 45%;
+}
+.AvatarLoginContainer {
+    /* background-color: red; */
+    width: 52%;
+    min-height: 500px;
+}
