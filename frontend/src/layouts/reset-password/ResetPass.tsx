@@ -6,7 +6,6 @@ import LeftReset from '@/features/reset-pass/LeftReset'
 import RightRest from '@/features/reset-pass/RightRest'
 import React from 'react'
 
-
 export default function ResetPass() {
   return (
     <>
