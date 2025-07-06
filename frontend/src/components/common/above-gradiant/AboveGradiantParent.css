@@ -1,0 +1,5 @@
+.AboveGradiantParent {
+      max-height: 20vh;
+      min-height: 13vh;
+  background: linear-gradient(to bottom, #1c7a80, white);
+}

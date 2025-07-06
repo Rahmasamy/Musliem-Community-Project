@@ -1,0 +1,19 @@
+.Notfound p:first-of-type{
+    color: #838282;
+    font-weight: bold;
+    margin: 10px;
+    font-size: 18px;
+    line-height: 1.2vh;
+}
+
+.Notfound p:last-of-type {
+    color: #838282;
+    padding: 5px;
+}
+.go-home {
+    background-color: #FF9A0B;
+    color: white;
+    padding: 10px 14px;
+    margin-top: 10px;
+    border-radius: 9px;
+}
