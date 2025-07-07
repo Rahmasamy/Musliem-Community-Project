@@ -52,18 +52,7 @@ export default function RegisterFeature() {
                                           className="stepper-custom"
                                       />
 
-                    {currentStep === 0 && (
-                        <div>
-
-                        </div>
-                    )}
-
-                    {currentStep === 1 && (
-                        <div>
-                            {/* Step 2 content */}
-
-                        </div>
-                    )}
+                   
                 </div>
                 <div className="inputFields w-full flex flex-col gap-5 items-start">
                     <CommonInput type='text' name='full-name' placeholder='Write your Full Name' label='Full Name'

@@ -23,7 +23,7 @@ export default function AppRoutes() {
         <Route path="/aboutus" element={<Aboutus />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="terms-conditions" element={<TermsAndConditions />} />
+        <Route path="/terms-conditions" element={<TermsAndConditions />} />
         <Route path="/verify-pass" element={<VerifyAccount />} />
         <Route path="/reset-password" element={<ResetPass />} />
         <Route path="*" element={<NotFoundLayout />} />

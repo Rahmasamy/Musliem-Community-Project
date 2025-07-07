@@ -89,8 +89,10 @@ textarea {
 }
 .input-radio-group p,.Bio label {
     font-weight: bold;
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.1;
+    padding: 10px 0 ;
+
 
 }
 /* ملف Stepper.css أو أي ملف بتستورده بعد استيراد مكتبة الـ Stepper */

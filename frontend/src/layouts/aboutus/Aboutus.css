@@ -1,0 +1,27 @@
+.AboutusContainer {
+    padding: 15px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+
+}
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
+
+.imgGlowWrapper img {
+  width: 350px;
+  height: 210px;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+  border: 1px solid transparent;
+}
+
