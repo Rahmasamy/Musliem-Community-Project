@@ -1,0 +1,30 @@
+.orange-btn {
+    background-color: transparent;
+    padding: 12px 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 12px;
+    font-size: 14px;
+    white-space: nowrap; /* Prevent text breaking */
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+}
+.orange-btn svg {
+    width: 24px;
+    height: 24px;
+}
+.orange {
+    background-color: #FF9A0B;
+    color: white;
+}
+.white {
+    background-color: white;
+    color: #FF9A0B;
+}
+.bergendy {
+    background-color: #1C7A80;
+    color: white;
+}

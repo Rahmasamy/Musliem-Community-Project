@@ -1,0 +1,17 @@
+.HeaderOfService {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-direction: column;
+    padding-top: 20px;
+    text-align: center;
+    line-height: 22px;
+}
+.HeaderOfService h2 {
+    font-weight: bold;
+}
+.HeaderOfService p {
+    font-size: 18px;
+}

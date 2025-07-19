@@ -41,3 +41,8 @@
   font-size: 20px;
   color: #1c7a80;
 }
+.rightWrapper {
+  min-height: 100vh;
+  width: 100%;
+  background-size: contain;
+}

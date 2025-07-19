@@ -95,7 +95,8 @@ textarea {
 
 
 }
-/* ملف Stepper.css أو أي ملف بتستورده بعد استيراد مكتبة الـ Stepper */
+
+
 .stepper-custom .stepper-horizontal .step .step-circle {
   color: #000;                 /* النصّ الأسود الافتراضي */
   background-color: #89cdd3;   /* خلفيّة الدائرة الافتراضية */

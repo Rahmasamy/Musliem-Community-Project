@@ -15,7 +15,7 @@ export default function ContactUs() {
                 <GoBack />
 
             </AboveGradiantParent>
-            <Navigate home='Home' arg2='Terms & Conditions' />
+            <Navigate home='Home' arg2='Contact Us' />
             <AuthWrapper>
                 
                 <LeftAuthContainer>
