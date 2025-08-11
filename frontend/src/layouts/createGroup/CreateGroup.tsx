@@ -1,3 +1,5 @@
+import CancelBtn from "@/components/common/cancel-btn/CancelBtn";
+import ConfirmBtn from "@/components/common/confirm-btn/ConfirmBtn";
 import { useState } from "react";
 import { FaCamera, FaEdit } from "react-icons/fa";
 
@@ -5,7 +7,7 @@ export default function CreateGroup() {
   const [joinOption, setJoinOption] = useState("all");
 
   return (
-    <div className="w-full max-w-5xl mx-auto bg-white rounded-lg  p-6">
+    <div className=" w-[90%] mx-auto bg-white rounded-lg  p-6">
       {/* Header Banner */}
       <div className="relative w-full h-40 bg-[#E3C7A0] rounded-t-lg flex items-center justify-center">
         <h2 className="text-xl font-semibold text-gray-800">Your Group Name</h2>
@@ -73,12 +75,8 @@ export default function CreateGroup() {
 
         {/* Buttons */}
         <div className="flex justify-end gap-4">
-          <button className="bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300">
-            ✕ Cancel
-          </button>
-          <button className="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600">
-            + Create Event
-          </button>
+         <CancelBtn />
+         <ConfirmBtn />
         </div>
       </div>
     </div>

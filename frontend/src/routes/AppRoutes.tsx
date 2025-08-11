@@ -4,7 +4,7 @@ import Aboutus from '@/layouts/aboutus/Aboutus'
 import AllGroupsPage from '@/layouts/AllGroupsPage/AllGroupsPage'
 import ContactUs from '@/layouts/contact-us/ContactUs'
 import CreateGroup from '@/layouts/createGroup/CreateGroup'
-import EventsPage from '@/layouts/EventsPage/EventsPage'
+
 import ForgetPassword from '@/layouts/forgetPassword/ForgetPassword'
 import GroupDetails from '@/layouts/GroupDetails/GroupDetails'
 import GroupPage from '@/layouts/GroupPage/GroupPage'
@@ -12,6 +12,7 @@ import HalalBusinessPage from '@/layouts/HalalBusinessDirctoryPage/HalalBusiness
 import Home from '@/layouts/Home/Home'
 import Login from '@/layouts/login/Login'
 import MemberShipPage from '@/layouts/MemberShip/MemberShipPage'
+import Messages from '@/layouts/messages/Messages'
 import MoreInfo from '@/layouts/MoreInfo/MoreInfo'
 import NotFoundLayout from '@/layouts/not-foundpage/NotFoundLayout'
 import PrivacyPolicy from '@/layouts/privacy-policy/PrivacyPolicy'
@@ -20,8 +21,28 @@ import ResetPass from '@/layouts/reset-password/ResetPass'
 import TermsAndConditions from '@/layouts/terms-conditions/TermsAndConditions'
 import VerifyAccount from '@/layouts/verify/VerifyAccount'
 import YourGroupsPage from '@/layouts/YourGroupsPage/YourGroupsPage'
-import React from 'react'
+import AdvertisePage from '@/layouts/advertisePage/AdvertisePage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import ApplyForRolePage from '@/layouts/apply-for-role-page/ApplyForRolePage'
+import SellProductsPage from '@/layouts/sell-products-page/SellProductsPage'
+import ProfilePage from '@/layouts/ProfilePage/ProfilePage'
+import ProfileSection from '@/layouts/ProfleSection/ProfileSection'
+import ProfileAdvertisments from '@/layouts/ProfileAdvertisments/ProfileAdvertisments'
+import ProfileListing from '@/layouts/ProfileListing/ProfileListing'
+import ProfilePayments from '@/layouts/ProfilePayments/ProfilePayments'
+import ServicePage from '@/layouts/ServicePage/ServicePage'
+import OurProducts from '@/layouts/ourProducts/OurProducts'
+import DonationPage from '@/layouts/DonationPage/DonationPage'
+import BabySitterPage from '@/layouts/BabySitter/BabySitterPage'
+import { QueriesObserver } from '@tanstack/react-query'
+import QuranTutor from '@/layouts/QuranTutor/QuranTutor'
+import ProductDetails from '@/layouts/ProductDetails/ProductDetails'
+import AllEvents from '@/features/contactus-form/All-Events/AllEvents'
+import YourEvents from '@/features/MoreInfo/YourEvents/YourEvents'
+import CreateEvent from '@/layouts/apply-for-role-page/createEvents/CreateEvent'
+import EventsPage from '@/layouts/apply-for-role-page/EventsPage/EventsPage'
+import EventDetails from '@/layouts/EventDetails/EventDetails'
+import PaymentPage from '@/layouts/paymentPage/PaymentPage'
 
 export default function AppRoutes() {
   return (
@@ -51,9 +72,61 @@ export default function AppRoutes() {
           <Route path="create-group" element={<CreateGroup />} />
         </Route>
         <Route path="/membership" element={<MemberShipPage />} />
-        <Route path="/halal-business-dirctory" element={<HalalBusinessPage />} />
-        <Route path="/Events" element={<EventsPage />} />
+        <Route path="/halal-business-dirctory" element={<HalalBusinessPage />} >
+             <Route index element={
+            <>
+              <AdvertisePage />
+             
+            </>
+          } />
+          <Route path="advertise" element={<AdvertisePage />} />
+          <Route path="apply-for-role" element={<ApplyForRolePage />} />
+          <Route path="sell-products" element={<SellProductsPage />} />
+        </Route>
+
+          <Route path="/profilePage" element={<ProfilePage />} >
+             <Route index element={
+            <>
+              <ProfileSection />
+             
+            </>
+          } />
+          <Route path="profile-section" element={<ProfileSection />} />
+          <Route path="your-advertisments" element={<ProfileAdvertisments />} />
+          <Route path="yourlisting" element={<ProfileListing />} />
+            <Route path="profile-payments" element={<ProfilePayments />} />
+        </Route>
+
+          <Route path="/ServicesPage" element={<ServicePage />} >
+             <Route index element={
+            <>
+              <OurProducts />
+             
+            </>
+          } />
+          <Route path="our-products" element={<OurProducts />} />
+           <Route path="product-details" element={<ProductDetails />} />
+          <Route path="donations" element={<DonationPage />} />
+          <Route path="baby-sitter" element={<BabySitterPage />} />
+            <Route path="quran-tutor" element={<QuranTutor />} />
+        </Route>
+        <Route path="/events" element={<EventsPage />}>
+          <Route
+            index
+            element={
+              <>
+                <AllEvents />
+              </>
+            }
+          />
+          <Route path="all-Events" element={<AllEvents />} />
+          <Route path="your-Events" element={<YourEvents />} />
+          <Route path="create-event" element={<CreateEvent />} />
+          <Route path='events-details' element= {<EventDetails />} />
+        </Route>
         <Route path="/group-details" element={<GroupDetails />} />
+        <Route path='/messages' element={<Messages/>}/>
+          <Route path='/payment' element={<PaymentPage/>}/>
         <Route path="*" element={<NotFoundLayout />} />
       </Routes>
       <Footer />

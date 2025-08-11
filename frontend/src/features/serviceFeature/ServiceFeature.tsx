@@ -21,8 +21,10 @@ export default function ServiceFeature() {
   }/>
   <ServiceCard/>
   <div className="flex justify-center items-center">
-
+<div className="p-4">
   <OrangeButton title='Load More' />
+</div>
+
   </div>
      </RightWrapper>
 

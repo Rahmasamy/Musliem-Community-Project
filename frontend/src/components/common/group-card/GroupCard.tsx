@@ -12,14 +12,14 @@ import { Link } from 'react-router-dom'
 export default function GroupCard() {
   return (
     <div className="w-full flex justify-center items-center">
-      <div className="w-[90%] p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="w-full p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Card 1 */}
        <Card className="shadow-md w-full h-full flex flex-col justify-between items-center">
-  <CardHeader className="p-0">
+  <CardHeader className="p-0 w-full">
     <img
       src={group1}
       alt="card1 img"
-      className="w-full h-[250px] object-cover"
+      className="w-full h-[280px] object-cover"
     />
   </CardHeader>
 
@@ -44,7 +44,7 @@ export default function GroupCard() {
             <img
               src={group2}
               alt="card2 img"
-              className="w-full h-[250px] object-cover"
+              className="w-full h-[280px] object-cover"
             />
           </CardHeader>
           <CardContent className="p-4 flex-1">
@@ -64,7 +64,7 @@ export default function GroupCard() {
             <img
               src={group3}
               alt="card3 img"
-              className="w-full h-[250px] object-cover"
+              className="w-full h-[280px] object-cover"
             />
           </CardHeader>
           <CardContent className="p-4 flex-1">

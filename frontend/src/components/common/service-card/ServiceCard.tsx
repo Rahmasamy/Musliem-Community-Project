@@ -6,9 +6,9 @@ import card4 from '@/assets/imgs/card4.png'
 export default function ServiceCard() {
     return (
        <div className='w-[100%] flex justify-center items-center'>
-        <div className='listOfcards w-[90%] p-4 flex justify-between items-center gap-2 mx-2 '>
+        <div className='listOfcards w-[90%] p-4 flex justify-between items-center gap-2 '>
             <Card className="w-[300px] shadow-md">
-                <CardHeader className='p-0'>
+                <CardHeader className='p-0  w-full'>
                     <img src={card1} alt="card1 img" style={{ height:"150px"}} />
                 </CardHeader>
                 <CardContent className='p-4'>
@@ -30,7 +30,7 @@ export default function ServiceCard() {
                 </CardFooter>
             </Card>
               <Card className="w-[300px] shadow-md">
-                <CardHeader className='p-0'>
+                <CardHeader className='p-0  w-full'>
                     <img src={card2} alt="card1 img" style={{ height:"150px"}} />
                 </CardHeader>
                 <CardContent className='p-4'>
@@ -52,7 +52,7 @@ export default function ServiceCard() {
                 </CardFooter>
             </Card>
               <Card className="w-[300px] shadow-md">
-                <CardHeader className='p-0'>
+                <CardHeader className='p-0  w-full'>
                     <img src={card3} alt="card1 img" style={{ height:"150px"}} />
                 </CardHeader>
                 <CardContent className='p-4'>
@@ -74,7 +74,7 @@ export default function ServiceCard() {
                 </CardFooter>
             </Card>
               <Card className="w-[300px] shadow-md">
-                <CardHeader className='p-0'>
+                <CardHeader className='p-0  w-full'>
                     <img src={card4} alt="card1 img"  style={{ height:"150px"}}/>
                 </CardHeader>
                 <CardContent className='p-4'>

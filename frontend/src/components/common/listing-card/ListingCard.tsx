@@ -4,18 +4,24 @@ import table from '@/assets/imgs/table.png';
 import labtop from '@/assets/imgs/labtop.png'
 import macrame from '@/assets/imgs/macrame.png'
 import mirror from '@/assets/imgs/mirror.png'
+import { Link } from 'react-router-dom';
 
 export default function
     () {
     return (
         <div className='w-[100%] flex justify-center items-center'>
-            <div className='listOfcards w-[90%] p-4 flex justify-between items-center gap-2 mx-2 '>
-                <Card className="w-[300px] shadow-md">
-                    <CardHeader className='p-0'>
+            <div className='listOfcards w-[90%] p-4 flex justify-center items-center gap-2 flex-wrap'>
+                <Card className="w-[330px] shadow-md">
+                    <CardHeader className='p-0  w-full'>
                         <img src={labtop} alt="card1 img" style={{ height: "150px" }} />
                     </CardHeader>
                     <CardContent className='p-4'>
-                        <h3 className='font-bold'>Laptop</h3>
+                        <h3 className='font-bold'>
+                            <Link to="/ServicesPage/product-details">
+                                Laptop
+                            </Link>
+                       
+                        </h3>
                         <p>
                             Lorem ipsum dolor sit amet consectetur. Felis porttitor nunc volutpat ultricies quis leo.
                         </p>
@@ -34,9 +40,9 @@ export default function
 
                     </CardFooter>
                 </Card>
-                <Card className="w-[300px] shadow-md">
+                <Card className="w-[330px] shadow-md">
                     <CardHeader className='p-0'>
-                        <img src={table} alt="card1 img" style={{ height: "150px" }} />
+                        <img src={table} alt="card1 img  w-full" style={{ height: "150px" }} />
                     </CardHeader>
                  <CardContent className='p-4'>
                         <h3 className='font-bold'>Laptop</h3>
@@ -58,8 +64,8 @@ export default function
 
                     </CardFooter>
                 </Card>
-                <Card className="w-[300px] shadow-md">
-                    <CardHeader className='p-0'>
+                <Card className="w-[330px] shadow-md">
+                    <CardHeader className='p-0  w-full'>
                         <img src={macrame} alt="card1 img" style={{ height: "150px" }} />
                     </CardHeader>
                  <CardContent className='p-4'>
@@ -82,8 +88,8 @@ export default function
 
                     </CardFooter>
                 </Card>
-                <Card className="w-[300px] shadow-md">
-                    <CardHeader className='p-0'>
+                <Card className="w-[330px] shadow-md">
+                    <CardHeader className='p-0  w-full'>
                         <img src={mirror} alt="card1 img" style={{ height: "150px" }} />
                     </CardHeader>
                    <CardContent className='p-4'>

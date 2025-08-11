@@ -41,8 +41,10 @@ export default function Navbar() {
                            
                         </li>
                         <li className='flex items-center text-center relative cursor-pointer'  onClick={toggleService}>
-                       
-                          Services
+                       <Link to="/ServicesPage">
+                       Services
+                       </Link>
+                          
                        
                             
                             <span className='service-span'>
@@ -68,16 +70,23 @@ export default function Navbar() {
                         <li>
                             <Link to="/contactus">Contact Us</Link>
                         </li>
+                         <li>
+                            <Link to="/profilePage">Profile</Link>
+                        </li>
                     </ul>
                 </div>
                 <div className="Logos flex items-center">
                     <img src={profile} alt="search icon" />
+                    <Link to="/messages">
                     <img src={email} alt="email icon" />
-                    <a className='login-btn'>
+                    </Link>
+                    <Link className='login-btn'
+                    to="/login"
+                    >
 
                         <img src={Group} alt="profile icon" />
                         login
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

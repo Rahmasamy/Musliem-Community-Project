@@ -16,8 +16,6 @@ export default function GroupPage() {
         { name: "Your Groups", to: "/Groups/your-groups", key: "joined" },
     ];
 
-    const [activeSection, setActiveSection] = useState("both"); 
-    const [createGroup,setCreateGroup] = useState("")
     return (
         <>
             <AboveGradiantParent>
@@ -37,7 +35,7 @@ export default function GroupPage() {
                 />
 
 
-                <main className="flex-1 p-8">
+                <main className="flex-1">
 
                     <div className="flex justify-between items-center mb-8">
                       

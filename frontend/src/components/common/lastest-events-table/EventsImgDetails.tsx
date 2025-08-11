@@ -1,5 +1,6 @@
 import React from 'react'
 import EventImg from '@/assets/imgs/EventImg.png'
+import { Link } from 'react-router-dom'
 export default function EventsImgDetails() {
   return (
     <div className='w-[45%]'>
@@ -28,7 +29,10 @@ export default function EventsImgDetails() {
                 In-Person
               </div>
               <h3 className="text-lg font-semibold">
-                A Workshop on Ethical Dealings in the Muslim Community
+                <Link to={"/event-details"}>
+                  A Workshop on Ethical Dealings in the Muslim Community
+                </Link>
+              
               </h3>
               <p className="text-sm text-gray-200">
                 Dearborn Community Center, 123 Main St, Dearborn, MI 48126, USA

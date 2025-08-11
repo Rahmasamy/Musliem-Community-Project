@@ -19,7 +19,7 @@ export default function ContactUs() {
             <AuthWrapper>
                 
                 <LeftAuthContainer>
-                     <h2>
+                     <h2 className='font-bold text-2xl'>
                         Get In Touch
                      </h2>
                     <ContactUsForm />

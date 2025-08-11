@@ -48,7 +48,7 @@ const CommonInput: React.FC<inputFieldInterface> = ({
         value={value}
         onChange={onChange}
         required={required}
-        className={`inputFieldCommon w-full ${icon ? 'pl-10' : 'pl-4'} py-2 border rounded-md ${
+        className={`flex-1 inputFieldCommon w-full ${icon ? 'pl-10' : 'pl-4'} py-2 border rounded-md ${
           error ? 'border-red-500' : 'border-gray-300'
         }`}
         accept={accepts}
@@ -67,7 +67,7 @@ const CommonInput: React.FC<inputFieldInterface> = ({
 
 
   return type !== 'file' ? (
-    <div className="mb-4 w-10/12">
+    <div className="mb-4 w-full">
       {labelSection}
       {inputContainer}
     </div>
