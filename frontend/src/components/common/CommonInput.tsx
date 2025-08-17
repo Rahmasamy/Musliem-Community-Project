@@ -9,9 +9,11 @@ const CommonInput: React.FC<inputFieldInterface> = ({
   name,
   value,
   onChange,
+  onBlur,
   error,
   required = false,
   icon,
+  touched,
   accepts,
 }) => {
   const labelSection = label && (
@@ -47,6 +49,7 @@ const CommonInput: React.FC<inputFieldInterface> = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
         required={required}
         className={`flex-1 inputFieldCommon w-full ${icon ? 'pl-10' : 'pl-4'} py-2 border rounded-md ${
           error ? 'border-red-500' : 'border-gray-300'
@@ -54,7 +57,9 @@ const CommonInput: React.FC<inputFieldInterface> = ({
         accept={accepts}
       />
 
-      {error && <p className="error text-red-500 text-xs mt-1">{error}</p>}
+     { error && (
+  <p className="error text-red-500 text-xs mt-1">{error}</p>
+)}
     </>
   );
 

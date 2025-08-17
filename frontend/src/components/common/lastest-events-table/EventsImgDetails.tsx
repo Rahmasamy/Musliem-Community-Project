@@ -1,7 +1,12 @@
 import React from 'react'
 import EventImg from '@/assets/imgs/EventImg.png'
 import { Link } from 'react-router-dom'
+import { useEvents } from '@/context/eventContext';
 export default function EventsImgDetails() {
+   const { events } = useEvents();
+    const firstEvent = events[0];
+
+  if (!firstEvent) return null;
   return (
     <div className='w-[45%]'>
           {/* Right Side: Featured Event Card */}
@@ -21,21 +26,21 @@ export default function EventsImgDetails() {
               <div className="text-xs px-2 py-1 rounded text-white"
               style={{backgroundColor:"#1C7A80"}}
               >
-                2:00 PM - 5:00 PM
+                {firstEvent.startTime} - {firstEvent.endTime}
               </div>
             </div>
             <div>
               <div className="text-sm  px-2 py-1 inline-block rounded " style={{backgroundColor:"#1C7A80"}}>
-                In-Person
+                {firstEvent.eventType}
               </div>
               <h3 className="text-lg font-semibold">
                 <Link to={"/event-details"}>
-                  A Workshop on Ethical Dealings in the Muslim Community
+                 {firstEvent.name}
                 </Link>
               
               </h3>
               <p className="text-sm text-gray-200">
-                Dearborn Community Center, 123 Main St, Dearborn, MI 48126, USA
+               {firstEvent.description}
               </p>
               <button className="mt-4 bg-orange-400 text-white font-medium py-2 px-4 rounded-full text-sm hover:bg-orange-500 transition">
                 Register Now →

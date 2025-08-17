@@ -43,9 +43,7 @@ const NoConnection = () => {
       setLastChecked(new Date().toLocaleTimeString());
       
       // This will now log every time connection status changes
-      console.log('Navigator online:', navigatorStatus);
-      console.log('Really online:', realStatus);
-      console.log('Showing no connection:', !realStatus);
+    
     };
 
     const handleOnline = () => {

@@ -6,7 +6,7 @@ import { FaArrowRight } from 'react-icons/fa'
 export default function OurGroups() {
   return (
     <div className='w-full flex flex-col items-center'>
-<LeftHeading title='Latest Events'
+<LeftHeading title='Our Groups'
      desc={
         <>
         Lorem ipsum dolor sit amet consectetur. Sed massa pretium sed scelerisque

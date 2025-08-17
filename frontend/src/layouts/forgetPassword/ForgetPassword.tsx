@@ -4,9 +4,6 @@ import LeftAuthContainer from '@/components/common/LeftAuthContainer'
 import RightAuthContainer from '@/components/common/RigtAuthContainer'
 import LeftForgetPass from '@/features/forget-pass/LeftForgetPass'
 import RightForgetPass from '@/features/forget-pass/RightForgetPass'
-import MoreInfoFeature from '@/features/MoreInfo/MoreInfoFeature'
-import RightMoreInfo from '@/features/MoreInfo/RightMoreInfo'
-import React from 'react'
 
 export default function ForgetPassword() {
     return (

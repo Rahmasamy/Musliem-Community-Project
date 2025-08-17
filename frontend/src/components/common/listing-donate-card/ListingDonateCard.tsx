@@ -10,8 +10,8 @@ export default function ListingDonateCard
     () {
     return (
         <div className='w-[100%] flex justify-center items-center'>
-            <div className='listOfcards w-[90%] p-4 flex justify-between items-center gap-2 mx-2 flex-wrap '>
-                <Card className="w-[300px] shadow-md">
+            <div className='listOfcards w-[90%] p-4 flex justify-center items-center gap-2 mx-2 flex-wrap '>
+                <Card className="w-[330px] shadow-md">
                     <CardHeader className='p-0  w-full'>
                         <img src={Donate} alt="card1 img" style={{ height: "180px" }} className='object-cover' />
                     </CardHeader>
