@@ -21,8 +21,8 @@ export default function LatestEvents() {
 
           } />
         <div className="flex justify-between w-[95%] items-center">
-          <LatestEventsTable />
-          <EventsImgDetails />
+          <LatestEventsTable internal='false' />
+          <EventsImgDetails limit={0} />
         </div>
 
       </div>

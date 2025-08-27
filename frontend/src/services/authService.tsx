@@ -4,7 +4,6 @@ import {
   ForgotPasswordPayload,
   VerifyCodePayload,
   ResetPasswordPayload,
-  AuthResponse,
   ForgetPasswordResponse,
   User,
   VerifyCodeResponse,
@@ -25,9 +24,7 @@ const register = async( registerPayload : RegisterPayload): Promise<User> => {
   })
   return data;
 }
-const logout = async (): Promise<void> => {
-  await axiosInstance.post("/auth/logout");
-};
+
 
 const refershToken = async () : Promise<{ accessToken: string }> => {
   const { data } = await axiosInstance.post("/auth/refresh-token");
@@ -56,7 +53,7 @@ const resetPassword = async (payload: ResetPasswordPayload,token:string): Promis
 export default {
   login,
   register,
-  logout,
+
   refershToken,
   forgotPassword,
   verifyResetCode,

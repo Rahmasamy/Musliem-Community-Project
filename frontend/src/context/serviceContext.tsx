@@ -1,4 +1,4 @@
-import axiosInstance from "@/utils/axiosInstance";
+import axiosInstance from "@/api/authApi";
 import { ServiceContextType, ServiceType } from "@/utils/context-interface/serviceInterface";
 import { createContext, useContext,  useState } from "react";
 

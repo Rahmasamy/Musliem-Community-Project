@@ -3,11 +3,8 @@ import AboveGradiantParent from "@/components/common/above-gradiant/AboveGradian
 import GoBack from "@/components/common/GoBack/GoBack";
 import Navigate from "@/components/common/navigator/Navigate";
 import SideBar from "@/components/common/sideBar/SideBar";
-import { FaPlus } from "react-icons/fa";
-import AllGroupsPage from "../AllGroupsPage/AllGroupsPage";
-import YourGroupsPage from "../YourGroupsPage/YourGroupsPage";
-import CreateGroup from "../createGroup/CreateGroup";
-import { Link, Outlet } from "react-router-dom";
+
+import {  Outlet } from "react-router-dom";
 
 
 export default function GroupPage() {
@@ -35,17 +32,9 @@ export default function GroupPage() {
                 />
 
 
-                <main className="flex-1">
+                <main className="flex-1 px-6">
 
-                    <div className="flex justify-between items-center mb-8">
-                      
-                        <Link to='/Groups/create-group'
-                         className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-full flex items-center gap-2 shadow"
-                        >
-                            <FaPlus /> Create New Group
-                        </Link>
-                       
-                    </div>
+                  
 
                        <Outlet />
 

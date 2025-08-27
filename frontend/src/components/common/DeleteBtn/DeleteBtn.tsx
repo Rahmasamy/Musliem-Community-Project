@@ -1,9 +1,11 @@
 import React from 'react'
 
-export default function DeleteBtn() {
+export default function DeleteBtn({onClick}: {onClick? : () => void}) {
     return (
         <>
-            <button className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-white hover:text-red-500 flex items-center gap-3 transition duration-300 font-bold">
+            <button className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-white hover:text-red-500 flex items-center gap-3 transition duration-300 font-bold"
+            onClick={onClick}
+            >
                 <span>
                     <svg width="18" height="18" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.8125 4.25H2.1875M11.7706 5.8125L11.4831 10.125C11.3725 11.7837 11.3175 12.6131 10.7769 13.1188C10.2362 13.6244 9.40437 13.625 7.74187 13.625H7.25812C5.59562 13.625 4.76375 13.625 4.22312 13.1188C3.6825 12.6131 3.62687 11.7837 3.51687 10.125L3.22937 5.8125" stroke="white" strokeWidth="0.6875" strokeLinecap="round" />

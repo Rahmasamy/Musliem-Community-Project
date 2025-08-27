@@ -7,13 +7,14 @@ import {
   FaYoutube
 } from 'react-icons/fa';
 import logo from '@/assets/imgs/logo.png'
+import { Link } from 'react-router-dom';
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-t from-[#00787B] to-[#003F41] text-white py-10 px-4"
-    style={{marginTop:"20px"}}
+      style={{ marginTop: "20px" }}
     >
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-10 border-b border-white/30 pb-8">
-        
+
         {/* Left Section */}
         <div className="md:w-1/3 space-y-4">
           <div className="flex items-center gap-2">
@@ -37,20 +38,66 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-3">Quick Links</h3>
             <ul className="space-y-2 text-sm text-white">
-              <li>Contact Us</li>
-              <li>About Us</li>
-              <li>Terms & Conditions</li>
-              <li>Privacy Policy</li>
+              <li>
+                <Link to="/contactus">
+                  Contact Us
+                </Link>
+
+
+              </li>
+              <li>
+                <Link to="/aboutus">
+                  About Us
+
+                </Link>
+
+              </li>
+              <li>
+                <Link to="/terms-conditions">
+                  Terms & Conditions
+
+                </Link>
+
+              </li>
+              <li>
+                <Link to="/privacy-policy">
+                  Privacy Policy
+
+                </Link>
+
+              </li>
             </ul>
           </div>
 
           <div>
             <h3 className="font-semibold mb-3">Our Services</h3>
             <ul className="space-y-2 text-sm text-white/80">
-              <li>Groups</li>
-              <li>Events</li>
-              <li>Services</li>
-              <li>Business Directory</li>
+              <li>
+                <Link to="/Groups">
+                  Groups
+
+                </Link>
+
+              </li>
+              <li>
+                <Link to="/Events">
+                  Events
+                </Link>
+
+              </li>
+              <li>
+
+                <Link to="/ServicesPage">
+                  Services
+
+                </Link>
+              </li>
+              <li>
+                <Link to="/halal-business-dirctory">
+                  Business Directory
+
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

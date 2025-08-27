@@ -12,7 +12,7 @@ const NoConnection = () => {
   const testRealConnection = async () => {
     try {
       // Use a lightweight, reliable endpoint that should always be available
-      const response = await fetch('https://httpbin.org/status/200', {
+      const response = await fetch('https://www.google.com/favicon.ico', {
         method: 'HEAD',
         mode: 'no-cors',
         cache: 'no-cache',

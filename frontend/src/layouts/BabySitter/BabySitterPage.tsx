@@ -16,13 +16,13 @@ export default function BabySitterPage() {
              interdum cras. At nisl in quisque erat ut.
            </>
          }/>
-         <div className="w-[95%] flex items-center justify-end ">
+         {/* <div className="w-[95%] flex items-center justify-end ">
                                         <ApplyServiceBtn title='Apply as BabySitter' />
-                                    </div>
+                                    </div> */}
              <h1 className='font-bold text-lg p-3 ml-14'>
                                       Pick a Babysitter and Start Booking
                                     </h1>                       
-          <ListingBabysitterQuaranCard />
+          <ListingBabysitterQuaranCard service= "babysitter" />
             <div className="flex justify-center items-center">
           
             <OrangeButton title='Load More' />

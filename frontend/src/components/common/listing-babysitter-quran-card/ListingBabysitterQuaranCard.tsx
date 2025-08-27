@@ -1,36 +1,29 @@
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import Donate from '@/assets/imgs/donate.png'
-const babysitters = [
-    {
-        name: 'Emmy Watson',
-        price: 299,
-        location: 'Dearborn, Michigan',
-        phone: '(480) 555-0103',
-        image: Donate,
-    },
-    {
-        name: 'Sara Ali',
-        price: 250,
-        location: 'Detroit, Michigan',
-        phone: '(313) 555-1122',
-        image: Donate,
-    },
-     {
-        name: 'Sara Ali',
-        price: 250,
-        location: 'Detroit, Michigan',
-        phone: '(313) 555-1122',
-        image: Donate,
-    },
+import { useEffect, useState } from 'react';
+import { IService } from '@/types/Service';
+import Services from '@/services/serviceService';
 
-];
 
-export default function ListingBabysitterQuaranCard
-    () {
+export default function ListingBabysitterQuaranCard  ({service} : {service:string}) {
+const [services, setServices] = useState<IService[]>([]);
+
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const data = await Services.getServicesByType(service);
+                setServices(data);
+            } catch (error) {
+                console.error("Error fetching services", error);
+            }
+        };
+        fetchServices();
+    }, []);
+   
     return (
         <div className='w-full flex justify-center items-center'>
             <div className='w-[90%] p-4 flex justify-between items-center gap-4 flex-wrap'>
-                {babysitters.map((babysitter, index) => (
+                {services.map((babysitter, index) => (
                     <Card key={index} className="w-[300px] shadow-md">
                         <CardHeader className='p-0'>
                             <img

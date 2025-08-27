@@ -34,7 +34,6 @@ import ServicePage from '@/layouts/ServicePage/ServicePage'
 import OurProducts from '@/layouts/ourProducts/OurProducts'
 import DonationPage from '@/layouts/DonationPage/DonationPage'
 import BabySitterPage from '@/layouts/BabySitter/BabySitterPage'
-import { QueriesObserver } from '@tanstack/react-query'
 import QuranTutor from '@/layouts/QuranTutor/QuranTutor'
 import ProductDetails from '@/layouts/ProductDetails/ProductDetails'
 import AllEvents from '@/features/contactus-form/All-Events/AllEvents'
@@ -69,14 +68,15 @@ export default function AppRoutes() {
           } />
           <Route path="all-groups" element={<AllGroupsPage />} />
           <Route path="your-groups" element={<YourGroupsPage />} />
-          <Route path="create-group" element={<CreateGroup />} />
+          <Route path="/Groups/create-group" element={<CreateGroup />} />
         </Route>
+
         <Route path="/membership" element={<MemberShipPage />} />
         <Route path="/halal-business-dirctory" element={<HalalBusinessPage />} >
-             <Route index element={
+          <Route index element={
             <>
               <AdvertisePage />
-             
+
             </>
           } />
           <Route path="advertise" element={<AdvertisePage />} />
@@ -84,31 +84,31 @@ export default function AppRoutes() {
           <Route path="sell-products" element={<SellProductsPage />} />
         </Route>
 
-          <Route path="/profilePage" element={<ProfilePage />} >
-             <Route index element={
+        <Route path="/profilePage" element={<ProfilePage />} >
+          <Route index element={
             <>
               <ProfileSection />
-             
+
             </>
           } />
           <Route path="profile-section" element={<ProfileSection />} />
           <Route path="your-advertisments" element={<ProfileAdvertisments />} />
           <Route path="yourlisting" element={<ProfileListing />} />
-            <Route path="profile-payments" element={<ProfilePayments />} />
+          <Route path="profile-payments" element={<ProfilePayments />} />
         </Route>
 
-          <Route path="/ServicesPage" element={<ServicePage />} >
-             <Route index element={
+        <Route path="/ServicesPage" element={<ServicePage />} >
+          <Route index element={
             <>
               <OurProducts />
-             
+
             </>
           } />
           <Route path="our-products" element={<OurProducts />} />
-           <Route path="product-details" element={<ProductDetails />} />
+          <Route path="product-details" element={<ProductDetails />} />
           <Route path="donations" element={<DonationPage />} />
           <Route path="baby-sitter" element={<BabySitterPage />} />
-            <Route path="quran-tutor" element={<QuranTutor />} />
+          <Route path="quran-tutor" element={<QuranTutor />} />
         </Route>
         <Route path="/events" element={<EventsPage />}>
           <Route
@@ -122,11 +122,11 @@ export default function AppRoutes() {
           <Route path="all-Events" element={<AllEvents />} />
           <Route path="your-Events" element={<YourEvents />} />
           <Route path="create-event" element={<CreateEvent />} />
-          <Route path='events-details' element= {<EventDetails />} />
+          <Route path='/events/:id' element={<EventDetails />} />
         </Route>
-        <Route path="/group-details" element={<GroupDetails />} />
-        <Route path='/messages' element={<Messages/>}/>
-          <Route path='/payment' element={<PaymentPage/>}/>
+        <Route path="/group-details/:id" element={<GroupDetails />} />
+        <Route path='/messages/user/:userId/:flag' element={<Messages />} />
+        <Route path='/payment' element={<PaymentPage />} />
         <Route path="*" element={<NotFoundLayout />} />
       </Routes>
       <Footer />

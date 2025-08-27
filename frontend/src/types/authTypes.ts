@@ -4,10 +4,13 @@ export interface User {
   fullName: string;
   email: string;
   role: string;
+  photo?:string | null;
   phoneNumber?: string;
   skills?: string[];
+  otherSkill? : string;
   bio?: string;
   token: string;
+  password?: string;
 }
 
 export interface AuthResponse {

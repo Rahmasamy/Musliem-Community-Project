@@ -2,29 +2,42 @@ import React from 'react'
 import MessageBubble from '../MessageBuble/MessageBubble'
 import MessageInput from '../MessageInput/MessageInput'
 import chatPerson from '@/assets/imgs/chatperson.jpg'
-export default function ChatWindow() {
+import { useMessagesByGroup } from '@/hooks/useMessages';
+import { format } from 'date-fns';
+import { useAuth } from '@/hooks/useAuth';
+export default function ChatWindow({ groupId }: { groupId: string | null }) {
+  const { data: messages, isLoading, error } = useMessagesByGroup(groupId || "");
+  const loginUser = useAuth();
+  const loginUserId = loginUser?.user?._id;
+
+  if (!groupId) return <div className="flex-1 p-4">Select a group to start chatting</div>;
+  if (isLoading) return <div className="flex-1 p-4">Loading messages...</div>;
+  if (error) return <div className="flex-1 p-4">Error loading messages</div>;
   return (
-     <div className="flex-1 flex flex-col">
+    <div className="flex-1 flex flex-col">
       {/* Header */}
       <div className="p-4 border-b bg-white flex items-center justify-start gap-2">
-        <img src={chatPerson} alt="chat person" className='w-12 h-12 object-cover rounded-full'/>
+        <img src={chatPerson} alt="chat person" className='w-12 h-12 object-cover rounded-full' />
         <h3 className="font-bold text-gray-700">Ammi Watts</h3>
-       
+
       </div>
-       <span className="text-sm text-gray-500 text-center">Today | 06:32 PM</span>
+      <span className="text-sm text-gray-500 text-center">Today | 06:32 PM</span>
 
       {/* Messages */}
       <div className="flex-1 p-4 overflow-y-auto bg-gray-50">
-        <MessageBubble text="Oh, hello! All perfectly. I will check it and get back to you soon" time="04:45 PM" sender="other" />
-        <MessageBubble text="Oh, hello! All perfectly. I will check it and get back to you soon" time="04:45 PM" sender="me" />
-        <MessageBubble text="Oh, hello! All perfectly. I will check it and get back to you soon" time="04:45 PM" sender="other" />
-        <MessageBubble text="Oh, hello! All perfectly. I will check it and get back to you soon" time="04:45 PM" sender="me" />
-         <MessageBubble text="Oh, hello! All perfectly. I will check it and get back to you soon" time="04:45 PM" sender="other" />
-        <MessageBubble text="Oh, hello! All perfectly. I will check it and get back to you soon" time="04:45 PM" sender="me" />
+        {messages?.map((msg) => (
+          <MessageBubble
+            key={msg._id}
+            text={msg.text}
+            time={format(new Date(msg.createdAt), "hh:mm a")}
+            sender={msg.sender._id === loginUserId ? "me" : "other"}
+          />
+        ))}
+
       </div>
 
       {/* Input */}
-      <MessageInput />
+      <MessageInput groupId={groupId}/>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 // advertiseContext.tsx
 import { useContext, createContext, useEffect, useState } from 'react';
-import axiosInstance from '@/utils/axiosInstance';
 import { Advertisement,AdvertisementContextType } from '@/utils/context-interface/advertismentInterface';
+import axiosInstance from '@/api/authApi';
 
 
 const AdvertisementContext = createContext<AdvertisementContextType | null>(null);

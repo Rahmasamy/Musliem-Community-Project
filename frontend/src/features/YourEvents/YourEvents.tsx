@@ -19,7 +19,7 @@ const YourEvents = () => {
         Lorem ipsum dolor sit amet consectetur. Sed massa pretium sed
         scelerisque elementum congue interdum cras. At nisl in quisque erat ut.
       </p>
-      <div className="w-full flex justify-evenly p-5">
+      <div className="w-full flex gap-5 p-5">
         <div className="max-w-md rounded-2xl overflow-hidden shadow-lg bg-white border p-4">
           <div className="relative">
             <img

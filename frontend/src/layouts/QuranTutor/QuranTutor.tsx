@@ -16,13 +16,13 @@ export default function QuranTutor() {
                    interdum cras. At nisl in quisque erat ut.
                  </>
                }/>
-                 <div className="w-[95%] flex items-center justify-end">
+                 {/* <div className="w-[95%] flex items-center justify-end">
                                <ApplyServiceBtn title='Apply as Quran Tutor' />
-                           </div>
+                           </div> */}
                              <h1 className='font-bold text-lg p-3 ml-14'>
                                                                  Pick a Quran Tutor and Start Booking
                                                                </h1>                       
-                                     <ListingBabysitterQuaranCard />
+                                     <ListingBabysitterQuaranCard service = "quran_tutor"/>
                                        <div className="flex justify-center items-center">
                                      
                                        <OrangeButton title='Load More' />

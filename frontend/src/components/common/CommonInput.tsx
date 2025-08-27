@@ -15,6 +15,11 @@ const CommonInput: React.FC<inputFieldInterface> = ({
   icon,
   touched,
   accepts,
+  disabled,
+   useRef,
+   defaultValue,
+   onKeyDown
+  
 }) => {
   const labelSection = label && (
     <div className="label p-1">
@@ -43,6 +48,8 @@ const CommonInput: React.FC<inputFieldInterface> = ({
       )}
 
       <input
+        ref = {useRef}
+        disabled={disabled}
         id={name}
         name={name}
         type={type}
@@ -55,6 +62,8 @@ const CommonInput: React.FC<inputFieldInterface> = ({
           error ? 'border-red-500' : 'border-gray-300'
         }`}
         accept={accepts}
+        defaultValue={defaultValue}
+        onKeyDown={onKeyDown}
       />
 
      { error && (

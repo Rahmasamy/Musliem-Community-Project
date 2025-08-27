@@ -1,7 +1,7 @@
 // src/context/eventContext.tsx
 import { createContext, useContext, useEffect, useState } from "react";
-import axiosInstance from "@/utils/axiosInstance";
 import { EventContextType, Event } from "@/utils/context-interface/eventInterface";
+import axiosInstance from "@/api/authApi";
 
 
 

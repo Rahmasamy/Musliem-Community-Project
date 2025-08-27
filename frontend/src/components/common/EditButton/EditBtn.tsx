@@ -1,9 +1,11 @@
 import React from 'react'
 
-export default function EditBtn() {
+export default function EditBtn( {onClick} : {onClick? : () => void}) {
   return (
        <>
-            <button className="bg-gray-200 text-black px-6 py-2 rounded-full hover:bg-white hover:text-black flex items-center gap-3 transition duration-300 font-bold">
+            <button className="bg-gray-200 text-black px-6 py-2 rounded-full hover:bg-white hover:text-black flex items-center gap-3 transition duration-300 font-bold"
+            onClick={onClick}
+            >
                 <span>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8796 4.51327C17.9587 4.63344 17.994 4.77726 17.9794 4.92043C17.9649 5.0636 17.9013 5.19735 17.7996 5.29911L10.1387 12.9591C10.0604 13.0374 9.96258 13.0935 9.8554 13.1216L6.66457 13.9549C6.55909 13.9824 6.44826 13.9819 6.34306 13.9533C6.23787 13.9248 6.14197 13.8692 6.06489 13.7921C5.98782 13.715 5.93224 13.6191 5.90368 13.5139C5.87511 13.4087 5.87456 13.2979 5.90207 13.1924L6.7354 10.0024C6.76032 9.90691 6.80614 9.8181 6.86957 9.74244L14.5587 2.05827C14.6759 1.94123 14.8348 1.87549 15.0004 1.87549C15.166 1.87549 15.3249 1.94123 15.4421 2.05827L17.7996 4.41494C17.8287 4.44564 17.8554 4.47851 17.8796 4.51327ZM16.4737 4.85661L15.0004 3.3841L7.90207 10.4824L7.38123 12.4766L9.3754 11.9558L16.4737 4.85661Z" fill="black" />
