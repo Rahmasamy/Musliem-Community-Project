@@ -1,0 +1,15 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useUsers, useMakeAdmin } from "@/hooks/useUsers";
+import { Card, CardContent } from "@/components/ui/card";
+import { Loader2 } from "lucide-react";
+const UserDashboard = () => {
+    const { data: users, isLoading } = useUsers();
+    const { mutate: makeAdmin, isPending } = useMakeAdmin();
+    if (isLoading) {
+        return (_jsx("div", { className: "flex justify-center items-center h-64", children: _jsx(Loader2, { className: "animate-spin w-8 h-8 text-gray-500" }) }));
+    }
+    return (_jsx("div", { className: "p-3 sm:p-4 md:p-5 lg:p-6 bg-gray-50 min-h-screen", children: _jsx(Card, { className: "shadow-lg", children: _jsxs(CardContent, { className: "p-3 sm:p-4 md:p-6", children: [_jsx("h2", { className: "text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-800", children: "\uD83D\uDC65 User Management" }), _jsx("div", { className: "overflow-x-auto", children: _jsxs("table", { className: "min-w-full border-collapse rounded-lg overflow-hidden", children: [_jsx("thead", { children: _jsxs("tr", { className: "bg-gray-100 text-left text-gray-700 uppercase text-xs sm:text-sm", children: [_jsx("th", { className: "p-2 sm:p-3 border-b", children: "#" }), _jsx("th", { className: "p-2 sm:p-3 border-b", children: "Full Name" }), _jsx("th", { className: "p-2 sm:p-3 border-b hidden sm:table-cell", children: "Email" }), _jsx("th", { className: "p-2 sm:p-3 border-b", children: "Role" }), _jsx("th", { className: "p-2 sm:p-3 border-b text-center", children: "Action" })] }) }), _jsx("tbody", { children: users?.map((user, index) => (_jsxs("tr", { className: "hover:bg-gray-50 transition-colors border-b", children: [_jsx("td", { className: "p-2 sm:p-3 text-gray-600 text-xs sm:text-sm", children: index + 1 }), _jsx("td", { className: "p-2 sm:p-3 font-medium text-gray-800 text-xs sm:text-sm", children: user.fullName }), _jsx("td", { className: "p-2 sm:p-3 text-gray-600 text-xs sm:text-sm hidden sm:table-cell break-all", children: user.email }), _jsx("td", { className: "p-2 sm:p-3", children: _jsx("span", { className: `px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium rounded-full ${user.role === "admin"
+                                                        ? "bg-green-100 text-green-700"
+                                                        : "bg-yellow-100 text-yellow-700"}`, children: user.role }) }), _jsx("td", { className: "p-2 sm:p-3 text-center", children: user.role !== "admin" ? (_jsxs("button", { className: "bg-teal-600 hover:bg-teal-700 text-white text-xs sm:text-sm rounded-full px-2 sm:px-4 py-1 whitespace-nowrap", onClick: () => makeAdmin(user._id), disabled: isPending, children: [isPending ? (_jsx(Loader2, { className: "w-3 h-3 sm:w-4 sm:h-4 animate-spin inline" })) : (_jsx("span", { className: "hidden sm:inline", children: "Make Admin" })), !isPending && _jsx("span", { className: "sm:hidden", children: "Admin" })] })) : (_jsx("span", { className: "text-gray-400 text-xs sm:text-sm italic", children: "Already Admin" })) })] }, user._id))) })] }) })] }) }) }));
+};
+export default UserDashboard;

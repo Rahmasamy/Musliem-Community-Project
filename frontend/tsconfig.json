@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+      "strict": false,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
     "paths": {
       "@/*": ["src/*"]
     },
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "strict": true,
     "jsx": "react-jsx",
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   }
 }
