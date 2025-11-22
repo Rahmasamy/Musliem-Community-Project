@@ -1,32 +1,58 @@
-// src/context/eventContext.tsx
+// src/context/groupContext.tsx
 import { createContext, useContext, useEffect, useState } from "react";
 import axiosInstance from "@/utils/axiosInstance";
-import { Group ,GroupContextType} from "@/utils/context-interface/groupInterface";
+import {
+  Group,
+  GroupContextType,
+} from "@/utils/context-interface/groupInterface";
 
-
-
-const groupContext = createContext< GroupContextType| null>(null);
+const groupContext = createContext<GroupContextType | null>(null);
 
 export const useGroups = () => {
   const ctx = useContext(groupContext);
-  if (!ctx) throw new Error("use groups must be used inside Group Provider");
+  if (!ctx) throw new Error("useGroups must be used inside GroupProvider");
   return ctx;
 };
 
 export const GroupProvider = ({ children }: { children: React.ReactNode }) => {
   const [groups, setGroups] = useState<Group[]>([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("");
+
+  const loadGroups = async (pageNum = 1, searchTerm = "") => {
+    setLoading(true);
+    try {
+      const { data } = await axiosInstance.get(
+        `/groups?page=${pageNum}&limit=3&search=${searchTerm}`
+      );
+      setGroups(data.groups);
+      setPage(data.page);
+      setTotalPages(data.totalPages);
+    } catch (err) {
+      console.error("Error fetching groups:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const loadGroups = async () => {
-      const { data } = await axiosInstance.get("/groups?page=1");
-      
-      setGroups(data.groups); // because the API returns { events: [...] }
-    };
-    loadGroups();
+    loadGroups(1);
   }, []);
 
   return (
-    <groupContext.Provider value={{ groups }}>
+    <groupContext.Provider
+      value={{
+        groups,
+        page,
+        totalPages,
+        loading,
+        loadGroups,
+        search,
+        setSearch,
+      }}
+    >
       {children}
     </groupContext.Provider>
   );

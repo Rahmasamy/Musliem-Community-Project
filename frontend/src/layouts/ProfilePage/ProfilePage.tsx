@@ -23,7 +23,7 @@ export default function ProfilePage() {
                 <Navigate home="Home" arg2="Profile" />
             </div>
 
-            <div className="flex bg-gray-50 min-h-screen">
+            <div className="flex flex-col bg-gray-50 min-h-screen lg:flex-row">
 
                 <SideBar
                     label="Halal Business Directory"

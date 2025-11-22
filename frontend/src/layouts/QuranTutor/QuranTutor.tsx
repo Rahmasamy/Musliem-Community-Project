@@ -23,10 +23,7 @@ export default function QuranTutor() {
                                                                  Pick a Quran Tutor and Start Booking
                                                                </h1>                       
                                      <ListingBabysitterQuaranCard service = "quran_tutor"/>
-                                       <div className="flex justify-center items-center">
-                                     
-                                       <OrangeButton title='Load More' />
-                                       </div>
+                                      
           </div>
   )
 }

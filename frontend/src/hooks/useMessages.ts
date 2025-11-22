@@ -5,26 +5,28 @@ import { sendMessage } from "@/services/messageService";
 
 
 // API call
-const fetchMessagesByGroup = async (groupId: string): Promise<Message[]> => {
+const fetchMessagesByGroup = async (groupId: string | undefined): Promise<Message[]> => {
   const { data } = await axiosInstance.get(`/messages/${groupId}`);
   return data.messages;
 };
 
-export const useMessagesByGroup = (groupId: string) =>
+export const useMessagesByGroup = (groupId: string | undefined,options:any ) =>
   useQuery<Message[], Error>({
     queryKey: ["messages", groupId],
     queryFn: () => fetchMessagesByGroup(groupId),
-    enabled: !!groupId, // fetch only if groupId exists
+    enabled: !!groupId && options?.enabled, // fetch only if groupId exists
   });
 
 
-  export const useSendMessage = (groupId: string) => {
-  const queryClient = useQueryClient();
 
+export const useSendMessage = () => {
+  const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (text: string) => sendMessage(groupId, text),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["messages", groupId] });
+    mutationFn: ({ groupId, text }: { groupId: string; text: string }) =>
+      sendMessage(groupId, text),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({ queryKey: ["messages", variables.groupId] });
     },
   });
 };
+

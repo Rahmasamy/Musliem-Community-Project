@@ -15,7 +15,7 @@ export default function MemberShipPage() {
                     <Navigate home="Home" arg2="Halal Business Directory" />
                 </div>
      
-                <div className="flex bg-gray-50 min-h-screen">
+                <div className="flex flex-col bg-gray-50 min-h-screen lg:flex-row">
     
                    
     

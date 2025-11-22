@@ -58,3 +58,11 @@ export interface ResetPasswordPayload {
   password: string;
 }
 
+export interface IUserLimitResponse {
+  success: boolean;
+  canAddMore: boolean;
+  totalCount: number;
+  serviceCount: number;
+  productCount: number;
+  eventCount: number;
+}

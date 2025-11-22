@@ -6,15 +6,16 @@ export default function OrangeButton({
     title,
     icon,
     parentClassName,
-    className
+    className,
+    onClick
 } : OrangeBtn ) : JSX.Element{
   return (
     <div className={`flex gap-2 ${parentClassName || ''}`}>
   <button className={`orange-btn ${className || 'orange'} flex gap-2 items-center flex-1 justify-center `}
-  
+  onClick={onClick}
   >
-    {icon? icon : null}
     {title}
+    {icon? icon : null}
   </button>
     </div>
   )

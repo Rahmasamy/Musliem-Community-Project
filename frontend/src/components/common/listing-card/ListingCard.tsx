@@ -1,56 +1,195 @@
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
+import { FiSearch } from "react-icons/fi";
+import { useEffect, useState } from "react";
+import { useProducts } from "@/context/productContext";
+import { Product } from "@/utils/context-interface/productInterface";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import ReactPaginate from "react-paginate";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { useAuth } from "@/hooks/useAuth";
+import { useCreateOrGetPrivateChat } from "@/hooks/usePrivateChat";
+import { motion, AnimatePresence } from "framer-motion";
+import NoDataFound from "../no-data-found/NoData";
 
-import table from '@/assets/imgs/table.png';
-import labtop from '@/assets/imgs/labtop.png'
-import macrame from '@/assets/imgs/macrame.png'
-import mirror from '@/assets/imgs/mirror.png'
-import { Link } from 'react-router-dom';
-import { useProducts } from '@/context/productContext';
-import { Product } from '@/utils/context-interface/productInterface';
+export default function ListingCard() {
+  const { products, page, totalPages, setPage, setFilters } = useProducts();
+  const location = useLocation();
+  const [hidePath, setHidePath] = useState(false);
+  const [search, setSearch] = useState("");
+  const auth = useAuth();
+  const navigate = useNavigate();
+  const createOrGetChat = useCreateOrGetPrivateChat();
 
-export default function () {
-    const { products } = useProducts()
-    return (
-        <div className='w-[100%] flex justify-center items-center'>
-            <div className='listOfcards w-[90%] p-4 flex  items-center gap-5 flex-wrap'>
+  const handleOpenChatWithSeller = async (
+    sellerId: string,
+    fullName: string,
+    photo: string
+  ) => {
+    const currentUserId = auth?.user?._id;
+    if (!currentUserId) {
+      alert("Please login to send message to the seller");
+      navigate("/login");
+      return;
+    }
+    try {
+      const chat = await createOrGetChat.mutateAsync({
+        userId1: currentUserId,
+        userId2: sellerId,
+      });
+      const chatId = chat._id || chat.id;
+      const chatName = fullName || "Private Chat";
+      navigate(`/messages/user/${currentUserId}/false`, {
+        state: {
+          selectedChat: {
+            id: chatId,
+            type: "private",
+            chatName,
+            photo,
+          },
+        },
+      });
+    } catch (error) {
+      console.error("Failed to create/get chat", error);
+    }
+  };
 
-                {
-                    products.map((product: Product, index: number) => (
+  useEffect(() => {
+    setHidePath(location.pathname !== "/");
+  }, [location.pathname]);
 
-                        <Card className="w-[330px] shadow-md">
-                            <CardHeader className='p-0  w-full'>
-                                <img src={product.image} alt="card1 img" style={{ height: "150px" }} />
-                            </CardHeader>
-                            <CardContent className='p-4'>
-                                <h3 className='font-bold'>
-                                    <Link to="/ServicesPage/product-details">
-                                        {product.name}
-                                    </Link>
+  // Debounced smart search
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      setFilters({ search });
+    }, 500);
+    return () => clearTimeout(delayDebounce);
+  }, [search]);
 
-                                </h3>
-                                <p>
-                                    {product.description.length > 50 ? product.description.slice(0, 50) + '....' : product.description}
-                                </p>
-                                <h2 className='font-bold'>$ {product.price}</h2>
-                            </CardContent>
-                            <CardFooter>
-                                <span>
-                                    <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8.454 16.671C6.30341 14.5163 4.64952 11.9177 3.608 9.05702C3.035 7.49302 3.56 5.77502 4.738 4.59702L5.467 3.86902C5.66299 3.67264 5.89578 3.51684 6.15205 3.41053C6.40833 3.30423 6.68305 3.24951 6.9605 3.24951C7.23795 3.24951 7.51267 3.30423 7.76894 3.41053C8.02522 3.51684 8.25801 3.67264 8.454 3.86902L10.161 5.57602C10.3574 5.77201 10.5132 6.0048 10.6195 6.26108C10.7258 6.51735 10.7805 6.79208 10.7805 7.06952C10.7805 7.34697 10.7258 7.62169 10.6195 7.87797C10.5132 8.13424 10.3574 8.36704 10.161 8.56302L9.741 8.98302C9.57288 9.1511 9.43953 9.35065 9.34854 9.57028C9.25755 9.7899 9.21073 10.0253 9.21073 10.263C9.21073 10.5007 9.25755 10.7361 9.34854 10.9558C9.43953 11.1754 9.57288 11.3749 9.741 11.543L13.581 15.384C13.7491 15.5521 13.9486 15.6855 14.1683 15.7765C14.3879 15.8675 14.6233 15.9143 14.861 15.9143C15.0987 15.9143 15.3341 15.8675 15.5537 15.7765C15.7734 15.6855 15.9729 15.5521 16.141 15.384L16.562 14.964C16.758 14.7676 16.9908 14.6118 17.2471 14.5055C17.5033 14.3992 17.7781 14.3445 18.0555 14.3445C18.3329 14.3445 18.6077 14.3992 18.8639 14.5055C19.1202 14.6118 19.353 14.7676 19.549 14.964L21.256 16.671C21.4524 16.867 21.6082 17.0998 21.7145 17.3561C21.8208 17.6124 21.8755 17.8871 21.8755 18.1645C21.8755 18.442 21.8208 18.7167 21.7145 18.973C21.6082 19.2292 21.4524 19.462 21.256 19.658L20.528 20.386C19.35 21.565 17.632 22.09 16.068 21.517C13.2073 20.4755 10.6088 18.8216 8.454 16.671Z" stroke="#0D929A" stroke-width="1.5" stroke-linejoin="round" />
-                                    </svg>
+  return (
+    <div className="w-full flex flex-col items-center px-4 sm:px-6 lg:px-10">
+      {/* 🔍 Search bar */}
+      {products.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="flex w-full sm:w-[80%] md:w-[60%] mb-10 justify-center relative"
+        >
+          <FiSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
 
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search smartly for products..."
+            className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-2xl bg-white/80 backdrop-blur-sm shadow-sm focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none transition-all duration-300"
+          />
+        </motion.div>
+      )}
 
-                                </span>
-                                <p className="text-sm text-muted-foreground p-1" style={{ color: '#00ABB6' }}>(480) 555-0103
-                                </p>
+      {/* 🧾 Product Cards */}
+      {products.length === 0 ? (
+        <NoDataFound message="No Products Found" />
+      ) : (
+        <AnimatePresence>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full justify-items-center">
+            {products.map((product: Product) => (
+              <motion.div
+                key={product._id + product.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.3 }}
+                className="w-full sm:w-[320px] lg:w-[340px]"
+              >
+                <Card className="shadow-md hover:shadow-2xl border border-gray-100 rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 bg-white">
+                  {/* Image & Price */}
+                  <CardHeader className="p-0 relative">
+                    <img
+                      src={product.image}
+                      alt="product"
+                      className="w-full h-[200px] object-cover"
+                    />
+                    <span className="absolute top-3 right-3 bg-orange-500 text-white text-xs px-3 py-1 rounded-full shadow-md">
+                      ${product.price}
+                    </span>
+                  </CardHeader>
 
-                            </CardFooter>
-                        </Card>
-                    ))
-                }
+                  {/* Content */}
+                  <CardContent className="p-4 flex flex-col flex-grow">
+                    <h3 className="font-semibold text-lg mb-2 line-clamp-1 text-gray-800 hover:text-orange-500 transition-colors duration-200">
+                      <Link to={`/ServicesPage/product-details/${product._id}`}>
+                        {product.name}
+                      </Link>
+                    </h3>
 
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-2 leading-relaxed">
+                      {product.description}
+                    </p>
 
-            </div>
+                    <div className="mt-auto flex justify-between items-center">
+                      <div className="flex items-center gap-2">
+                        <img
+                          src={
+                            product.user?.photo ||
+                            "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                          }
+                          alt="seller"
+                          className="w-8 h-8 rounded-full object-cover border"
+                        />
+                        <span className="text-sm text-gray-700 font-medium">
+                          {product.user?.fullName || "Unknown Seller"}
+                        </span>
+                      </div>
+                    </div>
+                  </CardContent>
+
+                  {/* Button */}
+                  <CardFooter className="p-4 flex justify-center border-t border-gray-100">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() =>
+                        handleOpenChatWithSeller(
+                          String(product.user?._id),
+                          String(product.user?.fullName),
+                          String(product.user?.photo)
+                        )
+                      }
+                      className="flex items-center justify-center gap-2 w-full text-sm font-semibold text-white bg-gradient-to-r from-orange-300 to-orange-500 hover:from-orange-500 hover:to-orange-700 px-5 py-2.5 rounded-xl shadow-md transition-all duration-300"
+                    >
+                      💬 Send Message
+                    </motion.button>
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </AnimatePresence>
+      )}
+
+      {/* Pagination */}
+      {hidePath && products.length > 0 && (
+        <div className="mt-8 flex gap-2 justify-center items-center w-full">
+          <ReactPaginate
+            pageCount={totalPages}
+            forcePage={page - 1}
+            onPageChange={(e) => setPage(e.selected + 1)}
+            containerClassName="flex gap-3 justify-center items-center"
+            pageClassName="w-10 h-10 flex items-center justify-center border-2 border-orange-400 rounded-full bg-white text-orange-600 hover:bg-orange-400 hover:text-white transition-all duration-200 cursor-pointer"
+            activeClassName="!bg-orange-500 !text-white !border-orange-500"
+            previousLabel="<"
+            nextLabel=">"
+            previousClassName="w-10 h-10 flex items-center justify-center border-2 border-orange-400 rounded-full bg-white text-orange-600 hover:bg-orange-400 hover:text-white transition-all duration-200 cursor-pointer"
+            nextClassName="w-10 h-10 flex items-center justify-center border-2 border-orange-400 rounded-full bg-white text-orange-600 hover:bg-orange-400 hover:text-white transition-all duration-200 cursor-pointer"
+          />
         </div>
-    )
+      )}
+    </div>
+  );
 }

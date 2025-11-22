@@ -12,4 +12,5 @@ export interface Event {
   Location: string;
   members: User[];
   createdAt: string;
+  date : Date;
 }

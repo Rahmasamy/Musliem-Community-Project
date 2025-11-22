@@ -23,10 +23,7 @@ export default function BabySitterPage() {
                                       Pick a Babysitter and Start Booking
                                     </h1>                       
           <ListingBabysitterQuaranCard service= "babysitter" />
-            <div className="flex justify-center items-center">
-          
-            <OrangeButton title='Load More' />
-            </div>
+           
         
     </div>
   )

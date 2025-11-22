@@ -19,10 +19,10 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({ children, gradientDirection =
 
   return (
     <div
-      className="BigContainer flex flex-col  justify-center min-h-screen overflow-hidden w-full"
+      className="BigContainer flex flex-col justify-center min-h-screen overflow-hidden w-full"
       style={wrapperStyle}
     >
-      <div className="LoginContainer w-[97%] min-h-[90vh] flex justify-between items-center">
+      <div className="LoginContainer w-full sm:w-[97%] min-h-[90vh] flex flex-col lg:flex-row justify-between items-center gap-6 sm:gap-8">
         {children}
       </div>
     </div>

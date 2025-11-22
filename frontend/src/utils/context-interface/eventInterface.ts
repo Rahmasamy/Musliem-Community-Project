@@ -8,8 +8,17 @@ export interface Event {
   attendance: string;
   invitationLink: string;
   eventType: string;
+  date : Date;
 }
 
 export interface EventContextType {
   events: Event[];
+  page: number;
+  totalPages: number;
+  setPage: (page: number) => void;
+  setFilters: (filters: {
+    search?: string;
+    location?: string;
+    date?: string;
+  }) => void;
 }

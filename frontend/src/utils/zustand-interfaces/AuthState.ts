@@ -8,7 +8,7 @@ export interface AuthState {
   accessToken: string | null;
   message?: string;
   token?: string;
-  login: (loginPayload: LoginPayload) => Promise<void>;
+  login: (loginPayload: LoginPayload) => Promise<User>;
   setUser: (user: User | null) => void;
   register: (registPayload: RegisterPayload) => Promise<void>;
   refresh: () => Promise<void>;

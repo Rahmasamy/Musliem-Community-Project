@@ -8,7 +8,7 @@ export default function ServiceCard({ type }: { type: "babysitter" | "donation" 
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await axiosInstance.get(`/services/${type}`);
-      setServices(data);
+      setServices(data.services);
     };
     fetchData();
   }, [type]);

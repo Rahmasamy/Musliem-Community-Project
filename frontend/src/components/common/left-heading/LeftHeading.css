@@ -14,3 +14,36 @@
 .HeaderOfService p {
     font-size: 18px;
 }
+
+/* Tablet Responsive (768px - 1023px) */
+@media (max-width: 1023px) {
+    .HeaderOfService {
+        padding-top: 16px;
+        gap: 8px;
+    }
+    .HeaderOfService h2 {
+        font-size: 1rem;
+    }
+    .HeaderOfService p {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+}
+
+/* Mobile Responsive (max-width: 767px) */
+@media (max-width: 767px) {
+    .HeaderOfService {
+        padding-top: 12px;
+        padding-left: 8px;
+        padding-right: 8px;
+        gap: 6px;
+    }
+    .HeaderOfService h2 {
+        font-size: 0.875rem;
+        line-height: 1.4;
+    }
+    .HeaderOfService p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+}

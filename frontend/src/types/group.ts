@@ -18,3 +18,8 @@ export interface Group {
   updatedAt: string;
   lastMessage?: Message;
 }
+export interface GroupsResponse {
+  groups: Group[];
+  page: number;
+  totalPages: number;
+}

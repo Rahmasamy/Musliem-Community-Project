@@ -1,9 +1,14 @@
-import axiosInstance from "@/api/authApi";
-import { Service, ServiceState } from "@/utils/zustand-interfaces/ServiceState";
-import { create } from "zustand";
-
+import { Service, ServiceState } from '@/utils/zustand-interfaces/ServiceState';
+import axiosInstance from '../api/authApi';
+import { create } from 'zustand';
 export const useServiceStore = create<ServiceState>((set, get) => ({
-  services: [],
+  services: {
+    page: 1,
+    limit: 10,
+    total: 0,
+    totalPages: 0,
+    services: [],
+  },
   loading: false,
   error: null,
 
@@ -12,10 +17,13 @@ export const useServiceStore = create<ServiceState>((set, get) => ({
     try {
       set({ loading: true, error: null });
       const res = await axiosInstance.get(`/services/${type}`);
-      console.log("getting service by type",res)
-      set({ services: res.data, loading: false });
+      console.log("getting service by type", res);
+      set({ services: res.data, loading: false }); // res.data should match IServiceResponse
     } catch (err: any) {
-      set({ error: err.response?.data?.message || "Error fetching services", loading: false });
+      set({
+        error: err.response?.data?.message || "Error fetching services",
+        loading: false,
+      });
     }
   },
 
@@ -24,9 +32,21 @@ export const useServiceStore = create<ServiceState>((set, get) => ({
     try {
       set({ loading: true, error: null });
       const res = await axiosInstance.post(`/services`, data);
-      set({ services: [...get().services, res.data.service], loading: false });
+
+      const prev = get().services;
+      set({
+        services: {
+          ...prev,
+          services: [...prev.services, res.data.service],
+          total: prev.total + 1,
+        },
+        loading: false,
+      });
     } catch (err: any) {
-      set({ error: err.response?.data?.message || "Error creating service", loading: false });
+      set({
+        error: err.response?.data?.message || "Error creating service",
+        loading: false,
+      });
     }
   },
 
@@ -35,12 +55,22 @@ export const useServiceStore = create<ServiceState>((set, get) => ({
     try {
       set({ loading: true, error: null });
       const res = await axiosInstance.put(`/services/${id}`, data);
+
+      const prev = get().services;
       set({
-        services: get().services.map((s) => (s._id === id ? res.data.service : s)),
+        services: {
+          ...prev,
+          services: prev.services.map((s) =>
+            s._id === id ? res.data.service : s
+          ),
+        },
         loading: false,
       });
     } catch (err: any) {
-      set({ error: err.response?.data?.message || "Error updating service", loading: false });
+      set({
+        error: err.response?.data?.message || "Error updating service",
+        loading: false,
+      });
     }
   },
 
@@ -49,12 +79,21 @@ export const useServiceStore = create<ServiceState>((set, get) => ({
     try {
       set({ loading: true, error: null });
       await axiosInstance.delete(`/services/${id}`);
+
+      const prev = get().services;
       set({
-        services: get().services.filter((s) => s._id !== id),
+        services: {
+          ...prev,
+          services: prev.services.filter((s) => s._id !== id),
+          total: prev.total - 1,
+        },
         loading: false,
       });
     } catch (err: any) {
-      set({ error: err.response?.data?.message || "Error deleting service", loading: false });
+      set({
+        error: err.response?.data?.message || "Error deleting service",
+        loading: false,
+      });
     }
   },
 }));

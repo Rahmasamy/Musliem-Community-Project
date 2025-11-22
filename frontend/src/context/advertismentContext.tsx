@@ -13,18 +13,19 @@ export const useAdvertisement = () => {
 };
 
 export const AdvertismentProvider = ({ children }: { children: React.ReactNode }) => {
-  const [ad, setAd] = useState<Advertisement | null>(null);
+  const [data, setData] = useState<Advertisement []>([]);
 
   useEffect(() => {
     const load = async () => {
-      const { data } = await axiosInstance.get('/services/advertisement');
-      setAd(data[0]);
+      const { data } = await axiosInstance.get('/services/active-advertisments');
+      console.log("advertisment data ==================== ",data )
+      setData(data.data || []);
     };
     load();
   }, []);
 
    return (
-     <AdvertisementContext.Provider value={{ ad }}>
+     <AdvertisementContext.Provider value={{ data }}>
       {children}
     </AdvertisementContext.Provider>
    )

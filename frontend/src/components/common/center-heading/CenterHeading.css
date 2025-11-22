@@ -11,7 +11,57 @@
 }
 .HeaderOfService h2 {
     font-weight: bold;
+    font-size: 1.25rem;
 }
 .HeaderOfService p {
     font-size: 18px;
+}
+
+/* Tablet Responsive (768px - 1023px) */
+@media (max-width: 1023px) {
+    .HeaderOfService {
+        padding-top: 16px;
+        gap: 8px;
+    }
+    .HeaderOfService h2 {
+        font-size: 1.125rem;
+    }
+    .HeaderOfService p {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+}
+
+/* Mobile Responsive (max-width: 767px) */
+@media (max-width: 767px) {
+    .HeaderOfService {
+        padding-top: 12px;
+        padding-left: 16px;
+        padding-right: 16px;
+        gap: 6px;
+    }
+    .HeaderOfService h2 {
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+    .HeaderOfService p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+    .HeaderOfService {
+        padding-top: 10px;
+        padding-left: 12px;
+        padding-right: 12px;
+        gap: 4px;
+    }
+    .HeaderOfService h2 {
+        font-size: 0.875rem;
+    }
+    .HeaderOfService p {
+        font-size: 13px;
+    }
 }

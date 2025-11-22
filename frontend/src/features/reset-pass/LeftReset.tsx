@@ -4,17 +4,19 @@ import LogoComponent from '@/components/common/logo-component/LogoComponent'
 import { useAuth } from '@/hooks/useAuth'
 import { useField } from '@/hooks/useField'
 import { useResetStore } from '@/store/resetStore'
-import React, { useState } from 'react'
+import React from 'react'
 import toast from 'react-hot-toast'
 import { FaLock } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
 export default function LeftReset() {
-    const [password, setPassword] = useState("")
-    const [confirmPassword, setConfirmPassword] = useState("")
+    // const [password, setPassword] = useState("")
+    // const [confirmPassword, setConfirmPassword] = useState("")
     const { resetPassword } = useAuth()
     const { resetToken } = useResetStore()
     const passwordField = useField("");
     const confirmField = useField("");
+    const navigate = useNavigate();
 
     const handleResetPassword = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -27,8 +29,12 @@ export default function LeftReset() {
         try {
             await resetPassword({ password: passwordField.value }, resetToken as string);
             toast.success("Password reset successfully");
+            navigate("/login")
+            
         } catch (error) {
-            toast.error("Password reset failed");
+           
+            toast.error(error.response.data.message)
+            // toast.error("Password reset failed");
         }
     };
     return (

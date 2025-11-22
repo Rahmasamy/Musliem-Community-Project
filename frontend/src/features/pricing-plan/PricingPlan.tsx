@@ -1,7 +1,6 @@
 import PlanCard from "@/components/common/plan-card/PlanCard";
 import React from "react";
 
-
 const PricingPlans: React.FC = () => {
   const plans = [
     {
@@ -19,12 +18,13 @@ const PricingPlans: React.FC = () => {
         "Send up to 15 direct messages/month",
         "Access public events & services",
       ],
+      plan_id: null, // free plan = no PayPal
     },
     {
       title: "Professional",
       subtitle: "Service Provider Pro",
       price: "50",
-      perMonth: "$5 USD / month",
+      perMonth: "$50 USD / month",
       buttonColor: "bg-orange-500",
       popular: true,
       features: [
@@ -36,6 +36,7 @@ const PricingPlans: React.FC = () => {
         "Early event ticket access",
         "Exclusive sponsor discounts",
       ],
+      plan_id: "P-0DP09206TU1600514NDDTPDA"
     },
     {
       title: "Agency",
@@ -54,6 +55,7 @@ const PricingPlans: React.FC = () => {
         "Feature Eighteen",
         "Feature Nineteen",
       ],
+      plan_id: "P-1PB9001623156702FNDDTOKA"
     },
   ];
 

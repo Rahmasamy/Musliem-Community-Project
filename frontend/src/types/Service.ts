@@ -1,3 +1,13 @@
+
+export interface IServiceResponse {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+  services: IService[];
+}
+
+
 export interface IService {
   _id: string;
   name: string;
@@ -10,4 +20,12 @@ export interface IService {
   extraDetails?: Record<string, any>; //  dynamic object
   createdAt: string;
   updatedAt: string;
+  user?: {
+    _id: string;
+    fullName: string;
+    photo?: string;
+    email?: string;
+  };
+  adminApprovalStatus?: "pending" | "approved" | "rejected";
+  paymentStatus?: "pending" | "confirmed" | "failed";
 }

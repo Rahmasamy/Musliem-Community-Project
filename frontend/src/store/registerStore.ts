@@ -10,8 +10,8 @@ interface RegisterFormState {
   otherSkill?: string;
   bio?: string;
   role?: string;
-   photo?: null;
-   businessPhoto? : null;
+  photo?: null;
+  businessPhoto?: null;
   // actions
   updateField: (field: string, value: string) => void;
   reset: () => void;
@@ -28,17 +28,17 @@ export const useRegisterStore = create<RegisterFormState>((set) => ({
   bio: "",
   role: "",
 
-
   updateField: (field, value) => set({ [field]: value } as any),
-  reset: () => set({
-    fullName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    phoneNumber: "",
-    skill: "",
-    otherSkill: "",
-    bio: "",
-    role: ""
-  }),
+  reset: () =>
+    set({
+      fullName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      phoneNumber: "",
+      skill: "",
+      otherSkill: "",
+      bio: "",
+      role: "",
+    }),
 }));

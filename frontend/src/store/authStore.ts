@@ -5,26 +5,33 @@ import { clearAccessToken, getAccessToken, setAccessToken } from '@/utils/tokenU
 import { AuthState } from '@/utils/zustand-interfaces/AuthState';
 import { create } from "zustand";
 import { persist } from "zustand/middleware"; // 👈 مهم
+import { useProfileStore } from './useProfileStore';
 
 export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
       user: null,
       accessToken: null,
-      loading : false,
-      error : '',
+      loading: false,
+      error: '',
       login: async (LoginPayload: LoginPayload) => {
         const data = await authService.login(LoginPayload)
         setAccessToken(data.token);
         set({ user: data, accessToken: data.token });
-        
+        setAccessToken(data.token);
+        set({ user: data, accessToken: data.token });
+        const profileStore = useProfileStore.getState();
+        await profileStore.getMyProfile();
+        return data;
       },
-       setUser: (user:User | null) => set({ user }),
-     
+      setUser: (user: User | null) => set({ user }),
+
       register: async (payload: RegisterPayload) => {
         const data = await authService.register(payload);
         setAccessToken(data.token);
-         set({ user: data, accessToken: data.token });
+        set({ user: data, accessToken: data.token });
+        const profileStore = useProfileStore.getState();
+        await profileStore.getMyProfile();
       },
 
       refresh: async () => {
@@ -44,6 +51,8 @@ export const useAuthStore = create<AuthState>()(
         console.log("auth store", response.token)
         setAccessToken(response.token);
         set({ message: response.message, accessToken: response.token });
+         const profileStore = useProfileStore.getState();
+        await profileStore.getMyProfile();
         return response;
       },
 

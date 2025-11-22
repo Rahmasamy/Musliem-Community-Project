@@ -21,7 +21,6 @@ export default function ProfileListing() {
     getUserProducts();
   }, [getUserProducts]);
 
-  // focus أول input عند التحويل لوضع edit
   useEffect(() => {
     if (editableProductId && inputRef.current) {
       inputRef.current.focus();
@@ -54,7 +53,7 @@ export default function ProfileListing() {
 
       <div className="flex justify-between items-center p-3">
         <div className="flex justify-between items-center">
-          <img src={`${BASE_URL}/${profile?.photo}`} alt=" profile image" className='rounded-full w-24 h-20 object-cover' />
+          <img src={`${profile?.photo}`} alt=" profile image" className='rounded-full w-24 h-20 object-cover' />
           <h2 className='font-bold ml-4 text-2xl'>
             {profile?.fullName ?? "Un Known User"}
           </h2>
@@ -72,17 +71,17 @@ export default function ProfileListing() {
 
       {products.map((product) => (
         <div key={product._id} className="mb-6">
-          <div className="crudBtns flex items-center gap-5 justify-end">
+          <div className="crudBtns flex items-center gap-5 justify-end m-4">
             <EditBtn onClick={() => handleEditProducts(product)} />
             <DeleteBtn onClick={() => handleDeleteProduct(product._id)} />
           </div>
 
-          <div className="flex">
-            <div className="w-1/2">
-              <img src={Labtop} alt="Labtop image" className='w-full h-full object-cover' />
+          <div className="flex flex-col lg:flex-row shadow-sm">
+            <div className="w-full lg:w-1/2">
+              <img src={product.image} alt="Labtop image" className='w-[400px] h-[250px] object-cover' />
             </div>
 
-            <div className="w-1/2 p-4 space-y-3">
+            <div className="w-full lg:w-1/2 w-1/2 p-4 space-y-3">
               {/* Name */}
               {editableProductId === product._id ? (
                 <input

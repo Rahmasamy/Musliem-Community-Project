@@ -14,13 +14,9 @@ export default function LandingPage() {
 
       {/* Content */}
       <div className="landing-content">
-        <h2>Welcome to Your Muslim
-            <br/>
-             Community Hub</h2>
+        <h2>Welcome to Your Muslim Community Hub</h2>
         <p>
-          Create groups, host events, support local <br/>
-           businesses, and give back through donations — all <br/>
-           in one meaningful space.
+          Create groups, host events, support local businesses, and give back through donations — all in one meaningful space.
         </p>
         <p>Join us and start building connections that matter.</p>
 

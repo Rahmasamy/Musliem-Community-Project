@@ -10,13 +10,33 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { SlCloudUpload } from "react-icons/sl";
 
 import './RightAvatar.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRegisterStore } from '@/store/registerStore';
 import { useField } from '@/hooks/useField';
 export default function RegisterFeature() {
     const [currentStep, setCurrentStep] = useState(0);
     const navigate = useNavigate()
     const { updateField } = useRegisterStore();
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
+    // Format file size helper
+    const formatFileSize = (bytes: number): string => {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+    };
+
+    // Clean up preview URL when component unmounts or file changes
+    useEffect(() => {
+        return () => {
+            if (previewUrl) {
+                URL.revokeObjectURL(previewUrl);
+            }
+        };
+    }, [previewUrl]);
     const fullNameField = useField("");
     const emailField = useField("");
     const passField = useField("");
@@ -160,11 +180,32 @@ export default function RegisterFeature() {
                             onChange={(e: any) => {
                                 const file = e.target.files?.[0];
                                 if (file) {
+                                    // Clean up previous preview URL
+                                    if (previewUrl) {
+                                        URL.revokeObjectURL(previewUrl);
+                                    }
+                                    
+                                    setSelectedFile(file);
+                                    const url = URL.createObjectURL(file);
+                                    setPreviewUrl(url);
                                     updateField("photo", file);
                                 }
                             }}
                         />
                     </div>
+                    {previewUrl && selectedFile && (
+                        <div className="w-full flex flex-col items-center gap-2 mt-2">
+                            <img 
+                                src={previewUrl} 
+                                alt="Preview" 
+                                className="max-w-xs max-h-48 rounded-lg object-cover border border-gray-300"
+                            />
+                            <div className="text-center text-sm text-gray-600">
+                                <p className="font-medium">{selectedFile.name}</p>
+                                <p className="text-gray-500">{formatFileSize(selectedFile.size)}</p>
+                            </div>
+                        </div>
+                    )}
                     <div className="AuthBtnContainer w-full flex justify-center items-center ">
 
                         <AuthButton label="Next"

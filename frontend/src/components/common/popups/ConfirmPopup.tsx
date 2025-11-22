@@ -2,8 +2,10 @@
 import CancelBtn from '../cancel-btn/CancelBtn'
 import ConfirmBtn from '../confirm-btn/ConfirmBtn'
 import { IoClose } from 'react-icons/io5'
-
-export default function ConfirmPopup({ onClose }: { onClose: () => void }) {
+type ConfirmPopupProps = {
+  onClose?: () => void;
+};
+export default function ConfirmPopup({ onClose }: ConfirmPopupProps) {
     return (
         <div className='fixed top-0 left-0 z-150 w-full h-full flex items-center justify-center '>
             <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>

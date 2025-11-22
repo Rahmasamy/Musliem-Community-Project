@@ -94,7 +94,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/halal-business-dirctory">
-                  Business Directory
+                 Market Place
 
                 </Link>
               </li>

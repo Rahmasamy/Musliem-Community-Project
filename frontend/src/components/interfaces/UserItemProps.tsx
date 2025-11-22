@@ -3,4 +3,5 @@ export default interface UserItemProps {
     message: string; time: string;
     active?: boolean
     group?: boolean;
+    img?:string;
 }

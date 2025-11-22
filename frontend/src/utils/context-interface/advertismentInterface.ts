@@ -6,12 +6,12 @@ export interface Advertisement {
   location: string;
   phone: string;
   extraDetails: {
-    openDate: string;
-    businessName: string;
-    businessImage: string;
+    startDate: Date;
+    endDate: Date;
+    targetUrl: string;
   };
 }
 
 export interface AdvertisementContextType {
-  ad: Advertisement | null;
+  data: Advertisement[] | [];
 }

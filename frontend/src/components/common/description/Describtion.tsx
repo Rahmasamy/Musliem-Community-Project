@@ -5,7 +5,7 @@ import './Describtion.css'
 export default function Describtion({ desc }: TitleDescProps): JSX.Element {
     return (
         <>
-            <p className='desc-paragraph'>
+            <p className='text-md font-semibold' >
                 {desc}
             </p>
         </>

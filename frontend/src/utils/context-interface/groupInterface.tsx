@@ -1,4 +1,3 @@
-
 export interface User {
   _id: string;
   fullName: string;
@@ -19,13 +18,18 @@ export interface User {
   resetPasswordToken?: string;
 }
 
-
 export interface Member {
-   user: User | null;
+  user: User | null;
   role: "admin" | "member";
 }
 export interface GroupContextType {
   groups: Group[];
+  page: number;
+  totalPages: number;
+  loading: boolean;
+  search : string;
+  setSearch : (searchTerm : string) => void;
+  loadGroups: (pageNum: number,search : string) => void;
 }
 
 export interface Group {

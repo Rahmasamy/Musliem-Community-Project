@@ -1,4 +1,3 @@
-import { ServiceType } from "../context-interface/serviceInterface";
 export interface Service {
   _id?: string;
   name: string;
@@ -10,8 +9,15 @@ export interface Service {
   serviceType: string;
  extraDetails?: Record<string, any>;
 }
-export interface ServiceState {
+export interface IServiceResponse {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
   services: Service[];
+}
+export interface ServiceState {
+  services: IServiceResponse;
   loading: boolean;
   error: string | null;
   getServicesByType: (type: string) => Promise<void>;

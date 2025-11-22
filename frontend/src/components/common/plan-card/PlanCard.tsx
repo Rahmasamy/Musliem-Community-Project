@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import PlanCardProps from "@/components/interfaces/PlanCardProps";
 
 const PlanCard: React.FC<PlanCardProps> = ({
@@ -8,7 +9,10 @@ const PlanCard: React.FC<PlanCardProps> = ({
   features,
   buttonColor,
   popular = false,
+  plan_id,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <div
       className={`border rounded-lg shadow-md p-6 flex flex-col items-center w-full md:w-1/3 
@@ -26,6 +30,11 @@ const PlanCard: React.FC<PlanCardProps> = ({
 
       <button
         className={`w-full py-2 px-4 rounded-md text-white font-semibold transition hover:opacity-90 mb-5 ${buttonColor}`}
+        onClick={() => {
+          navigate("/checkout", {
+            state: { title, price, plan_id }, // send data to checkout
+          });
+        }}
       >
         Get Started
       </button>

@@ -25,12 +25,12 @@ export default function EventsPage() {
       </div>
 
       {/* Main Layout */}
-      <div className="flex bg-gray-50 min-h-screen">
+      <div className="flex flex-col bg-gray-50 min-h-screen lg:flex-row">
         {/* Sidebar */}
         <SideBar label="Events" navItems={sideLinks} />
 
         {/* Main Content */}
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-3 sm:p-4 md:p-6 lg:p-8">
          
 
           {/* Nested Routes Content */}

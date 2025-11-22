@@ -16,10 +16,11 @@ export default function ContactUs() {
 
             </AboveGradiantParent>
             <Navigate home='Home' arg2='Contact Us' />
-            <AuthWrapper>
+            <div className="p-4 sm:p-6 md:p-8 lg:p-10">
+                <AuthWrapper>
                 
                 <LeftAuthContainer>
-                     <h2 className='font-bold text-2xl'>
+                     <h2 className='font-bold text-xl sm:text-2xl lg:text-3xl mb-4 sm:mb-6'>
                         Get In Touch
                      </h2>
                     <ContactUsForm />
@@ -29,6 +30,8 @@ export default function ContactUs() {
                     <RightAvatarContactUs />
                 </RightAuthContainer>
             </AuthWrapper>
+            </div>
+            
         </>
     )
 }

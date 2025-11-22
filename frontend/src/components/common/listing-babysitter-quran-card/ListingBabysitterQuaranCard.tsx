@@ -1,73 +1,162 @@
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
-import Donate from '@/assets/imgs/donate.png'
-import { useEffect, useState } from 'react';
-import { IService } from '@/types/Service';
-import Services from '@/services/serviceService';
+import { FiSearch } from "react-icons/fi";
+import { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { motion, AnimatePresence } from "framer-motion";
+import Services from "@/services/serviceService";
+import { IServiceResponse } from "@/types/Service";
+import NoDataFound from "../no-data-found/NoData";
 
+export default function ListingBabysitterQuranCard({
+  service,
+}: {
+  service: string;
+}) {
+  const [services, setServices] = useState<IServiceResponse[]>([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [search, setSearch] = useState("");
 
-export default function ListingBabysitterQuaranCard  ({service} : {service:string}) {
-const [services, setServices] = useState<IService[]>([]);
+  // 🔁 Fetch data
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const data = await Services.getServicesByType(service, page, search);
+        setServices(data.services || []);
+        setTotalPages(data.totalPages || 1);
+      } catch (error) {
+        console.error("Error fetching services", error);
+      }
+    };
+    fetchServices();
+  }, [page, search, service]);
 
-    useEffect(() => {
-        const fetchServices = async () => {
-            try {
-                const data = await Services.getServicesByType(service);
-                setServices(data);
-            } catch (error) {
-                console.error("Error fetching services", error);
-            }
-        };
-        fetchServices();
-    }, []);
-   
-    return (
-        <div className='w-full flex justify-center items-center'>
-            <div className='w-[90%] p-4 flex justify-between items-center gap-4 flex-wrap'>
-                {services.map((babysitter, index) => (
-                    <Card key={index} className="w-[300px] shadow-md">
-                        <CardHeader className='p-0'>
-                            <img
-                                src={babysitter.image}
-                                alt={babysitter.name}
-                                style={{ height: "180px" }}
-                                className='w-full object-cover rounded-t-md'
-                            />
-                        </CardHeader>
-                        <CardContent className='p-4 space-y-2'>
-                            <h3 className='text-lg font-bold'>{babysitter.name}</h3>
-                            <h2 className='text-xl font-bold text-gray-800'>$
-                                <span className='font-bold'>
-                                    {babysitter.price}
-                                </span>
-                            </h2>
-                            <p className='text-sm text-gray-600'>
-                                <span>
-                                    <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5.80207 4.07062C6.91981 2.97524 8.42467 2.36522 9.98964 2.37312C11.5546 2.38103 13.0532 3.00622 14.1599 4.11283C15.2665 5.21945 15.8917 6.71807 15.8996 8.28305C15.9075 9.84802 15.2975 11.3529 14.2021 12.4706L11.0626 15.6101C10.7813 15.8913 10.3998 16.0493 10.0021 16.0493C9.60432 16.0493 9.22286 15.8913 8.94157 15.6101L5.80207 12.4706C4.68824 11.3567 4.0625 9.8459 4.0625 8.27062C4.0625 6.69534 4.68824 5.18457 5.80207 4.07062Z" stroke="#5F5F5F" stroke-width="1.5" stroke-linejoin="round" />
-                                        <path d="M10.0039 10.5205C11.2465 10.5205 12.2539 9.51315 12.2539 8.27051C12.2539 7.02787 11.2465 6.02051 10.0039 6.02051C8.76127 6.02051 7.75391 7.02787 7.75391 8.27051C7.75391 9.51315 8.76127 10.5205 10.0039 10.5205Z" stroke="#5F5F5F" stroke-width="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
+  // 📄 Handle pagination
+  const handlePageClick = (event: { selected: number }) => {
+    setPage(event.selected + 1);
+  };
 
-                                </span>
-                                {babysitter.location}</p>
-                            <p className='font-bold cursor-pointer'>
-                                Book Now!
-                            </p>
-                        </CardContent>
-                        <CardFooter>
-                            <a href={`tel:${babysitter.phone}`} className="text-teal-500 font-semibold flex items-center gap-1">
-                                <span>
-                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7.82888 16.6705C5.67828 14.5158 4.02439 11.9172 2.98288 9.05653C2.40988 7.49253 2.93488 5.77453 4.11288 4.59653L4.84188 3.86853C5.03786 3.67215 5.27066 3.51635 5.52693 3.41005C5.78321 3.30374 6.05793 3.24902 6.33538 3.24902C6.61282 3.24902 6.88755 3.30374 7.14382 3.41005C7.4001 3.51635 7.63289 3.67215 7.82888 3.86853L9.53588 5.57553C9.73226 5.77152 9.88806 6.00431 9.99437 6.26059C10.1007 6.51686 10.1554 6.79159 10.1554 7.06903C10.1554 7.34648 10.1007 7.62121 9.99437 7.87748C9.88806 8.13375 9.73226 8.36655 9.53588 8.56253L9.11588 8.98253C8.94776 9.15061 8.8144 9.35016 8.72342 9.56979C8.63243 9.78941 8.5856 10.0248 8.5856 10.2625C8.5856 10.5003 8.63243 10.7357 8.72342 10.9553C8.8144 11.1749 8.94776 11.3745 9.11588 11.5425L12.9559 15.3835C13.124 15.5516 13.3235 15.685 13.5431 15.776C13.7628 15.867 13.9982 15.9138 14.2359 15.9138C14.4736 15.9138 14.709 15.867 14.9286 15.776C15.1482 15.685 15.3478 15.5516 15.5159 15.3835L15.9369 14.9635C16.1329 14.7672 16.3657 14.6113 16.6219 14.505C16.8782 14.3987 17.1529 14.344 17.4304 14.344C17.7078 14.344 17.9825 14.3987 18.2388 14.505C18.4951 14.6113 18.7279 14.7672 18.9239 14.9635L20.6309 16.6705C20.8273 16.8665 20.9831 17.0993 21.0894 17.3556C21.1957 17.6119 21.2504 17.8866 21.2504 18.164C21.2504 18.4415 21.1957 18.7162 21.0894 18.9725C20.9831 19.2288 20.8273 19.4615 20.6309 19.6575L19.9029 20.3855C18.7249 21.5645 17.0069 22.0895 15.4429 21.5165C12.5822 20.475 9.98364 18.8211 7.82888 16.6705Z" stroke="#0D929A" stroke-width="1.5" stroke-linejoin="round" />
-                                    </svg>
+  // 🔍 Debounce search
+  useEffect(() => {
+    const delay = setTimeout(() => setPage(1), 500);
+    return () => clearTimeout(delay);
+  }, [search]);
 
-                                </span>
-                                {babysitter.phone}
-                            </a>
-                        </CardFooter>
-                    </Card>
-                ))}
-            </div>
+  return (
+    <div className="w-full flex flex-col items-center px-4 sm:px-6 lg:px-10">
+      {/* 🔍 Search bar */}
+      {services.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="flex w-full sm:w-[80%] md:w-[60%] mb-10 justify-center relative"
+        >
+          <FiSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
+          <input
+            type="text"
+            placeholder={`Search ${
+              service === "babysitter" ? "babysitters" : "Quran tutors"
+            }...`}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-2xl bg-white/80 backdrop-blur-sm shadow-sm focus:ring-2 focus:ring-orange-400 focus:border-orange-400 outline-none transition-all duration-300"
+          />
+        </motion.div>
+      )}
+
+      {/* 🧾 Service cards */}
+      {services.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full justify-items-center">
+          <AnimatePresence>
+            {services.map((item, index) => (
+              <motion.div
+                key={item._id || index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.3 }}
+                className="w-full sm:w-[320px] lg:w-[340px]"
+              >
+                <Card className="shadow-md hover:shadow-2xl border border-gray-100 rounded-2xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 bg-white">
+                  <CardHeader className="p-0 relative">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-[200px] object-cover"
+                    />
+                    <span className="absolute top-3 right-3 bg-orange-500 text-white text-xs px-3 py-1 rounded-full shadow-md">
+                      ${item.price}
+                    </span>
+                  </CardHeader>
+
+                  <CardContent className="p-4 flex flex-col flex-grow">
+                    <h3 className="font-semibold text-lg mb-2 line-clamp-1 text-gray-800 hover:text-orange-500 transition-colors duration-200">
+                      {item.name}
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-2 leading-relaxed">
+                      {item.description}
+                    </p>
+
+                    <div className="mt-auto flex justify-between items-center">
+                      <div className="flex items-center gap-2">
+                        <img
+                          src={
+                            item.photo ||
+                            "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                          }
+                          alt="provider"
+                          className="w-8 h-8 rounded-full object-cover border"
+                        />
+                        <span className="text-sm text-gray-700 font-medium">
+                          {item.location || "Unknown Location"}
+                        </span>
+                      </div>
+                    </div>
+                  </CardContent>
+
+                  <CardFooter className="p-4 flex justify-center border-t border-gray-100">
+                    <motion.a
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      href={`tel:${item.phone}`}
+                      className="flex items-center justify-center gap-2 w-full text-sm font-semibold text-white bg-gradient-to-r from-orange-300 to-orange-500 hover:from-orange-500 hover:to-orange-700 px-5 py-2.5 rounded-xl shadow-md transition-all duration-300"
+                    >
+                      {item.phone}
+                    </motion.a>
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
+      ) : (
+        <NoDataFound message={`No ${service}s Found`} />
+      )}
 
-    )
+      {/* 📄 Pagination */}
+      {services.length > 0 && (
+        <div className="mt-8 flex gap-2 justify-center items-center w-full">
+          <ReactPaginate
+            pageCount={totalPages}
+            forcePage={page - 1}
+            onPageChange={handlePageClick}
+            containerClassName="flex gap-3 justify-center items-center"
+            pageClassName="w-10 h-10 flex items-center justify-center border-2 border-orange-400 rounded-full bg-white text-orange-600 hover:bg-orange-400 hover:text-white transition-all duration-200 cursor-pointer"
+            activeClassName="!bg-orange-500 !text-white !border-orange-500"
+            previousLabel="<"
+            nextLabel=">"
+            previousClassName="w-10 h-10 flex items-center justify-center border-2 border-orange-400 rounded-full bg-white text-orange-600 hover:bg-orange-400 hover:text-white transition-all duration-200 cursor-pointer"
+            nextClassName="w-10 h-10 flex items-center justify-center border-2 border-orange-400 rounded-full bg-white text-orange-600 hover:bg-orange-400 hover:text-white transition-all duration-200 cursor-pointer"
+          />
+        </div>
+      )}
+    </div>
+  );
 }

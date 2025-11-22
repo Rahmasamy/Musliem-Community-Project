@@ -10,7 +10,7 @@ export default function CenterHeading({
     <h2 className='text-lg'>
         {title}
     </h2>
-    <p>
+    <p className='py-3'>
         {desc}
     </p>
     </div>

@@ -6,4 +6,5 @@ export default interface PlanCardProps {
   features: string[];
   buttonColor: string;
   popular?: boolean;
+  plan_id?: string
 }
