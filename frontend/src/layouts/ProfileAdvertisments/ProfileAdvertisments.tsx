@@ -25,7 +25,6 @@ export default function ProfileAdvertisements() {
   const { services, getServicesByType, deleteService, updateService, loading } =
     useServiceStore();
   const { profile, getMyProfile } = useProfileStore();
-  const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
 
   useEffect(() => {
     getServicesByType("advertisement");

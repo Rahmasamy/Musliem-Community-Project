@@ -8,7 +8,6 @@ import { useProfileStore } from '@/store/useProfileStore';
 import { Link } from 'react-router-dom';
 import toast from "react-hot-toast";
 export default function ProfileListing() {
-    const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
     const [editableProductId, setEditableProductId] = useState(null);
     const [formData, setFormData] = useState({});
     const inputRef = useRef(null);

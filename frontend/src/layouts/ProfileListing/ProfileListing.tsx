@@ -3,14 +3,12 @@ import { Plus } from 'lucide-react'
 import OrangeButton from '@/components/common/OrangeButton/OrangeButton'
 import EditBtn from '@/components/common/EditButton/EditBtn'
 import DeleteBtn from '@/components/common/DeleteBtn/DeleteBtn'
-import Labtop from '@/assets/imgs/labtop.png'
 import { useProfileStore } from '@/store/useProfileStore'
 import { Link } from 'react-router-dom'
 import { Product } from '@/utils/context-interface/productInterface'
 import toast from "react-hot-toast";
 
 export default function ProfileListing() {
-  const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
   const [editableProductId, setEditableProductId] = useState<string | null>(null);
   const [formData, setFormData] = useState<Partial<Product>>({});
   const inputRef = useRef<HTMLInputElement | null>(null);
