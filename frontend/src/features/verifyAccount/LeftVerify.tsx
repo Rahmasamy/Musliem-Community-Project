@@ -21,7 +21,6 @@ export default function LeftVerify() {
     setCode(updated);
 
     if (value && index < inputRefs.current.length - 1) {
-        console.log("input ref current",inputRefs.current)
       inputRefs.current[index + 1]?.focus();
     }
   };
@@ -36,7 +35,6 @@ export default function LeftVerify() {
     const otp = code.join("");
     try {
       const data = await verifyResetCode({ code: otp });
-      console.log(data);
       setResetToken(data.token);
       toast.success("Two factor Authentication success!");
       navigate('/reset-password');

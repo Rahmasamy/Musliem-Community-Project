@@ -33,7 +33,6 @@ export default function CreateGroup() {
   };
 
   const handleSubmit = async () => {
-    console.log("hello")
     if (!groupName || !description || !joinOption) {
       toast.error("Please fill all fields");
       return;
@@ -53,7 +52,6 @@ export default function CreateGroup() {
         },
       });
       toast.success("Group Created Successfully")
-      console.log("Group created:", data);
       navigate("/Groups"); // redirect after creation
     } catch (error) {
       console.error("Error creating group:", error);

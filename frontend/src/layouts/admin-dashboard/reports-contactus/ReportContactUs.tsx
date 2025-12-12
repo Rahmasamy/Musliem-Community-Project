@@ -8,7 +8,6 @@ export default function ReportContactUs() {
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Failed to fetch contacts</p>;
-  console.log("reports", reports);
 
   return (
     <div className="text-gray-700">

@@ -7,6 +7,7 @@ import { useProfileStore } from '@/store/useProfileStore'
 import { Link } from 'react-router-dom'
 import { Product } from '@/utils/context-interface/productInterface'
 import toast from "react-hot-toast";
+import NoDataFound from '@/components/common/no-data-found/NoData'
 
 export default function ProfileListing() {
   const [editableProductId, setEditableProductId] = useState<string | null>(null);
@@ -138,9 +139,7 @@ export default function ProfileListing() {
 
       {products.length === 0 && (
         <div className="flex justify-center w-full items-center">
-          <h1 className='font-bold text-3xl'>
-            No Products in your store
-          </h1>
+        <NoDataFound message='No products in the store' />
         </div>
       )}
     </div>

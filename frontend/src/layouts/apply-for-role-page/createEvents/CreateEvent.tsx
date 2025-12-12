@@ -61,7 +61,6 @@ const CreateEvent = () => {
     try {
       setIsLoading(true);
       if (checkUserData && !checkUserData.canAddMore) {
-        console.log("can add more", checkUserData.canAddMore);
         toast.error(" You can't create more events, limit reached!");
         return;
       }

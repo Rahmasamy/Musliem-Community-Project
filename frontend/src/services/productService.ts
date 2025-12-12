@@ -13,10 +13,7 @@ export const createProduct = async (productData: FormData | Product) => {
     headers = { "Content-Type": "multipart/form-data" };
     
     // Log the FormData for debugging
-    console.log('Sending FormData directly');
-    for (let [key, value] of productData.entries()) {
-      console.log(key, value);
-    }
+  
   } else {
     // For regular Product objects, send as JSON
     payload = productData;
@@ -25,7 +22,6 @@ export const createProduct = async (productData: FormData | Product) => {
 
   try {
     const res = await axiosInstance.post("/products", payload, { headers });
-    console.log('Product created successfully:', res.data);
     return res.data;
   } catch (error) {
     console.error('Error in createProduct service:', error);

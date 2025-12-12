@@ -26,7 +26,6 @@ export default function ProductDetails() {
   if (loading) return <p className="p-6">Loading product...</p>;
   if (!product) return <p className="p-6">Product not found.</p>;
   const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
-console.log("product is",product)
   return (
     <div className="w-full mx-auto p-6">
       <div className="flex w-[90%] justify-center">

@@ -18,7 +18,6 @@ export const AdvertismentProvider = ({ children }: { children: React.ReactNode }
   useEffect(() => {
     const load = async () => {
       const { data } = await axiosInstance.get('/services/active-advertisments');
-      console.log("advertisment data ==================== ",data )
       setData(data.data || []);
     };
     load();

@@ -9,7 +9,6 @@ export default function EventDetails() {
     const { id } = useParams(); // 👈 ناخد id من url
     const [event, setEvent] = useState<Event | null>(null);
     const [loading, setLoading] = useState(true);
-    console.log("eventid", id)
     useEffect(() => {
         if (!id) return;
         const fetchEvent = async () => {

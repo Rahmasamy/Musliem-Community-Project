@@ -15,13 +15,11 @@ export default function Home() {
   useEffect(() => {
     const recordVisit = async () => {
       const data = await addHomeVisit();
-      console.log("data totoal ", data);
       setVisits(data);
     };
     recordVisit();
   }, [setVisits]);
   useEffect(() => {
-    console.log("visits updated", visits);
   }, [visits]);
 
   return (

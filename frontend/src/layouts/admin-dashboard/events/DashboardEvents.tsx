@@ -26,7 +26,6 @@ export default function DashboardpendingEvents() {
         Something went wrong!
       </div>
     );
-  console.log("pendingEvents", data);
   const pendingEvents = data?.pendingEvents || [];
 
   return (

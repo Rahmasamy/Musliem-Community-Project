@@ -7,6 +7,7 @@ import { useServiceStore } from "@/store/serviceStore";
 import { useProfileStore } from "@/store/useProfileStore";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import NoDataFound from "@/components/common/no-data-found/NoData";
 
 export default function ProfileAdvertisements() {
   const [editId, setEditId] = useState<string | null>(null);
@@ -35,15 +36,14 @@ export default function ProfileAdvertisements() {
     try {
       await deleteService(id);
       toast.success("Service deleted successfully!");
-      console.log("delete clicked");
     } catch (error) {
       toast.error("Failed to delete service");
       console.error("Failed to delete service:", error);
     }
   };
+  console.log("Services",services.services)
 
   const handleEditForm = (service: any) => {
-    console.log("edit clicked", service._id);
     setEditId(service._id);
     setEditData({
       name: service.name,
@@ -85,7 +85,6 @@ export default function ProfileAdvertisements() {
       // ✅ Refresh the data
       await getServicesByType("advertisement");
 
-      console.log("Service updated successfully");
     } catch (error) {
       toast.error("Failed to update service");
       console.error("Failed to update service:", error);
@@ -137,7 +136,6 @@ export default function ProfileAdvertisements() {
     }
   };
 
-  console.log("edit id", editId);
 
   if (loading) return <p>Loading...</p>;
 
@@ -168,8 +166,9 @@ export default function ProfileAdvertisements() {
           </Link>
         </div>
       </div>
-
-      {services.services.map((service) => (
+       {
+        services.services.length > 0 ?
+         services.services.map((service) => (
         <div
           className="advertisementContainer border rounded-lg p-4 mb-4 bg-white shadow"
           key={service._id}
@@ -387,7 +386,13 @@ export default function ProfileAdvertisements() {
             </div>
           </div>
         </div>
-      ))}
+      )): 
+        
+        (
+          <NoDataFound message="There isn't any advertisment in the store yet!" />
+        )
+       }
+     
     </div>
   );
 }

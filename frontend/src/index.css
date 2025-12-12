@@ -89,11 +89,11 @@ ul li {
   
   /* If you had custom button styles, you might want to preserve them */
   /* Uncomment and modify as needed */
-  /*
+  
   .your-custom-button-class {
     @apply your-original-styles;
   }
-  */
+ 
 }
 
 /* Add your existing custom styles here */
@@ -105,6 +105,16 @@ ul li {
     @apply px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700;
   }
   */
+ 
+  /* Special class for icons inside inputs — perfect alignment */
+  .iconinput svg {
+    @apply w-5 h-5 text-gray-500;
+  }
+
+  /* Optional: smaller icons */
+  .icon-sm svg {
+    @apply w-4 h-4;
+  }
 }
 
 @layer utilities {

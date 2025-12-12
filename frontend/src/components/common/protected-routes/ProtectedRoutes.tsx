@@ -13,7 +13,6 @@ export default function ProtectedRoute({
 }: ProtectedRouteProps) {
   const loginUser = useAuth();
   const user = loginUser?.user;
-  console.log("from protected routes", user);
   if (!user) {
     return <Navigate to="/login" replace />;
   }

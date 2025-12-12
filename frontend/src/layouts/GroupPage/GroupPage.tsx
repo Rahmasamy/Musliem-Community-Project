@@ -6,6 +6,7 @@ import SideBar from "@/components/common/sideBar/SideBar";
 
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function GroupPage() {
   const location = useLocation();
@@ -21,6 +22,7 @@ export default function GroupPage() {
     { name: "All Groups", to: "/Groups/all-groups", key: "both" },
     { name: "Your Groups", to: "/Groups/your-groups", key: "joined" },
   ];
+  const isLoggin = useAuth()?.user?._id;
 
   return (
     <>

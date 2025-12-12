@@ -48,7 +48,6 @@ export const useAuthStore = create<AuthState>()(
 
       verifyResetCode: async (payload: VerifyCodePayload) => {
         const response = await authService.verifyResetCode(payload)
-        console.log("auth store", response.token)
         setAccessToken(response.token);
         set({ message: response.message, accessToken: response.token });
          const profileStore = useProfileStore.getState();

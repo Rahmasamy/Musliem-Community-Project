@@ -13,12 +13,10 @@ export default function SuccessPage() {
     const capturePayment = async () => {
       if (orderId) {
         const result = await handleCaptureOrder(orderId);
-        console.log("capature result", result);
         if (result.success) {
           // ✅ Payment captured successfully → set in localStorage
           const ServiceId = localStorage.getItem("currentServiceId");
 
-          console.log("service id",ServiceId)
           localStorage.setItem(`paymentCaptured_${ServiceId}`, "true");
           if (ServiceId == "Ads123") {
             setTimeout(() => {

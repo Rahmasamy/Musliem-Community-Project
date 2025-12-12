@@ -58,7 +58,6 @@ export default function MoreInfoFeature() {
         toast.error("please check the terms and conditions");
       }
     } catch (err: any) {
-      console.log(err);
       toast.error(err.response.data.message);
     }
   };

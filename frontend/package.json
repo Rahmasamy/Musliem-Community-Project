@@ -3,12 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite --port 3001",
-    "build": "tsc --noEmit || true && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
+ "scripts": {
+  "dev": "vite --port 3001",
+  "build": "vite build",
+  "build:check": "tsc --noEmit",
+  "preview": "vite preview",
+  "lint": "eslint ."
+},
   "dependencies": {
     "@tanstack/react-query": "^5.81.5",
     "axios": "^1.10.0",

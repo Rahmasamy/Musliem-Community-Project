@@ -18,7 +18,6 @@ export default function ChatSideBar({ flag, userId,   onSelectChat }: { flag?: s
 
     if (loadingGroups || loadingChats) return <p>Loading chats...</p>;
     if (errorGroups || errorChats) return <p>Failed to load chats</p>;
-    console.log("unknown image:", unKnownUser);
 
     return (
         <div className=" bg-white border-r p-4 flex flex-col">

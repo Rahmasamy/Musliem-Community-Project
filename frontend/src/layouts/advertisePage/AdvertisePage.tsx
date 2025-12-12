@@ -209,7 +209,6 @@ export default function AdvertisePage() {
       // Submit the advertisement
       const response = await Services.createService(payload);
       const ServiceId = response.data._id;
-      console.log("ServiceId created", ServiceId);
       toast.success("Advertisement created successfully,Need Admin Approval!");
 
       // Reset form

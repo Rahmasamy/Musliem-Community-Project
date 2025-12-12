@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import logo from "@/assets/imgs/logo.png";
-import { MdOutlineArrowDropDown } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineMail } from "react-icons/md";
 import { HiMenu, HiX } from "react-icons/hi";
@@ -13,7 +12,6 @@ import axiosInstance from "@/utils/axiosInstance";
 import SearchResults from "../searchResult/SearchResults";
 export default function Navbar() {
   const location = useLocation();
-  const [showServices, setShowServices] = useState(false);
   const [showinput, setShowInput] = useState(false);
   const [query, setQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -24,15 +22,11 @@ export default function Navbar() {
     events: [],
   });
   const AuthState = useAuthStore();
-  console.log("Auth stores user", AuthState.user);
   const userId = AuthState.user?._id;
   const profileState = useProfileStore();
   const { profile } = profileState;
   const role = AuthState.user?.role;
-
-  const toggleService = () => {
-    setShowServices((prev) => !prev);
-  };
+  console.log("auth state",AuthState)
   const debounce = useDebounce(query, 500);
   const searchRef = useRef<HTMLDivElement>(null);
 
@@ -100,19 +94,17 @@ export default function Navbar() {
                 Events
               </Link>
             </li>
-            <li
-              className="flex items-center text-center relative cursor-pointer"
-              onClick={toggleService}
-            >
+            <li className="flex items-center text-center relative cursor-pointer">
               <Link to="/ServicesPage">Services</Link>
             </li>
-            {/* <li>
+            <li>
                             {
                                 role ==="admin"  ?
                                  <Link to="/admin-dashboard" onClick={() => setIsMobileMenuOpen(false)}>Admin-dashboard</Link> 
-                                 : <Link to="/membership" onClick={() => setIsMobileMenuOpen(false)}>Membership</Link>
+                                 : undefined 
+                                 
                             }
-                        </li> */}
+                        </li>
             <li>
               <Link
                 to="/halal-business-dirctory"
@@ -144,6 +136,7 @@ export default function Navbar() {
           <Link to={`/messages/user/${userId}/false`}>
             <MdOutlineMail fontSize={25} />
           </Link>
+
           {AuthState?.user ? (
             <Link to="/profilePage" className="flex items-center space-x-2">
               <img
@@ -209,7 +202,7 @@ export default function Navbar() {
             >
               <MdOutlineMail fontSize={25} />
             </Link>
-            {AuthState?.user ? (
+            {userId ? (
               <Link
                 to="/profilePage"
                 className="flex items-center gap-2"
@@ -256,10 +249,7 @@ export default function Navbar() {
                 Events
               </Link>
             </li>
-            <li
-              className="flex items-center text-center relative cursor-pointer"
-              onClick={toggleService}
-            >
+            <li className="flex items-center text-center relative cursor-pointer">
               <Link
                 to="/ServicesPage"
                 onClick={() => setIsMobileMenuOpen(false)}

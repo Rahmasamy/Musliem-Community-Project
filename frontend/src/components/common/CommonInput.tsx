@@ -1,6 +1,5 @@
 import React from 'react';
 import { inputFieldInterface } from '../interfaces/inputField.types';
-import './Common.css';
 
 const CommonInput: React.FC<inputFieldInterface> = ({
   label,
@@ -13,83 +12,71 @@ const CommonInput: React.FC<inputFieldInterface> = ({
   error,
   required = false,
   icon,
-  touched,
   accepts,
   disabled,
-   useRef,
-   defaultValue,
-   onKeyDown
-  
+  useRef,
+  defaultValue,
+  onKeyDown,
 }) => {
-  const labelSection = label && (
-    <div className="label p-1">
-      <label className="cursor-pointer block text-sm text-gray-700 mb-1"  htmlFor={name}>{label}</label>
-    </div>
-  );
+  const hasIcon = !!icon;
 
-  const inputElement = (
-    <>
-      {/* Icon for non-file */}
-      {icon && type !== 'file' && (
-        <label htmlFor={name} >
-
-        <span className="iconinput absolute left-2 top-2 flex items-center pointer-events-none">
-          {icon}
-        </span>
-        </label>
-      )}
-
-      {/* Icon for file */}
-      {icon && type === 'file' && (
-        <label htmlFor={name}  className="cursor-pointer file-upload-label">
-
-            <span className="fileIcon">{icon}</span>
-        </label>
-      )}
-
-      <input
-        ref = {useRef}
-        disabled={disabled}
-        id={name}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
-        required={required}
-        className={`flex-1 inputFieldCommon w-full ${icon ? 'pl-10' : 'pl-4'} py-2 border rounded-md ${
-          error ? 'border-red-500' : 'border-gray-300'
-        }`}
-        accept={accepts}
-        defaultValue={defaultValue}
-        onKeyDown={onKeyDown}
-      />
-
-     { error && (
-  <p className="error text-red-500 text-xs mt-1">{error}</p>
-)}
-    </>
-  );
-
-  const inputContainer =
-    type !== 'file' ? (
-      <div className="relative w-full">{inputElement}</div>
-    ) : (
-      inputElement
-    );
-
-
-  return type !== 'file' ? (
+  return (
     <div className="mb-4 w-full">
-      {labelSection}
-      {inputContainer}
+      {/* Label */}
+      {label && (
+        <label htmlFor={name} className="block text-sm text-gray-700 mb-1 cursor-pointer">
+          {label}
+          {required && <span className="text-red-500 ml-1">*</span>}
+        </label>
+      )}
+
+      {/* Input Container */}
+      <div className="relative">
+        {/* Icon (only for non-file inputs) */}
+        {hasIcon && type !== 'file' && (
+          <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <span className="text-gray-500">{icon}</span>
+          </span>
+        )}
+
+        {/* File Input Icon (clickable label) */}
+        {hasIcon && type === 'file' && (
+          <label htmlFor={name} className="cursor-pointer absolute inset-0 flex items-center pl-3">
+            <span className="text-gray-500">{icon}</span>
+          </label>
+        )}
+
+        {/* Main Input */}
+        <input
+          ref={useRef}
+          id={name}
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          defaultValue={defaultValue}
+          onChange={onChange}
+          onBlur={onBlur}
+          onKeyDown={onKeyDown}
+          required={required}
+          disabled={disabled}
+          accept={accepts}
+          className={`
+            w-full
+            px-4 py-2.5
+            border rounded-lg
+            transition-colors duration-200
+            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+            ${error ? 'border-red-500' : 'border-gray-300'}
+            ${hasIcon && type !== 'file' ? 'pl-10' : 'pl-4'}  /* Left padding for icon */
+            ${disabled ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'}
+          `}
+        />
+      </div>
+
+      {/* Error Message */}
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
     </div>
-  ) : (
-    <>
-      {labelSection}
-      {inputContainer}
-    </>
   );
 };
 

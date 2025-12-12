@@ -20,7 +20,6 @@ const handleApproval = (productId: string, status: "approved" | "rejected") => {
   });
 };
 
-  console.log("products", data)
   if (isLoading) return <p className="text-center text-gray-500 my-6 sm:my-10 text-base sm:text-lg">Loading...</p>;
   if (isError) return <p className="text-center text-red-500 my-6 sm:my-10 text-base sm:text-lg">
     there is some thing wrong , please try again later

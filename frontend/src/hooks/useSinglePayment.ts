@@ -11,7 +11,6 @@ export function usePayment() {
     setLoading(true);
     setError(null);
     try {
-      console.log("from handleCreate order", serviceId);
       const order = await createOrder(amount, serviceId);
       const approve_url = order.links.find(
         (l: any) => l.rel === "payer-action"

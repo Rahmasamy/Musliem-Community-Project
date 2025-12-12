@@ -17,4 +17,6 @@ export interface inputFieldInterface {
   touched?: boolean;
   defaultValue? :string;
   onKeyDown?:(e:React.KeyboardEvent<HTMLInputElement>) => void
+  hideIconOnClick?: boolean;
+
 }

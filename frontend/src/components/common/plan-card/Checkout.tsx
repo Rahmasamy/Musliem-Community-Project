@@ -19,7 +19,6 @@ const Checkout: React.FC = () => {
           });
         },
         onApprove: function (data: any) {
-          console.log("✅ Subscription Approved:", data);
           // TODO: send subscription info to backend
         },
         onError: function (err: any) {

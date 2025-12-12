@@ -57,7 +57,6 @@ export default function SellProductsPage() {
     try {
       setIsLoading(true);
       if (checkUserData && !checkUserData.canAddMore) {
-        console.log("can add more", checkUserData.canAddMore);
         toast.error(" You can't create more events, limit reached!");
         return;
       }
@@ -88,14 +87,8 @@ export default function SellProductsPage() {
       payload.append("contactNumber", formData.contactNumber);
       payload.append("image", selectedImage);
 
-      // Debug logging
-      console.log("Form data being sent:", formData);
-      console.log("Selected image:", selectedImage);
-      console.log("FormData entries:");
-      for (let [key, value] of payload.entries()) {
-        console.log(key, value);
-      }
-
+   
+      
       // Submit the product
       await createProduct(payload);
 

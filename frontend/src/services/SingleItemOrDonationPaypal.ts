@@ -27,7 +27,6 @@ export async function createOrder(amount: string, ServiceId: string) {
       },
     ],
   };
-      console.log("from Create order",ServiceId)
 
   const res = await fetch(`${Base_Url}/api/paypal/create-order`, {
     method: "POST",

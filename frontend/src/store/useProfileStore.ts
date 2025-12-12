@@ -16,7 +16,6 @@ export const useProfileStore = create<ProfileState>((set) => ({
     try {
       set({ loading: true, error: null });
       const res = await axiosInstance.get("/profile/me");
-      console.log("get my profile", res);
       set({ profile: res.data, loading: false });
       // Mirror into auth store
       const authState = useAuthStore.getState();
@@ -115,7 +114,7 @@ export const useProfileStore = create<ProfileState>((set) => ({
   getUserProducts: async () => {
     try {
       const res = await axiosInstance.get("/profile/products");
-      console.log("products", res.data);
+    
       set({ products: res.data, loading: false });
     } catch {
       set({ products: [], loading: false, error: "Failed to fetch products" });

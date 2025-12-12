@@ -86,7 +86,6 @@ export default function PaymentPage() {
             placeholder="Amount you want to Dount"
             icon={<CiBadgeDollar fontSize={23} color="gray" />}
             onChange={(e) => {
-                console.log("input value",e.target.value)
               setAmount(e.target.value);
             }}
           />

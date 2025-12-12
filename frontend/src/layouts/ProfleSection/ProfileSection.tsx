@@ -27,7 +27,6 @@ export default function ProfileSection() {
   const [role, setRole] = useState<string>("");
   const { profile, getMyProfile, updateMyProfile, logout, delteProfile } =
     useProfileStore();
-  console.log("profile============", profile);
   const setUser = useAuthStore((state) => state.setUser);
   const emailRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);

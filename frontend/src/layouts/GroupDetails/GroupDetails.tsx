@@ -14,7 +14,6 @@ export default function GroupDetails() {
   const AuthState = useAuthStore();
     const navigate = useNavigate();
 
-  console.log("Auth stores user", AuthState.user?._id);
   const userId = AuthState.user?._id;
   useEffect(() => {
     const fetchGroup = async () => {
@@ -69,7 +68,6 @@ export default function GroupDetails() {
   });
 };
 
-  console.log("group is", group);
 
   return (
     <>

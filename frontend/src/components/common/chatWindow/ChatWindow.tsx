@@ -92,7 +92,6 @@ export default function ChatWindow({
 
     return uniqueMessages;
   }, [chat?.type, groupMessages, privateMessages, liveMessages]);
-  console.log("???????????????messages" , messages)
   const isLoading = chat?.type === "group" ? loadingGroup : loadingPrivate;
   const error = chat?.type === "group" ? errorGroup : errorPrivate;
 

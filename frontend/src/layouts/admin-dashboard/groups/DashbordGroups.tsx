@@ -13,7 +13,6 @@ export default function DashbordGroups() {
     });
   };
 
-  console.log("ads", ads)
   if (loading) return <p className="text-center text-gray-500 my-6 sm:my-10 text-base sm:text-lg">Loading...</p>;
   if (error) return <p className="text-center text-red-500 my-6 sm:my-10 text-base sm:text-lg">{error}</p>;
   return (

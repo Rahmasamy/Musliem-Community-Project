@@ -1,10 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   prefix: "",
   theme: {
     container: {
@@ -15,6 +12,10 @@ export default {
       },
     },
     extend: {
+      spacing: {
+        icon: "0.625rem", // 10px — perfect for icons inside inputs
+      },
+     
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -73,4 +74,4 @@ export default {
     },
   },
   plugins: [],
-}
+};

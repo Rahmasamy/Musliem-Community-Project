@@ -5,7 +5,6 @@ import { setAccessToken, getAccessToken, clearAccessToken } from "@/utils/tokenU
 
 axiosInstance.interceptors.request.use((config) => {
   const token = getAccessToken()
-  console.log("toekn from authapi", token)
   if (token) config.headers.Authorization = `Bearer ${token}`
   return config
 }

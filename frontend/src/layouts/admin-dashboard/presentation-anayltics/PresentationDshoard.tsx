@@ -20,14 +20,12 @@ import {
 } from "recharts";
 
 export default function PresentationDshoard() {
-  const { visits } = useContext(VisitContext);
-  const { data: users, isLoading: usersLoading } = useCountAllUsers();
   const { data:usageData, isLoading:useStats, isError:isStatsError } = useUsageStats();
   const { data:pieData, isLoading:pieUseStats, isError:PieIsStatsError } = useUsageStats();
-  const { data: payments, isLoading: paymentsLoading } = useCountAllPayments();
+  // const { data: payments, isLoading: paymentsLoading } = useCountAllPayments();
 
   const { data: projects, isLoading, isError } = useDashboardProjects();
-  if (usersLoading || paymentsLoading) return <p>Loading...</p>;
+  // if (usersLoading || paymentsLoading) return <p>Loading...</p>;
   // 📊 بيانات تجريبية
   // const lineData = [
   //   { month: "Jan", thisYear: 24000, lastYear: 18000 },

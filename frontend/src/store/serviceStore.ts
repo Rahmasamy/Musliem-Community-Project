@@ -17,7 +17,6 @@ export const useServiceStore = create<ServiceState>((set, get) => ({
     try {
       set({ loading: true, error: null });
       const res = await axiosInstance.get(`/services/${type}`);
-      console.log("getting service by type", res);
       set({ services: res.data, loading: false }); // res.data should match IServiceResponse
     } catch (err: any) {
       set({

@@ -24,7 +24,6 @@ export default function LoginForm() {
     });
 
     toast.success("hi there, login successfully!");
-    console.log("the role is", loggedUser?.role);
 
     if (loggedUser?.role === "admin") {
       navigate("/admin-dashboard");

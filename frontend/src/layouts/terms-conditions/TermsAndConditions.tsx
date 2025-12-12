@@ -24,7 +24,7 @@ export default function TermsAndConditions() {
           </p>
         </div>
 
-        <div className="space-y-10 grid grid-cols-2 gap-2">
+        <div className="space-y-10 grid grid-cols-1 lg:grid-cols-2 gap-2">
           {/* SECTION */}
           <div className="p-6 bg-white rounded-2xl shadow-lg border border-gray-100 transition-all hover:shadow-xl hover:-translate-y-1">
             <h2 className="text-2xl font-bold text-teal-600">

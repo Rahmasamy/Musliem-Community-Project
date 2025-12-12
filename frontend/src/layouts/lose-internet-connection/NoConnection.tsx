@@ -47,12 +47,10 @@ const NoConnection = () => {
     };
 
     const handleOnline = () => {
-      console.log('Online event triggered');
       updateStatus();
     };
 
     const handleOffline = () => {
-      console.log('Offline event triggered');
       setIsOnline(false);
       setIsReallyOnline(false);
       setLastChecked(new Date().toLocaleTimeString());
