@@ -1,11 +1,9 @@
-import { VisitContext } from "@/context/dashboard-context";
+import Loader from "@/components/common/loader/Loader";
 import {
-  useCountAllPayments,
-  useCountAllUsers,
+ 
   useDashboardProjects,
   useUsageStats,
 } from "@/hooks/useDashboardData";
-import { useContext } from "react";
 import {
   XAxis,
   YAxis,
@@ -44,7 +42,7 @@ export default function PresentationDshoard() {
   //   { name: "Ads", revenue: 400 },
   // ];
 
-  if (useStats && pieUseStats) return <p>Loading stats...</p>;
+  if (useStats && pieUseStats) return <p><Loader /></p>;
   if (isStatsError && PieIsStatsError) return <p className="text-red-500">Error loading stats</p>;
   // const usageData = [
   //   { name: "Products", value: 250 },
@@ -69,7 +67,7 @@ export default function PresentationDshoard() {
   //   { user: "Orlando Biggs", date: "Dec 20, 2025", type: "Group", status: "Approved" },
   //   { user: "Andi Lane", date: "Jul 25, 2025", type: "Advertisement", status: "Rejected" },
   // ];
-  if (isLoading) return <p>Loading projects...</p>;
+  if (isLoading) return <p className="text-center text-gray-500 my-6 sm:my-10 text-base sm:text-lg"><Loader /></p>;
   if (isError) return <p>Something went wrong.</p>;
   return (
     <div className="space-y-4 sm:space-y-6 lg:space-y-8">

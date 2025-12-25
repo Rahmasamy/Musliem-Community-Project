@@ -14,6 +14,8 @@ export interface ProductContextType {
   products: Product[];
   page : number;
   totalPages: number;
+   loading: boolean;
+  error: string | null;
   setPage : (pageNumber : number ) => void
   setFilters: (filters: { search?: string }) => void;
 

@@ -8,7 +8,7 @@ import { Link, Outlet } from 'react-router-dom'
 export default function HalalBusinessPage() {
     const sideLinks = [
         { name: "Advertise", to: "/halal-business-dirctory/advertise", key: "adv" },
-        { name: "Apply for a Role", to: "/halal-business-dirctory/apply-for-role", key: "apply" },
+        { name: "Puplish Your Service", to: "/halal-business-dirctory/apply-for-role", key: "apply" },
         { name: "Sell products", to: "/halal-business-dirctory/sell-products", key: "Sell products" },
     ];
     return (

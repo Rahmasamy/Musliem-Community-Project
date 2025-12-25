@@ -25,6 +25,16 @@ export default function MoreInfoFeature() {
   const roleField = useField("");
   const [termsTouched, setTermsTouched] = useState(false);
   const [termsChecked, setTermsChecked] = useState(false);
+  const SKILL_CATEGORIES = [
+    "Technology & Digital",
+    "Business & Management",
+    "Creative & Media",
+    "Education & Training",
+    "Agriculture & Environment",
+    "Social & Community",
+    "Other",
+  ];
+
   const handleCreate = async () => {
     const formData = new FormData();
 
@@ -97,7 +107,7 @@ export default function MoreInfoFeature() {
             <div className="input-radio-group w-full">
               <p className="font-bold mb-2">Choose your Skill:</p>
               <div className="radioinputfield flex gap-6 flex-wrap">
-                {["skill-0", "skill-1", "skill-2", "skill-3"].map((skill) => (
+                {SKILL_CATEGORIES.map((skill) => (
                   <div className="single-input">
                     <label
                       key={skill}

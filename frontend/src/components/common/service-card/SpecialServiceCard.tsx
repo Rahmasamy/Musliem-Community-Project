@@ -2,7 +2,9 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import babysitter from '@/assets/imgs/babysitter.png';
 import qurantTutor from '@/assets/imgs/quran-tutor.png';
 import Events  from '@/assets/imgs/EventImg.png';
+import programming from '@/assets/imgs/programming.jpg';
 import advertisment from '@/assets/imgs/advertisment.png'
+import markting from '@/assets/imgs/markting.jpg';
 import { useNavigate } from 'react-router-dom';
 const staticServices = [
   {
@@ -10,28 +12,42 @@ const staticServices = [
     image: babysitter,
     title: "Professional Babysitter",
     description: "Experienced babysitter available for part-time and full-time care.",
-    url : "/ServicesPage/baby-sitter"
+    url : "/ServicesPage/services"
   },
   {
-    id: 3,
+    id: 2,
     image: Events,
     title: "Events",
     description: "Support local communities by Creating Events",
     url : "/events/all-events"
   },
   {
-    id: 4,
+    id: 3,
     image: qurantTutor,
     title: "Quran Tutor Online",
     description: "Learn Quran with Tajweed from expert tutors.",
-    url : "/ServicesPage/quran-tutor"
+    url : "/ServicesPage/services"
   },
   {
-    id: 5,
+    id: 4,
     image: advertisment,
     title: "Promote Your Business",
     description: "Reach thousands of users with our advertising services.",
-    url : "/halal-business-dirctory/advertise"
+    url : "/ServicesPage/services"
+  },
+  {
+    id: 5,
+    image: programming,
+    title: "Programming And Development",
+    description: "Reach thousands of developers by searching in our services.",
+    url : "/ServicesPage/services"
+  },
+  {
+    id: 6,
+    image: markting,
+    title: "Marketing And Sales",
+    description: "Reach thousands of users with our markting services.",
+    url : "/ServicesPage/services"
   }
 ];
 

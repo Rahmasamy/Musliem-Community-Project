@@ -4,10 +4,14 @@ export interface IServiceResponse {
   limit: number;
   total: number;
   totalPages: number;
-  services: IService[];
+  data: IService[];
 }
 
-
+export interface IPendingServiceResponse {
+    success: boolean;
+  message: string;
+  data: IService[];
+}
 export interface IService {
   _id: string;
   name: string;

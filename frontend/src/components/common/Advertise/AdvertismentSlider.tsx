@@ -5,6 +5,7 @@ import { useAdvertisement } from "@/context/advertismentContext";
 import { IoLocationSharp } from "react-icons/io5";
 import { CiPhone } from "react-icons/ci";
 import AdvertiseLeft from "./AdvertiseLeft";
+import { useNavigate } from "react-router-dom";
 
 const AdvertismentSlider = () => {
   const { data } = useAdvertisement(); // جايبة الإعلانات من الـ context
@@ -34,6 +35,7 @@ const AdvertismentSlider = () => {
     emblaApi.on("select", onSelect);
   }, [emblaApi, onSelect]);
 
+  const navigate= useNavigate()
   if (!data || data.length === 0) {
     return (
       <div className="AdvertiseContainer w-full flex flex-col lg:flex-row items-center justify-between">
@@ -52,7 +54,9 @@ const AdvertismentSlider = () => {
           Want your business to shine here? Contact us today for special offers
           🌟
         </p>
-        <button className="mt-3 sm:mt-4 bg-white text-teal-600 font-semibold px-4 sm:px-6 py-1.5 sm:py-2 rounded-full shadow-md hover:bg-pink-100 transition-all duration-300 text-sm sm:text-base">
+        <button className="mt-3 sm:mt-4 bg-white text-teal-600 font-semibold px-4 sm:px-6 py-1.5 sm:py-2 rounded-full shadow-md hover:bg-pink-100 transition-all duration-300 text-sm sm:text-base"
+        onClick={() => navigate("/contactus")}
+        >
           Contact Us
         </button>
       </div>
@@ -97,11 +101,11 @@ const AdvertismentSlider = () => {
                   </p>
                 </div>
               </div>
-              <div className="mt-3 text-xs text-gray-500">
+              {/* <div className="mt-3 text-xs text-gray-500">
                 From{" "}
                 {new Date(data[0].extraDetails?.startDate).toLocaleDateString()}{" "}
                 → {new Date(data[0].extraDetails?.endDate).toLocaleDateString()}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

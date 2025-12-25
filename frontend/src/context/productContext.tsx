@@ -15,9 +15,11 @@ export const ProductProvider = ({ children }: { children: React.ReactNode }) => 
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [filters, setFilters] = useState<{ search?: string }>({});
-
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   const loadProducts = async (pageNum = page, filterParams = filters) => {
     try {
+      setLoading(true);
       const params = new URLSearchParams({
         page: pageNum.toString(),
         ...(filterParams.search ? { search: filterParams.search } : {}),
@@ -27,6 +29,9 @@ export const ProductProvider = ({ children }: { children: React.ReactNode }) => 
       setTotalPages(data.totalPages || 1);
     } catch (err) {
       console.error("Failed to load products", err);
+      setError(err?.response?.data?.message || "Failed to load products")
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -35,7 +40,7 @@ export const ProductProvider = ({ children }: { children: React.ReactNode }) => 
   }, [page, filters]);
 
   return (
-    <productContext.Provider value={{ products, page, totalPages, setPage, setFilters }}>
+    <productContext.Provider value={{ products, page, totalPages, setPage, setFilters,loading,error }}>
       {children}
     </productContext.Provider>
   );

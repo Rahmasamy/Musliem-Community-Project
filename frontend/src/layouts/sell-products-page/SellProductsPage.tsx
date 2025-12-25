@@ -1,6 +1,5 @@
 import CancelBtn from "@/components/common/cancel-btn/CancelBtn";
 import CommonInput from "@/components/common/CommonInput";
-import ConfirmBtn from "@/components/common/confirm-btn/ConfirmBtn";
 import { MdPriceCheck } from "react-icons/md";
 import React, { useState, useRef } from "react";
 import { FiPhone } from "react-icons/fi";
@@ -8,6 +7,7 @@ import { SlCloudUpload } from "react-icons/sl";
 import { createProduct } from "@/services/productService";
 import { toast } from "react-hot-toast";
 import { useCheckUserLimit } from "@/hooks/useCheckUserLimit";
+import { isValidPhoneNumber } from "@/utils/helpers/ValidatePhoneNumber";
 
 export default function SellProductsPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -71,7 +71,10 @@ export default function SellProductsPage() {
         toast.error("Please fill in all required fields and upload an image");
         return;
       }
-
+      if (!isValidPhoneNumber(formData.contactNumber)) {
+        toast.error("Please enter a valid phone number");
+        return;
+      }
       // Validate price
       const price = parseFloat(formData.price);
       if (isNaN(price) || price <= 0) {
@@ -87,8 +90,6 @@ export default function SellProductsPage() {
       payload.append("contactNumber", formData.contactNumber);
       payload.append("image", selectedImage);
 
-   
-      
       // Submit the product
       await createProduct(payload);
 

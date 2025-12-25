@@ -1,3 +1,4 @@
+import Loader from "@/components/common/loader/Loader";
 import { useContacts } from "@/hooks/useConacts";
 import { useState } from "react";
 
@@ -6,7 +7,7 @@ export default function ReportContactUs() {
 
   const { data: reports, isLoading, isError } = useContacts(type);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <p className="text-center text-gray-500 my-6 sm:my-10 text-base sm:text-lg"><Loader /></p>;
   if (isError) return <p>Failed to fetch contacts</p>;
 
   return (

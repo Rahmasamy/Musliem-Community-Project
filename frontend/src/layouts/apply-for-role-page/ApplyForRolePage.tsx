@@ -7,6 +7,7 @@ import { SlCloudUpload } from "react-icons/sl";
 import Services from "@/services/serviceService";
 import { toast } from "react-hot-toast";
 import { useCheckUserLimit } from "@/hooks/useCheckUserLimit";
+import { isValidPhoneNumber } from "@/utils/helpers/ValidatePhoneNumber";
 
 export default function ApplyForRolePage() {
   const [plan, setPlan] = useState("babysitter");
@@ -28,34 +29,50 @@ export default function ApplyForRolePage() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // Map plan names to service types
-  const getServiceType = (plan: string) => {
-    switch (plan) {
-      case "babysitter":
-        return "babysitter";
-      case "donation":
-        return "donation";
-      case "quran_tutor":
-        return "quran_tutor";
-      default:
-        return "babysitter";
-    }
+  const SERVICE_TYPES = [
+    "babysitter",
+    "quran_tutor",
+    "donation",
+    "advertisement",
+    "consulting_services",
+    "programming_web_app_development",
+    "engineering_architecture_interior_design",
+    "design_video_audio_production",
+    "digital_marketing_sales",
+    "writing_editing_translation_languages",
+    "support_assistance_data_entry",
+    "training_remote_education",
+  ] as const;
+  const REQUIRED_FIELDS: Record<ServiceType, string[]> = {
+    babysitter: ["experience"],
+    quran_tutor: ["experience"],
+    donation: ["description"],
+    advertisement: ["description"],
+    consulting_services: ["description"],
+    programming_web_app_development: ["description"],
+    engineering_architecture_interior_design: ["description"],
+    design_video_audio_production: ["description"],
+    digital_marketing_sales: ["description"],
+    writing_editing_translation_languages: ["description"],
+    support_assistance_data_entry: ["description"],
+    training_remote_education: ["description"],
   };
+
+  type ServiceType = (typeof SERVICE_TYPES)[number];
+
+  const formatLabel = (str: string) =>
+    str
+      .split("_")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  // Map plan names to service types
+  const getDisplayLabel = (type: ServiceType) =>
+    type
+      .split("_")
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(" ");
 
   // Get plan display name
-  const getPlanDisplayName = (plan: string) => {
-    switch (plan) {
-      case "babysitter":
-        return "Babysitter";
-      case "donation":
-        return "Donation";
-      case "quran_tutor":
-        return "Quran Tutor";
-      default:
-        return "Babysitter";
-    }
-  };
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -141,38 +158,40 @@ export default function ApplyForRolePage() {
       }
 
       // Role-specific validation
-      if (plan === "babysitter" && !formData.experience) {
-        toast.error("Please provide your babysitting experience");
-        return;
-      }
+      const requiredFields = REQUIRED_FIELDS[plan];
 
-      if (plan === "quran_tutor" && !formData.experience) {
-        toast.error("Please provide your Quran teaching experience");
-        return;
+      for (const field of requiredFields) {
+        if (!formData[field as keyof typeof formData]) {
+          const fieldLabel = field.replace(/_/g, " ");
+          toast.error(
+            `Please provide ${fieldLabel} for ${getDisplayLabel(plan as ServiceType)}`
+          );
+          return;
+        }
       }
-
-      if (plan === "donation" && !formData.description) {
-        toast.error("Please provide a description of your donation cause");
-        return;
-      }
-
+      if (!isValidPhoneNumber(formData.contactNumber)) {
+  toast.error("Please enter a valid phone number");
+  return;
+}
       // Create FormData for multipart/form-data submission
       const payload = new FormData();
       payload.append("name", formData.businessName);
       payload.append(
         "description",
         formData.description ||
-          `${getPlanDisplayName(plan)} service - ${formData.businessName}`
+          `${getDisplayLabel(plan as ServiceType)} service - ${
+            formData.businessName
+          }`
       );
       payload.append("price", formData.hourlyRate || "0");
       payload.append("location", `${formData.city}, ${formData.state}`);
       payload.append("phone", formData.contactNumber);
-      payload.append("serviceType", getServiceType(plan));
+      payload.append("serviceType", plan);
       payload.append("image", selectedImage);
 
       // Add extra details
       const extraDetails = {
-        role: plan,
+
         experience: formData.experience,
         hourlyRate: formData.hourlyRate,
         city: formData.city,
@@ -183,9 +202,7 @@ export default function ApplyForRolePage() {
       // Submit the service
       await Services.createService(payload);
 
-      toast.success(
-        `${getPlanDisplayName(plan)} service created successfully!`
-      );
+      toast.success(`${formatLabel(plan)} service created successfully!`);
 
       // Reset form
       setFormData({
@@ -212,52 +229,33 @@ export default function ApplyForRolePage() {
   return (
     <div className="w-full mx-auto p-6">
       {/* Title */}
-      <h2 className="text-gray-400 text-sm mb-4 font-bold">Apply For A Role</h2>
+      <h2 className="text-gray-400 text-sm mb-4 font-bold">Puplish Your Service</h2>
 
       {/* Plan Selection */}
       <p className="font-semibold text-lg mb-3">Choose Your Role</p>
-      <div className="flex gap-4 mb-6">
-        <button
-          onClick={() => setPlan("babysitter")}
-          className={`border rounded-2xl p-4 text-center transition duration-300 ${
-            plan === "babysitter"
-              ? "bg-gradient-to-t from-[#00787B] to-[#003F41] text-white shadow-lg"
-              : "border-gray-300 bg-white text-gray-800 hover:bg-gray-100"
-          }`}
-        >
-          <p className="font-medium">Babysitter</p>
-        </button>
-
-        <button
-          onClick={() => setPlan("donation")}
-          className={`border rounded-lg p-4 text-center transition duration-300 ${
-            plan === "donation"
-              ? "bg-gradient-to-t from-[#00787B] to-[#003F41] text-white shadow-lg"
-              : "border-gray-300 bg-white text-gray-800 hover:bg-gray-100"
-          }`}
-        >
-          <p className="font-medium">Donation</p>
-        </button>
-
-        <button
-          onClick={() => setPlan("quran_tutor")}
-          className={`border rounded-lg p-4 text-center transition duration-300 ${
-            plan === "quran_tutor"
-              ? "bg-gradient-to-t from-[#00787B] to-[#003F41] text-white shadow-lg"
-              : "border-gray-300 bg-white text-gray-800 hover:bg-gray-100"
-          }`}
-        >
-          <p className="font-medium">Quran Tutor</p>
-        </button>
+      <div className="flex flex-wrap gap-4 mb-6">
+        {SERVICE_TYPES.map((type) => (
+          <button
+            key={type}
+            onClick={() => setPlan(type)}
+            className={`border rounded-2xl p-4 text-center transition duration-300 ${
+              plan === type
+                ? "bg-gradient-to-t from-[#00787B] to-[#003F41] text-white shadow-lg"
+                : "border-gray-300 bg-white text-gray-800 hover:bg-gray-100"
+            }`}
+          >
+            <p className="font-medium">{formatLabel(type)}</p>
+          </button>
+        ))}
       </div>
 
       {/* Business/Service Name */}
       <div className="w-full mb-4">
         <CommonInput
-          label={`${getPlanDisplayName(plan)} Name *`}
+          label={`${getDisplayLabel(plan as ServiceType)} Name *`}
           name="businessName"
-          placeholder={`Write your ${getPlanDisplayName(
-            plan
+          placeholder={`Write your ${getDisplayLabel(
+            plan as ServiceType
           ).toLowerCase()} name here`}
           value={formData.businessName}
           onChange={handleInputChange}
@@ -270,8 +268,8 @@ export default function ApplyForRolePage() {
         <label className="text-sm text-gray-700 mb-1 block">Description</label>
         <textarea
           name="description"
-          placeholder={`Describe your ${getPlanDisplayName(
-            plan
+          placeholder={`Describe your ${getDisplayLabel(
+            plan as ServiceType
           ).toLowerCase()} service...`}
           value={formData.description}
           onChange={handleInputChange}
@@ -438,7 +436,7 @@ export default function ApplyForRolePage() {
         >
           {isLoading
             ? "Creating..."
-            : `Create ${getPlanDisplayName(plan)} Service`}
+            : `Create ${getDisplayLabel(plan as ServiceType)} Service`}
         </button>
       </div>
     </div>

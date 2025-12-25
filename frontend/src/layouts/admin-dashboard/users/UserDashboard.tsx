@@ -18,7 +18,7 @@ const UserDashboard: React.FC = () => {
   return (
     <div className="p-3 sm:p-4 md:p-5 lg:p-6 bg-gray-50 min-h-screen">
       <Card className="shadow-lg">
-        <CardContent className="p-3 sm:p-4 md:p-6">
+        <CardContent className="p-3 sm:p-4 md:p-6 overflow-x-auto h-[80vh]">
           <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-800">👥 User Management</h2>
 
           <div className="overflow-x-auto">

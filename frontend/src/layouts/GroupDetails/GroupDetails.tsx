@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "@/utils/axiosInstance";
 import { Group, User } from "@/utils/context-interface/groupInterface";
 import { useAuthStore } from "@/store/authStore";
+import { Loader2 } from "lucide-react";
 
 export default function GroupDetails() {
   const { id } = useParams();
@@ -30,7 +31,7 @@ export default function GroupDetails() {
     }
   }, [id]);
 
-  if (!group) return <p>Loading...</p>;
+  if (!group) return <p className="text-center text-gray-500 my-6 sm:my-10 text-base sm:text-lg"> < Loader2 /> </p>;
 
   const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
    const handleViewMessages = () => {

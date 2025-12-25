@@ -1,9 +1,7 @@
 import SideBar from "@/components/common/sideBar/SideBar";
-import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import AboveGradiantParent from "@/components/common/above-gradiant/AboveGradiant";
 import GoBack from "@/components/common/GoBack/GoBack";
-import { FaPlus } from "react-icons/fa";
 import Navigate from "@/components/common/navigator/Navigate";
 
 const sideLinks = [

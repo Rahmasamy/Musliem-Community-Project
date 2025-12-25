@@ -2,6 +2,7 @@ import React from "react";
 import { MapPin, Clock, Calendar, XCircle, CheckCircle } from "lucide-react";
 import { usePendingEvents } from "@/hooks/usePendingEvents";
 import { useUpdateEventApproval } from "@/hooks/useUpdateEventApproval";
+import Loader from "@/components/common/loader/Loader";
 
 export default function DashboardpendingEvents() {
   const { data, isLoading, isError } = usePendingEvents(1);
@@ -17,7 +18,10 @@ export default function DashboardpendingEvents() {
 
   if (isLoading)
     return (
-      <div className="text-center text-gray-500 my-6 sm:my-10 text-base sm:text-lg">Loading...</div>
+      <div className="text-center text-gray-500 my-6 sm:my-10 text-base sm:text-lg">
+
+        <Loader />
+      </div>
     );
 
   if (isError)

@@ -1,5 +1,4 @@
 import LandingPage from "@/components/common/Landing-page/LandingPage";
-import Navbar from "@/components/common/Navbar/Navbar";
 import { VisitContext } from "@/context/dashboard-context";
 import Advertise from "@/features/Advertise/Advertise";
 import LatestEvents from "@/features/Latest-Events/LatestEvents";

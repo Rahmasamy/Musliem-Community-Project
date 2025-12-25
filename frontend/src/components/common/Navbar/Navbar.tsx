@@ -95,7 +95,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li className="flex items-center text-center relative cursor-pointer">
-              <Link to="/ServicesPage">Services</Link>
+              <Link to="/ServicesPage">Market Place</Link>
             </li>
             <li>
                             {
@@ -110,7 +110,7 @@ export default function Navbar() {
                 to="/halal-business-dirctory"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Market Place
+                Halal Business Directory
               </Link>
             </li>
             <li>
@@ -254,7 +254,7 @@ export default function Navbar() {
                 to="/ServicesPage"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Services
+                Market Place
               </Link>
             </li>
 

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useGroupsByUser } from "@/hooks/useGroups";
 import { usePrivateChats } from "@/hooks/usePrivateChat";
 import  unKnownUser from '../../../assets/imgs/unknow-user.jpg'
+import Loader from "../loader/Loader";
 
 export default function ChatSideBar({ flag, userId,   onSelectChat }: { flag?: string, userId?: string, onSelectChat: (id: string, type: "group" | "private",chatName : string,photo:string) => void; }) {
     const [showGroupMessages, setShowGroupMessages] = useState(false);
@@ -16,7 +17,7 @@ export default function ChatSideBar({ flag, userId,   onSelectChat }: { flag?: s
     const { data: privateChats, isLoading: loadingChats, error: errorChats } =
         usePrivateChats(userId || "");
 
-    if (loadingGroups || loadingChats) return <p>Loading chats...</p>;
+    if (loadingGroups || loadingChats) return <Loader /> ;
     if (errorGroups || errorChats) return <p>Failed to load chats</p>;
 
     return (

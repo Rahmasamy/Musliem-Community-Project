@@ -8,13 +8,16 @@ export interface Event {
   attendance: string;
   invitationLink: string;
   eventType: string;
-  date : Date;
+  date: Date;
 }
 
 export interface EventContextType {
   events: Event[];
   page: number;
   totalPages: number;
+  loading: boolean;
+  error: string | null;
+
   setPage: (page: number) => void;
   setFilters: (filters: {
     search?: string;

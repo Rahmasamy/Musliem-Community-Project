@@ -2,16 +2,22 @@ import { useEvents } from "@/context/eventContext";
 import DefaultEventImg from "@/assets/imgs/EventImg.png";
 import ReactPaginate from "react-paginate";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { LoadingSkeleton } from "../loading/LoadingSkeleton";
 
 export default function LatestEventsTable({ internal }: { internal?: string }) {
   const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:5000";
-  const { events, totalPages, setPage } = useEvents();
+  const {  error, loading,events, totalPages, setPage } = useEvents();
 
   const handlePageClick = (selectedItem: { selected: number }) => {
     setPage(selectedItem.selected + 1);
   };
 
   const className = internal === "true" ? "w-full" : "w-full lg:w-[50%]";
+ const navigate = useNavigate()
+if (loading) return <LoadingSkeleton />;
+if (error) return <p className="text-red-500">{error}</p>;
+
 
   return (
     <div
@@ -23,7 +29,7 @@ export default function LatestEventsTable({ internal }: { internal?: string }) {
             <motion.div
               key={ev._id}
               whileHover={{ scale: 1.05 }}
-              className="text-center text-xs sm:text-sm font-semibold text-teal-600 cursor-pointer border border-dashed border-orange-400 rounded-lg py-2 px-2 hover:bg-orange-50 transition-all"
+              className="text-center text-xs sm:text-sm font-semibold text-orange-600 cursor-pointer border border-dashed border-orange-400 rounded-lg py-2 px-2 hover:bg-orange-50 transition-all"
             >
               See more events →
             </motion.div>
@@ -38,7 +44,7 @@ export default function LatestEventsTable({ internal }: { internal?: string }) {
           >
             <div className="flex-1 pr-0 sm:pr-4">
               <div className="flex flex-wrap gap-2 sm:gap-4 items-center text-xs sm:text-sm text-gray-500 mb-2">
-                <span className="font-medium text-teal-600">
+                <span className="font-medium text-orange-600">
                   {ev.startTime}
                 </span>
                 <span className="text-gray-400">→</span>
@@ -47,11 +53,14 @@ export default function LatestEventsTable({ internal }: { internal?: string }) {
                 </span>
               </div>
 
-              <div className="font-semibold text-base sm:text-lg text-gray-800 mb-1">
+              <div className="font-semibold text-base sm:text-lg text-gray-800 mb-1 cursor-pointer"
+              
+              onClick={() => navigate(`/events/${ev._id}`)}
+              >
                 {ev.name}
               </div>
 
-              <div className="text-xs sm:text-sm font-semibold text-teal-600 mb-1">
+              <div className="text-xs sm:text-sm font-semibold text-orange-600 mb-1">
                 Attendance: {ev.attendance}
               </div>
 
@@ -91,17 +100,17 @@ export default function LatestEventsTable({ internal }: { internal?: string }) {
 
       {/* Pagination */}
       <div className="flex justify-center mt-4">
-        {events.length > 3 && (
+        { totalPages > 1 && (
           <ReactPaginate
             pageCount={totalPages}
             onPageChange={handlePageClick}
             containerClassName="flex gap-2 sm:gap-3 justify-center items-center mt-4"
-            pageClassName="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center border-2 border-teal-500 rounded-full bg-white text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200 cursor-pointer text-xs sm:text-base"
-            activeClassName="!bg-teal-600 !text-white !border-teal-500"
+            pageClassName="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center border-2 border-orange-500 rounded-full bg-white text-orange-600 hover:bg-orange-600 hover:text-white transition-all duration-200 cursor-pointer text-xs sm:text-base"
+            activeClassName="!bg-orange-600 !text-white !border-orange-500"
             previousLabel="<"
             nextLabel=">"
-            previousClassName="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center border-2 border-teal-500 rounded-full bg-white text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200 cursor-pointer text-xs sm:text-base"
-            nextClassName="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center border-2 border-teal-500 rounded-full bg-white text-teal-600 hover:bg-teal-600 hover:text-white transition-all duration-200 cursor-pointer text-xs sm:text-base"
+            previousClassName="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center border-2 border-orange-500 rounded-full bg-white text-orange-600 hover:bg-orange-600 hover:text-white transition-all duration-200 cursor-pointer text-xs sm:text-base"
+            nextClassName="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center border-2 border-orange-500 rounded-full bg-white text-orange-600 hover:bg-orange-600 hover:text-white transition-all duration-200 cursor-pointer text-xs sm:text-base"
           />
         )}
       </div>

@@ -158,6 +158,7 @@ export const ProductDashboard = lazy(
 
 import Loader from "@/components/common/loader/Loader";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import ServiceDashboard from "@/layouts/admin-dashboard/services/ServiceDashboard";
 
 function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const location = useLocation();
@@ -226,6 +227,14 @@ export default function AppRoutes() {
                 element={
                   <ProtectedRoute requiredRole="admin">
                     <DashbordGroups />
+                  </ProtectedRoute>
+                }
+              />
+               <Route
+                path="dashboard-services"
+                element={
+                  <ProtectedRoute requiredRole="admin">
+                    <ServiceDashboard />
                   </ProtectedRoute>
                 }
               />
@@ -435,30 +444,16 @@ export default function AppRoutes() {
                   </ProtectedRoute>
                 }
               />
+             
               <Route
-                path="donations"
-                element={
-                  <ProtectedRoute>
-                    <DonationPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="baby-sitter"
+                path="services"
                 element={
                   <ProtectedRoute>
                     <BabySitterPage />
                   </ProtectedRoute>
                 }
               />
-              <Route
-                path="quran-tutor"
-                element={
-                  <ProtectedRoute>
-                    <QuranTutor />
-                  </ProtectedRoute>
-                }
-              />
+             
             </Route>
             <Route
               path="/events"

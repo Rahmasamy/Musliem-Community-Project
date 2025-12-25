@@ -1,9 +1,9 @@
 import { getPendingAdvertisements } from "@/services/getAllPendingAdvertisment";
 import { useEffect, useState } from "react";
-import { IService } from "@/types/Service";
+import { IPendingServiceResponse, IService } from "@/types/Service";
 
 export const usePendingAdvertisements = () => {
-  const [ads, setAds] = useState<IService[]>([]);
+  const [ads, setAds] = useState<IPendingServiceResponse[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 

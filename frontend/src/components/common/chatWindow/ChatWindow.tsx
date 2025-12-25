@@ -7,6 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { usePrivateMessages } from "@/hooks/usePrivateMessage";
 import { useSocket } from "@/context/socketContext";
 import SelectChat from "../StartChat/StartChat";
+import Loader from "../loader/Loader";
 
 export default function ChatWindow({
   chat,
@@ -17,6 +18,7 @@ export default function ChatWindow({
   const socket = useSocket();
   const loginUserId = loginUser?.user?._id;
   const userPhoto = loginUser?.user?.photo
+  
   const [liveMessages, setLiveMessages] = useState<any[]>([]);
 
   // ✅ always call hooks
@@ -103,19 +105,21 @@ export default function ChatWindow({
   }
 
   if (isLoading) {
-    return <div className="flex-1 p-4">Loading messages...</div>;
+    return <div className="flex-1 flex p-4 items-center justify-center">
+      <Loader /> 
+    </div>;
   }
 
   if (error) {
     return <div className="flex-1 p-4">Error loading messages</div>;
   }
-
+console.log("chat",chat)
   return (
     <div className="flex-1 flex flex-col">
       {/* Header */}
       <div className="p-4 border-b bg-white flex items-center justify-start gap-2">
         <img
-          src={chat.photo || "https://www.dreamstime.com/default-avatar-profile-icon-vector-unknown-social-media-user-photo-default-avatar-profile-icon-vector-unknown-social-media-user-image184816085"} 
+          src={chat.photo || chat.chatImage || "https://www.dreamstime.com/default-avatar-profile-icon-vector-unknown-social-media-user-photo-default-avatar-profile-icon-vector-unknown-social-media-user-image184816085"} 
           alt="chat person"
           className="w-12 h-12 object-cover rounded-full"
         />

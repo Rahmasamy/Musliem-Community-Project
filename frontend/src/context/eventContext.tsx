@@ -1,5 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { EventContextType, Event } from "@/utils/context-interface/eventInterface";
+import {
+  EventContextType,
+  Event,
+} from "@/utils/context-interface/eventInterface";
 import axiosInstance from "@/api/authApi";
 
 const EventContext = createContext<EventContextType | null>(null);
@@ -14,17 +17,26 @@ export const EventProvider = ({ children }: { children: React.ReactNode }) => {
   const [events, setEvents] = useState<Event[]>([]);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
-
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   // ✅ هنا نضيف الـ filters
-  const [filters, setFilters] = useState<{ search?: string; location?: string; date?: string }>({});
+  const [filters, setFilters] = useState<{
+    search?: string;
+    location?: string;
+    date?: string;
+  }>({});
 
   const loadEvents = async (pageNum: number, appliedFilters = filters) => {
     try {
+      setLoading(true);
+      setError(null);
       const params = new URLSearchParams({
         page: pageNum.toString(),
         limit: "3",
         ...(appliedFilters.search ? { search: appliedFilters.search } : {}),
-        ...(appliedFilters.location ? { location: appliedFilters.location } : {}),
+        ...(appliedFilters.location
+          ? { location: appliedFilters.location }
+          : {}),
         ...(appliedFilters.date ? { date: appliedFilters.date } : {}),
       });
 
@@ -32,8 +44,11 @@ export const EventProvider = ({ children }: { children: React.ReactNode }) => {
       setEvents(data.events);
       setPage(data.page);
       setTotalPages(data.totalPages);
-    } catch (error) {
-      console.error("Error fetching events:", error);
+    } catch (err) {
+      console.error("Error fetching events:", err);
+      setError(err?.response?.data?.message || "Failed to load events");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -42,7 +57,9 @@ export const EventProvider = ({ children }: { children: React.ReactNode }) => {
   }, [page, filters]);
 
   return (
-    <EventContext.Provider value={{ events, page, totalPages, setPage, setFilters }}>
+    <EventContext.Provider
+      value={{ events, page, totalPages, setPage, setFilters, loading, error }}
+    >
       {children}
     </EventContext.Provider>
   );

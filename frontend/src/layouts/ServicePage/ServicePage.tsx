@@ -9,8 +9,7 @@ export default function ServicePage() {
       const sideLinks = [
         { name: "Our Products", to: "/ServicesPage/our-products", key: "our-products" },
         // { name: "Donations", to: "/ServicesPage/donations", key: "donations" },
-        { name: "Baby Sitter", to: "/ServicesPage/baby-sitter", key: "baby-sitter" },
-        { name: "Quran Tutor", to: "/ServicesPage/quran-tutor", key: "quran" },
+        { name: "Services", to: "/ServicesPage/services", key: "services" },
 
     ];
   return (

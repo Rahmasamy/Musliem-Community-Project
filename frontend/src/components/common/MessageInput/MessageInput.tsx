@@ -2,6 +2,9 @@ import { useSocket } from "@/context/socketContext";
 import { useState, useEffect, useRef } from "react";
 import { MdOutlineEmojiEmotions } from "react-icons/md";
 import EmojiPicker from "emoji-picker-react";
+import toast from "react-hot-toast";
+import { useAuth } from "@/hooks/useAuth";
+import { useJoinGroup } from "@/hooks/useGroups";
 
 export default function MessageInput({
   chatId,
@@ -16,7 +19,10 @@ export default function MessageInput({
   const [showEmojis, setShowEmojis] = useState(false);
   const emojiRef = useRef<HTMLDivElement | null>(null);
   const socket = useSocket();
+ const loginUser = useAuth();
+  const userId = loginUser?.user?._id;
 
+  const joinMutation = useJoinGroup(userId || "");
   // Close emoji picker when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -34,16 +40,50 @@ export default function MessageInput({
     };
   }, [showEmojis]);
 
-  const handleSend = () => {
-    if (!text.trim()) return;
+   const handleSend = async () => {
+    if (!text.trim() || !socket || !userId) return;
 
-    if (type === "group") {
-      socket?.emit("sendMessage", { groupId: chatId, senderId, text });
-    } else {
-      socket?.emit("sendPrivateMessage", { chatId, senderId, text });
+    // 🟢 PRIVATE CHAT (no group logic)
+    if (type === "private") {
+      socket.emit("sendPrivateMessage", { chatId, senderId, text });
+      setText("");
+      return;
     }
 
-    setText("");
+    // 🟢 GROUP CHAT FLOW
+    joinMutation.mutate(chatId, {
+      onSuccess: () => {
+        toast.success("You joined the group 🎉");
+
+        // ✅ Join socket room
+        socket.emit("joinGroup", chatId);
+
+        // ✅ Send message AFTER join
+        socket.emit("sendMessage", {
+          groupId: chatId,
+          senderId: userId,
+          text,
+        });
+
+        setText("");
+      },
+      onError: (err: any) => {
+        // If already a member → still allow sending message
+        if (err?.response?.status === 400) {
+          socket.emit("joinGroup", chatId);
+          socket.emit("sendMessage", {
+            groupId: chatId,
+            senderId: userId,
+            text,
+          });
+          setText("");
+        } else {
+          toast.error(
+            "Failed to join 😥 " + (err.response?.data?.message || "")
+          );
+        }
+      },
+    });
   };
 
   const handleEmojiClick = (emojiData: any) => {

@@ -18,6 +18,7 @@ import { IoPerson } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiSearch } from "react-icons/fi";
 import NoDataFound from "../no-data-found/NoData";
+import { ListingServicesLoading } from "../loading/ListingServicesLoading";
 
 export default function GroupCard() {
   const socket = useSocket();
@@ -68,36 +69,35 @@ export default function GroupCard() {
   return (
     <div className="w-full flex justify-center items-center flex-col p-3 sm:p-4 md:p-6 lg:p-8 bg-gray-50">
       {/* 🔍 Search input */}
-      {
-         groups.length > 0 && 
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full mb-6 sm:mb-8 flex justify-center px-2 sm:px-0"
-      >
-        <div className="relative w-full sm:w-[80%] md:w-[60%] lg:w-[45%] xl:w-[56%]">
-          <FiSearch className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-400 text-base sm:text-lg" />
+      {groups.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full mb-6 sm:mb-8 flex justify-center px-2 sm:px-0"
+        >
+          <div className="relative w-full sm:w-[80%] md:w-[60%] lg:w-[45%] xl:w-[56%]">
+            <FiSearch className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-400 text-base sm:text-lg" />
 
-          <input
-            type="text"
-            placeholder="Search groups..."
-            value={search}
-            onChange={handleSearchChange}
-            className="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 border border-gray-300 rounded-xl sm:rounded-2xl bg-white/80 backdrop-blur-sm
+            <input
+              type="text"
+              placeholder="Search groups..."
+              value={search}
+              onChange={handleSearchChange}
+              className="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 border border-gray-300 rounded-xl sm:rounded-2xl bg-white/80 backdrop-blur-sm
                  shadow-sm focus:ring-2 focus:ring-orange-400 focus:border-orange-500 outline-none
                  transition-all duration-300 text-sm sm:text-base text-gray-700 placeholder-gray-400"
-          />
-        </div>
-      </motion.div>
-      }
+            />
+          </div>
+        </motion.div>
+      )}
 
       {/* 🧩 Groups list */}
       <div className="w-full flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 max-w-[1400px] px-2 sm:px-0">
         {loading ? (
-          <p className="text-gray-500 text-base sm:text-lg animate-pulse">Loading...</p>
+          <ListingServicesLoading count={3} />
         ) : groups.length === 0 ? (
-         <NoDataFound message="No Groups Found" />
+          <NoDataFound message="No Groups Found" />
         ) : (
           <AnimatePresence>
             {groups.map((group: any, index: number) => {
@@ -138,7 +138,11 @@ export default function GroupCard() {
 
                       <div className="flex w-full items-center justify-between mt-3">
                         <div className="flex items-center gap-2 text-gray-500 text-xs sm:text-sm">
-                          <IoPerson color="gray" fontSize={18} className="sm:text-xl" />
+                          <IoPerson
+                            color="gray"
+                            fontSize={18}
+                            className="sm:text-xl"
+                          />
                           <span>
                             {group.members.length === 0
                               ? "No Members"

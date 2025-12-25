@@ -29,7 +29,12 @@ const YourEvents = () => {
     setPage(event.selected + 1); // react-paginate بيبدأ من 0
   };
 
-  if (loading) return <p className="text-center py-6 sm:py-10 text-sm sm:text-base">Loading...</p>;
+  if (loading)
+    return (
+      <p className="text-center py-6 sm:py-10 text-sm sm:text-base">
+        Loading...
+      </p>
+    );
   return (
     <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
       {/* Top Button */}
@@ -38,7 +43,8 @@ const YourEvents = () => {
           to="/events/create-event"
           className="bg-orange-500 hover:bg-orange-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full flex items-center gap-2 shadow m-2 sm:m-4 text-sm sm:text-base"
         >
-          <FaPlus className="text-sm sm:text-base" /> <span>Create Your Event</span>
+          <FaPlus className="text-sm sm:text-base" />{" "}
+          <span>Create Your Event</span>
         </Link>
       </div>
 
@@ -47,8 +53,8 @@ const YourEvents = () => {
         Your Events
       </h2>
       <p className="w-full sm:w-[80%] md:w-full text-center text-sm sm:text-base mb-4 px-2">
-        Lorem ipsum dolor sit amet consectetur. Sed massa pretium sed
-        scelerisque elementum congue interdum cras. At nisl in quisque erat ut.
+        Keep track of the events you’re attending and explore what’s coming
+        next. Connect with others, participate actively, and enjoy every moment.
       </p>
 
       {/* Events Grid */}
@@ -87,7 +93,9 @@ const YourEvents = () => {
                       />
                     </svg>
 
-                    <span className="truncate">{new Date(event.date).toLocaleDateString()}</span>
+                    <span className="truncate">
+                      {new Date(event.date).toLocaleDateString()}
+                    </span>
                   </div>
                   <div className="bg-teal-700 text-white text-xs sm:text-sm font-semibold px-2 sm:px-3 py-1 rounded-full flex items-center gap-1">
                     <svg
@@ -103,7 +111,9 @@ const YourEvents = () => {
                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
                     </svg>
-                    <span className="truncate">{event.startTime} - {event.endTime}</span>
+                    <span className="truncate">
+                      {event.startTime} - {event.endTime}
+                    </span>
                   </div>
                 </div>
 
@@ -118,7 +128,12 @@ const YourEvents = () => {
               {/* Content */}
               <div className="mt-3 sm:mt-4 space-y-2">
                 <h2 className="text-base sm:text-lg font-semibold leading-snug line-clamp-2">
-                  <Link to={`/events/${event._id}`} className="hover:text-teal-600 transition-colors">{event.name}</Link>
+                  <Link
+                    to={`/events/${event._id}`}
+                    className="hover:text-teal-600 transition-colors"
+                  >
+                    {event.name}
+                  </Link>
                 </h2>
                 <div className="flex items-start text-xs sm:text-sm text-gray-600 gap-1">
                   <svg
@@ -134,7 +149,9 @@ const YourEvents = () => {
                       d="M17.657 16.657L13.414 12.414a4 4 0 10-5.657 5.657l4.243 4.243a8 8 0 1011.314-11.314l-4.243 4.243z"
                     />
                   </svg>
-                  <span className="line-clamp-1">{event.Location || "No Location Provided"}</span>
+                  <span className="line-clamp-1">
+                    {event.Location || "No Location Provided"}
+                  </span>
                 </div>
               </div>
 

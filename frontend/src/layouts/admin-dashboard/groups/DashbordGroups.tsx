@@ -2,6 +2,7 @@ import React from 'react'
 import { MapPin, Clock, Calendar, XCircle, CheckCircle } from "lucide-react";
 import { usePendingAdvertisements } from '@/hooks/usePendingAdvertiments';
 import { useServiceAdminApprovalMutation } from "@/hooks/useServiceAdminApproval";
+import Loader from '@/components/common/loader/Loader';
 export default function DashbordGroups() {
   const { ads, loading, error } = usePendingAdvertisements();
   const approvalMutation = useServiceAdminApprovalMutation();
@@ -13,7 +14,9 @@ export default function DashbordGroups() {
     });
   };
 
-  if (loading) return <p className="text-center text-gray-500 my-6 sm:my-10 text-base sm:text-lg">Loading...</p>;
+  if (loading) return <p className="text-center text-gray-500 my-6 sm:my-10 text-base sm:text-lg">
+    <Loader />
+  </p>;
   if (error) return <p className="text-center text-red-500 my-6 sm:my-10 text-base sm:text-lg">{error}</p>;
   return (
     <div className="space-y-4 sm:space-y-6 lg:space-y-8">

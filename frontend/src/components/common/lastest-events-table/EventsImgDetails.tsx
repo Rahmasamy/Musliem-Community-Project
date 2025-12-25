@@ -2,13 +2,17 @@ import EventImg from "@/assets/imgs/EventImg.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useEvents } from "@/context/eventContext";
 import NoDataFound from "../no-data-found/NoData";
+import { LoadingSkeleton } from "../loading/LoadingSkeleton";
 
 export default function EventsImgDetails({ limit }: { limit?: number }) {
-  const { events } = useEvents();
+  const { error, loading, events } = useEvents();
   const navigate = useNavigate();
   const limitedEvents = limit ? events.slice(0, limit) : events;
 
   // If no events → show NoDataFound component
+  
+if (loading) return <LoadingSkeleton />;
+if (error) return <p className="text-red-500">{error}</p>;
   if (!limitedEvents || limitedEvents.length === 0) {
     return <NoDataFound message="No events found" />;
   }

@@ -14,9 +14,12 @@ import { useAuth } from "@/hooks/useAuth";
 import { useCreateOrGetPrivateChat } from "@/hooks/usePrivateChat";
 import { motion, AnimatePresence } from "framer-motion";
 import NoDataFound from "../no-data-found/NoData";
+import { LoadingSkeleton } from "../loading/LoadingSkeleton";
+import { ListingServicesLoading } from "../loading/ListingServicesLoading";
 
 export default function ListingCard() {
-  const { products, page, totalPages, setPage, setFilters } = useProducts();
+  const { products, page, totalPages, setPage, setFilters, loading, error } =
+    useProducts();
   const location = useLocation();
   const [hidePath, setHidePath] = useState(false);
   const [search, setSearch] = useState("");
@@ -68,6 +71,8 @@ export default function ListingCard() {
     }, 500);
     return () => clearTimeout(delayDebounce);
   }, [search]);
+  if (loading) return <ListingServicesLoading />;
+  if (error) return <p className="text-red-500">{error}</p>;
 
   return (
     <div className="w-full flex flex-col items-center px-4 sm:px-6 lg:px-10">

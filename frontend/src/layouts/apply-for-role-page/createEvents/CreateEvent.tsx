@@ -3,6 +3,7 @@ import EventService from "@/services/eventService";
 import { FaCamera } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useCheckUserLimit } from "@/hooks/useCheckUserLimit";
+import { isValidMeetingLink } from "@/utils/helpers/validateMeetingLink";
 
 const CreateEvent = () => {
   const [form, setForm] = useState({
@@ -96,7 +97,16 @@ const CreateEvent = () => {
         toast.error("Please provide a location for in-person attendance");
         return;
       }
-
+      if (
+        (form.attendance === "Virtual" ||
+          form.attendance === "In-Person&Virtual") &&
+        !isValidMeetingLink(form.invitationLink)
+      ) {
+        toast.error(
+          "Please enter a valid meeting link (https://... pr http://)"
+        );
+        return;
+      }
       // ✅ Prepare FormData
       const formData = new FormData();
       formData.append("name", form.name);

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import EventService from '@/services/eventService';
 import { Event } from '@/types/Event';
+import Loader from '@/components/common/loader/Loader';
 
 export default function EventDetails() {
     const { id } = useParams(); // 👈 ناخد id من url
@@ -23,7 +24,7 @@ export default function EventDetails() {
         };
         fetchEvent();
     }, [id]);
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <p className='text-center text-gray-500 my-6 sm:my-10 text-base sm:text-lg'><Loader /> </p>;
     if (!event) return <p>Event not found</p>;
     return (
 

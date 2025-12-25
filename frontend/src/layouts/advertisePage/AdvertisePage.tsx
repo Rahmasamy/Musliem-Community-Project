@@ -1,32 +1,26 @@
 import CancelBtn from "@/components/common/cancel-btn/CancelBtn";
 import CommonInput from "@/components/common/CommonInput";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { FiMapPin, FiPhone } from "react-icons/fi";
 import { SlCloudUpload } from "react-icons/sl";
 import { toast } from "react-hot-toast";
-import ConfirmPopup from "@/components/common/popups/ConfirmPopup";
-import CancelPayment from "@/components/common/popups/CancelPayment";
-import { usePayment } from "@/hooks/useSinglePayment";
-import ConfirmPaymentPopup from "@/components/common/popups/ConfirmPaymentPopup";
+
 import Services from "@/services/serviceService";
-// import { useSearchParams } from "react-router-dom";
-import { fileToBase64 } from "@/utils/readFileHelper/readFileHelper";
+
 import { useCheckUserLimit } from "@/hooks/useCheckUserLimit";
+import { isValidPhoneNumber } from "@/utils/helpers/ValidatePhoneNumber";
 
 export default function AdvertisePage() {
   // const [plan, setPlan] = useState("website");
   const [targetUrl, setTargetUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isConfirm, setConfrmPayment] = useState(false);
   //   const [searchParams] = useSearchParams();
   //   const ServiceId = searchParams.get("id");
-  const [autoSubmit, setAutoSubmit] = useState(false);
+  // const [autoSubmit, setAutoSubmit] = useState(false);
  const {
     data: checkUserData,
-    isLoading: isCheckUserLoading,
-    error: ischeckUserError,
+ 
   } = useCheckUserLimit();
-  const [showPopUp, setshowPopUp] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [formData, setFormData] = useState({
     businessName: "",
@@ -180,7 +174,10 @@ export default function AdvertisePage() {
         toast.error("Please fill in all required fields and upload an image");
         return;
       }
-
+if (!isValidPhoneNumber(formData.contactNumber)) {
+  toast.error("Please enter a valid phone number");
+  return;
+}
       // Create FormData for multipart/form-data submission
       const payload = new FormData();
       payload.append("name", formData.businessName);
@@ -208,7 +205,6 @@ export default function AdvertisePage() {
 
       // Submit the advertisement
       const response = await Services.createService(payload);
-      const ServiceId = response.data._id;
       toast.success("Advertisement created successfully,Need Admin Approval!");
 
       // Reset form

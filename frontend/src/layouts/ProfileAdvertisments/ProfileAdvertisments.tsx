@@ -8,6 +8,7 @@ import { useProfileStore } from "@/store/useProfileStore";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import NoDataFound from "@/components/common/no-data-found/NoData";
+import Loader from "@/components/common/loader/Loader";
 
 export default function ProfileAdvertisements() {
   const [editId, setEditId] = useState<string | null>(null);
@@ -137,7 +138,7 @@ export default function ProfileAdvertisements() {
   };
 
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p className="text-center text-gray-500 my-6 sm:my-10 text-base sm:text-lg"><Loader /></p>;
 
   return (
     <div className="w-full mx-auto p-6">
