@@ -31,7 +31,7 @@ const YourEvents = () => {
 
   if (loading)
     return (
-      <p className="text-center py-6 sm:py-10 text-sm sm:text-base">
+      <p className="text-center py-6 sm:py-2 text-sm sm:text-base">
         Loading...
       </p>
     );
@@ -53,14 +53,14 @@ const YourEvents = () => {
         Your Events
       </h2>
       <p className="w-full sm:w-[80%] md:w-full text-center text-sm sm:text-base mb-4 px-2">
-        Keep track of the events you’re attending and explore what’s coming
-        next. Connect with others, participate actively, and enjoy every moment.
+        Keep track of the events you’re attending and explore what’s coming 
+        next. <br/> Connect with others, participate actively, and enjoy every moment.
       </p>
 
       {/* Events Grid */}
       <div className="w-full flex flex-wrap gap-3 sm:gap-4 lg:gap-5 p-3 sm:p-4 lg:p-5">
         {myEvents.length === 0 ? (
-          <div className="w-full text-center py-6 sm:py-10 text-gray-500 text-base sm:text-lg font-semibold">
+          <div className="w-full text-center py-6 sm:py-2 text-gray-500 text-base sm:text-lg font-semibold">
             <NoDataFound message="You havent Joined to any event yet!" />
           </div>
         ) : (

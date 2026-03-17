@@ -13,9 +13,8 @@ export default function OurGroups() {
       <LeftHeading title='Our Groups'
         desc={
           <>
-            Lorem ipsum dolor sit amet consectetur. Sed massa pretium sed scelerisque
-            <br />
-            elementum congue interdum cras. At nisl in quisque erat ut.'
+          Explore a variety of groups created to bring people together  around shared interests, learning goals, and community activities. Join discussions, participate in events,  and connect with others who share your passion.
+           
           </>
         } icon={
           <FaArrowRight onClick={() => navigate("/Groups") } />

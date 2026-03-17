@@ -11,11 +11,8 @@ export default function ListingFeatures() {
     <div className='w-full flex flex-col items-center py-4'>
       <CenterHeading title='Our Listings' desc={
         <>
-          Lorem ipsum dolor sit amet consectetur. Sed massa pretium sed scelerisque elementum
-
-          congue
-          <br />
-          interdum cras. At nisl in quisque erat ut.
+      We proudly serve the Muslim community in the U.S. by offering products chosen with care, faith, and family in mind. Our mission is to make it easier for Muslims to find reliable, high-quality items that fit their values and daily life—delivered with honesty and respect.
+          
         </>
       } />
       <div className="flex justify-between w-[95%] items-center mb-8">

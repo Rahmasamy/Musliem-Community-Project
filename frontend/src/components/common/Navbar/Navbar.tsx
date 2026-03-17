@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import logo from "@/assets/imgs/logo.png";
+import logo from "@/assets/imgs/logo.jpg";
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineMail } from "react-icons/md";
 import { HiMenu, HiX } from "react-icons/hi";
@@ -73,7 +73,7 @@ export default function Navbar() {
       <div className="navbar-container w-[95%] flex justify-between md:justify-around items-center">
         <div className="logo flex gap-1 items-center">
           <img src={logo} alt="Logo Image" />
-          <h2>MCUS</h2>
+          {/* <h2>CRESENT HUB</h2> */}
         </div>
 
         {/* Desktop Navigation */}

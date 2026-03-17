@@ -15,10 +15,10 @@ const YourEvents = () => {
       <h2 className="w-full text-center text-3xl py-8 font-bold">
         Your Events
       </h2>
-      <p className=" w-full sm:w-[80%] md:w-full text-center text-md mb-4">
-        Lorem ipsum dolor sit amet consectetur. Sed massa pretium sed
-        scelerisque elementum congue interdum cras. At nisl in quisque erat ut.
-      </p>
+      {/* <p className="w-full sm:w-[80%] md:w-full text-center text-sm sm:text-base mb-4 px-2">
+        Keep track of the events you’re attending and explore what’s coming
+        next. Connect with others, participate actively, and enjoy every moment.
+      </p> */}
       <div className="w-full flex gap-5 p-5">
         <div className="max-w-md rounded-2xl overflow-hidden shadow-lg bg-white border p-4">
           <div className="relative">

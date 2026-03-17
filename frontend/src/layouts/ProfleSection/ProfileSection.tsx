@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { FiPhone } from "react-icons/fi";
 import { SlCloudUpload } from "react-icons/sl";
 import DeleteBtn from "@/components/common/DeleteBtn/DeleteBtn";
-import ChangeInput from "@/components/common/popups/changeInput";
+import ChangeInput from "@/components/common/popups/ChangeInput";
 import { useProfileStore } from "@/store/useProfileStore";
 import { useAuthStore } from "@/store/authStore";
 import toast from "react-hot-toast";

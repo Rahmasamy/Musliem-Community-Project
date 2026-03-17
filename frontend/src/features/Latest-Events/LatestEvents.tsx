@@ -15,8 +15,7 @@ export default function LatestEvents() {
         <LeftHeading title='Latest Events'
           desc={
             <>
-              Lorem ipsum dolor sit amet consectetur. Sed massa pretium sed scelerisque elementum congue interdum cras. At nisl in quisque erat ut.'
-            </>
+Keep track of the events you’re attending and explore what’s coming next. Connect with others, participate actively, and enjoy every moment.            </>
           } icon={
             <FaArrowRight  onClick={ () =>navigate("/Events")}/>
 

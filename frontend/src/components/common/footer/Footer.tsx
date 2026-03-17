@@ -6,7 +6,7 @@ import {
   FaLinkedinIn,
   FaYoutube,
 } from "react-icons/fa";
-import logo from "@/assets/imgs/logo.png";
+import logo from "@/assets/imgs/logo.jpg";
 import { Link } from "react-router-dom";
 export default function Footer() {
   return (
@@ -20,16 +20,15 @@ export default function Footer() {
           <div className="flex items-center gap-2">
             <img
               src={logo}
-              alt="MCUS Logo"
-              className="w-28 h-28 object-contain"
+              alt="CRESENT HUB Logo"
+              className="w-28 h-28 object-contain rounded-xl"
             />
-            <h2 className="font-bold text-lg">MCUS</h2>
+            <h2 className="font-bold text-lg">CRESENT HUB</h2>
           </div>
           <p className="text-sm text-white/80 leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur. Consequat tincidunt
-            facilisis euismod feugiat ultrices in nunc sit. Nibh ut tellus at
-            scelerisque et facilisi viverra urna. Vitae velit etiam id egestas
-            sed habitasse velit.
+            Create groups, host events, support local businesses, and give back
+            through donations — all in one meaningful space. Join us and start
+            building connections that matter.
           </p>
         </div>
 
@@ -77,7 +76,6 @@ export default function Footer() {
           <button
             className="cursor-pointer border border-white rounded-full px-6 py-6 hover:bg-white hover:text-[#00787B] transition text-2xl"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            
           >
             ↑
           </button>
@@ -86,7 +84,7 @@ export default function Footer() {
 
       {/* Bottom Row */}
       <div className="max-w-7xl mx-auto mt-6 px-2 flex justify-between items-center text-sm text-white">
-        <p>MCUS © 2025. All rights reserved.</p>
+        <p>CRESENT HUB © 2025. All rights reserved.</p>
         <div className="flex gap-4 text-lg">
           <FaYoutube />
           <FaFacebookF />
