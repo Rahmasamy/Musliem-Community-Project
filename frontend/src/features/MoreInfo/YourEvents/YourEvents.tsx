@@ -1,5 +1,5 @@
 import NoDataFound from "@/components/common/no-data-found/NoData";
-import EventService from "@/services/eventService";
+import EventService from "@/services/EventService";
 import { Event } from "@/types/Event";
 import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";

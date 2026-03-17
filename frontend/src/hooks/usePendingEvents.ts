@@ -1,4 +1,4 @@
-import EventService from "@/services/eventService";
+import EventService from "@/services/EventService";
 import { useQuery } from "@tanstack/react-query";
 
 export const usePendingEvents= (page = 1) => {

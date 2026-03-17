@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient, UseMutationResult } from "@tanstack/react-query";
-import EventService from "@/services/eventService";
+import EventService from "@/services/EventService";
 import toast from 'react-hot-toast';
 
 interface EventApprovalVars {

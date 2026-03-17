@@ -2,7 +2,7 @@ import OrangeButton from '@/components/common/OrangeButton/OrangeButton'
 import EventImg from '@/assets/imgs/EventImg.png'
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import EventService from '@/services/eventService';
+import EventService from '@/services/EventService';
 import { Event } from '@/types/Event';
 import Loader from '@/components/common/loader/Loader';
 

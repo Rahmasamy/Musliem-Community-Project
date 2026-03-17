@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import EventService from "@/services/eventService";
+import EventService from "@/services/EventService";
 import { FaCamera } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useCheckUserLimit } from "@/hooks/useCheckUserLimit";
