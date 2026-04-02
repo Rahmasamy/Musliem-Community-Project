@@ -61,6 +61,8 @@
 .landing-buttons .orange {
     background-color: #FF9A0B;
     color: white;
+    padding: 15px 50px;
+    border-radius: 25px;
 }
 
 .white {

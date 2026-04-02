@@ -6,7 +6,7 @@ import {
   FaLinkedinIn,
   FaYoutube,
 } from "react-icons/fa";
-import logo from "@/assets/imgs/logo.jpg";
+import logo from "@/assets/imgs/logo.png";
 import { Link } from "react-router-dom";
 export default function Footer() {
   return (
@@ -21,15 +21,15 @@ export default function Footer() {
             <img
               src={logo}
               alt="CRESENT HUB Logo"
-              className="w-28 h-28 object-contain rounded-xl"
+              className="w-20 h-20 object-cover p-3 bg-white rounded-full m-3"
             />
-            <h2 className="font-bold text-lg">CRESENT HUB</h2>
+            <h2 className="font-bold text-lg">CRESCENT HUB</h2>
           </div>
-          <p className="text-sm text-white/80 leading-relaxed">
+          {/* <p className="text-sm text-white/80 leading-relaxed">
             Create groups, host events, support local businesses, and give back
             through donations — all in one meaningful space. Join us and start
             building connections that matter.
-          </p>
+          </p> */}
         </div>
 
         {/* Center Quick Links */}
@@ -54,7 +54,7 @@ export default function Footer() {
 
           <div>
             <h3 className="font-semibold mb-3">Our Services</h3>
-            <ul className="space-y-2 text-sm text-white/80">
+            <ul className="space-y-2 text-sm text-white">
               <li>
                 <Link to="/Groups">Groups</Link>
               </li>

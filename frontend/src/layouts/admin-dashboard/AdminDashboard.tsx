@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import logo from "@/assets/imgs/logo.jpg";
+import logo from "@/assets/imgs/logo.png";
 import { RiAdminLine } from "react-icons/ri";
 import { TbReport } from "react-icons/tb";
 import { RiAdvertisementLine } from "react-icons/ri";
@@ -15,9 +15,9 @@ export default function AdminDashboard() {
       <div className="w-full lg:w-64 bg-white border-r border-gray-200 p-4 sm:p-5 lg:p-6 flex flex-col">
         <div className="flex items-center gap-2 mb-6 sm:mb-8">
           <img src={logo} alt="CRESENT HUB" className="w-6 h-6 sm:w-8 sm:h-8" />
-          {/* <h1 className="text-lg sm:text-xl font-semibold text-teal-700">
-            CRESENT HUB
-          </h1> */}
+          <h1 className="text-lg sm:text-xl font-semibold text-teal-700">
+            CRESCENT HUB
+          </h1>
         </div>
 
         <nav className="flex flex-row lg:flex-col gap-2 sm:gap-3 text-gray-600 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0">

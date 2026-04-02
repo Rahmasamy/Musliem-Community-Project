@@ -28,7 +28,10 @@ export default function AdvertiseLeft() {
                 d="M3 5a2 2 0 012-2h1.586a1 1 0 01.707.293l1.414 1.414a1 1 0 00.707.293h4.172a1 1 0 00.707-.293l1.414-1.414A1 1 0 0117.414 3H19a2 2 0 012 2v2H3V5zM3 9h18v10a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
               />
             </svg>
-            <span className="text-xs sm:text-sm">{"+!(562) 584-3081"}</span>
+            <span className="text-xs sm:text-sm">
+              ray.abdelhadi@gmail.com
+
+            </span>
           </div>
         </div>
 

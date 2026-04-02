@@ -7,8 +7,7 @@
     height: 80px;
     border-radius: 12px;
     object-fit: cover;
-    border: 2px solid rgb(237, 186, 93);
-    box-shadow : 0 4px 6px rgb(221, 215, 204);
+    
 }
 
 .logo h2 {

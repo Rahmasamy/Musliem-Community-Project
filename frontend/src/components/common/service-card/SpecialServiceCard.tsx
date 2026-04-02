@@ -61,6 +61,7 @@ export default function SpecialServiceCard() {
           <CardHeader className="p-0 group overflow-hidden ">
             <img src={service.image} alt={service.title}
              style={{ height: "220px" ,objectFit:"cover" }}
+              onClick={() => navigate(service.url) }
              className='h-48 sm:h-56 object-cover w-full transition transform duration-500 ease-in-out group-hover:scale-110'
              />
           </CardHeader>

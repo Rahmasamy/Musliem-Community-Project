@@ -1,6 +1,5 @@
 import GroupCard from '@/components/common/group-card/GroupCard'
 import LeftHeading from '@/components/common/left-heading/LeftHeading'
-import OrangeButton from '@/components/common/OrangeButton/OrangeButton'
 import { GroupProvider } from '@/context/groupContext'
 import React from 'react'
 import { FaArrowRight } from 'react-icons/fa'
@@ -19,7 +18,9 @@ export default function OurGroups() {
         } icon={
           <FaArrowRight onClick={() => navigate("/Groups") } />
 
-        } />
+        } 
+         onClick={() => navigate("/Groups")}
+        />
       <div className="flex justify-between w-[95%] items-center">
         <GroupProvider>
           <GroupCard />

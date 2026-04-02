@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import logo from "@/assets/imgs/logo.jpg";
+import logo from "@/assets/imgs/logo.png";
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineMail } from "react-icons/md";
 import { HiMenu, HiX } from "react-icons/hi";
@@ -73,7 +73,7 @@ export default function Navbar() {
       <div className="navbar-container w-[95%] flex justify-between md:justify-around items-center">
         <div className="logo flex gap-1 items-center">
           <img src={logo} alt="Logo Image" />
-          {/* <h2>CRESENT HUB</h2> */}
+          <h2>CRESCENT HUB</h2>
         </div>
 
         {/* Desktop Navigation */}
@@ -82,6 +82,11 @@ export default function Navbar() {
             <li>
               <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
                 Home
+              </Link>
+            </li>
+             <li>
+              <Link to="/aboutus" onClick={() => setIsMobileMenuOpen(false)}>
+                About Us 
               </Link>
             </li>
             <li>
@@ -97,14 +102,17 @@ export default function Navbar() {
             <li className="flex items-center text-center relative cursor-pointer">
               <Link to="/ServicesPage">Market Place</Link>
             </li>
-            <li>
+           
                             {
                                 role ==="admin"  ?
+                                 <li>
                                  <Link to="/admin-dashboard" onClick={() => setIsMobileMenuOpen(false)}>Admin-dashboard</Link> 
+                                 </li>
                                  : undefined 
                                  
+                                 
                             }
-                        </li>
+                       
             <li>
               <Link
                 to="/halal-business-dirctory"

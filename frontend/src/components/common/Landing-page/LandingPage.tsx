@@ -26,9 +26,7 @@ export default function LandingPage() {
           <OrangeButton title="Join Us" className="orange"
           onClick={() => navigate("/halal-business-dirctory")}
           />
-          <OrangeButton title="About Us" className="white"
-          onClick={() => navigate("/aboutus")}
-          />
+        
         </div>
         <div className="down-arrow">
             <img src={downArrow} alt="down arrow" />

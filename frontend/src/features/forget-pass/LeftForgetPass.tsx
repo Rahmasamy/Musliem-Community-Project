@@ -2,16 +2,15 @@ import AuthButton from '@/components/common/AuthButton'
 import CommonInput from '@/components/common/CommonInput'
 import LogoComponent from '@/components/common/logo-component/LogoComponent'
 import { useAuth } from '@/hooks/useAuth'
-import React, { useState } from 'react'
+import React from 'react'
 import { MdOutlineEmail } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useField } from '@/hooks/useField'
 
 export default function LeftForgetPass() {
     const navigate = useNavigate()
     const { forgotPassword } = useAuth();
-    const [email, setEmail] = useState("");
     const emailField = useField("");
 
     const handleSend = async () => {
