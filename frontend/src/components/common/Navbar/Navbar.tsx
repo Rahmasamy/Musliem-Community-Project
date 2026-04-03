@@ -26,7 +26,6 @@ export default function Navbar() {
   const profileState = useProfileStore();
   const { profile } = profileState;
   const role = AuthState.user?.role;
-  console.log("auth state",AuthState)
   const debounce = useDebounce(query, 500);
   const searchRef = useRef<HTMLDivElement>(null);
 

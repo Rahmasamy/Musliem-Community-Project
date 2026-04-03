@@ -1,5 +1,10 @@
 import { useState, useRef } from "react";
 import { Mail } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import toast from "react-hot-toast";
+import { useResetStore } from "@/store/resetStore";
+import AuthButton from "@/components/common/AuthButton";
 
 // Mock components for demonstration
 const LogoComponent = ({ desc }: { desc: React.ReactNode }) => (
@@ -13,24 +18,12 @@ const LogoComponent = ({ desc }: { desc: React.ReactNode }) => (
   </div>
 );
 
-const AuthButton = ({
-  label,
-  onClick,
-}: {
-  label: string;
-  onClick: () => void;
-}) => (
-  <button
-    onClick={onClick}
-    className="w-full py-3 sm:py-3.5 md:py-4 bg-teal-600 text-white font-semibold rounded-lg hover:bg-gray-800 transition-all duration-200 shadow-md hover:shadow-lg text-base sm:text-lg"
-  >
-    {label}
-  </button>
-);
-
 export default function LeftVerify() {
   const [code, setCode] = useState<string[]>(["", "", "", "", "", ""]);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const navigate = useNavigate();
+  const { verifyResetCode } = useAuth();
+  const { setResetToken } = useResetStore();
 
   const handleChange = (index: number, value: string) => {
     const updated = [...code];
@@ -53,14 +46,23 @@ export default function LeftVerify() {
 
   const handleVerify = async () => {
     const otp = code.join("");
-    console.log("Verifying code:", otp);
-    alert(`Code: ${otp}`);
+    if (otp.length < 6) {
+      toast.error("Please enter a valid 6-digit code");
+      return;
+    }
+    try {
+      const response = await verifyResetCode({ code: otp });
+      if (response && response.token) {
+        setResetToken(response.token);
+      }
+      toast.success("Code verified successfully");
+      navigate("/reset-password");
+    } catch (err: any) {
+      toast.error(err?.response?.data?.message || "Invalid or expired reset code");
+    }
   };
 
-  const handleResend = () => {
-    console.log("Resending code...");
-    alert("Code resent!");
-  };
+
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center p-4 sm:p-6 md:p-8 bg-white">
@@ -88,7 +90,7 @@ export default function LeftVerify() {
                       maxLength={1}
                       className=" text-center text-lg sm:text-xl md:text-2xl font-semibold border-2 border-gray-300 rounded-md w-10 h-10 sm:w-[100% /6] sm:h-12 md:w-14 md:h-14 focus:border-gray-800 focus:ring-2 focus:ring-gray-200 outline-none transition-all duration-200"
                       value={digit}
-                      ref={(el) => (inputRefs.current[idx] = el)}
+                      ref={(el) => { inputRefs.current[idx] = el; }}
                       onChange={(e) => handleChange(idx, e.target.value)}
                       onKeyDown={(e) => handleKeyDown(idx, e)}
                     />
