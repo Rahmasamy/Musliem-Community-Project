@@ -20,7 +20,7 @@ export default function Footer() {
           <div className="flex items-center gap-2">
             <img
               src={logo}
-              alt="CRESENT HUB Logo"
+              alt="CRESCENT HUB Logo"
               className="w-20 h-20 object-cover p-3 bg-white rounded-full m-3"
             />
             <h2 className="font-bold text-lg">CRESCENT HUB</h2>
@@ -84,7 +84,7 @@ export default function Footer() {
 
       {/* Bottom Row */}
       <div className="max-w-7xl mx-auto mt-6 px-2 flex justify-between items-center text-sm text-white">
-        <p>CRESENT HUB © 2025. All rights reserved.</p>
+        <p>CRESCENT HUB © 2025. All rights reserved.</p>
         <div className="flex gap-4 text-lg">
           <FaYoutube />
           <FaFacebookF />

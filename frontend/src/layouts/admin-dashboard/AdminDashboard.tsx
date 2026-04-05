@@ -14,7 +14,7 @@ export default function AdminDashboard() {
       {/* Sidebar */}
       <div className="w-full lg:w-64 bg-white border-r border-gray-200 p-4 sm:p-5 lg:p-6 flex flex-col">
         <div className="flex items-center gap-2 mb-6 sm:mb-8">
-          <img src={logo} alt="CRESENT HUB" className="w-6 h-6 sm:w-8 sm:h-8" />
+          <img src={logo} alt="CRESCENT HUB" className="w-6 h-6 sm:w-8 sm:h-8" />
           <h1 className="text-lg sm:text-xl font-semibold text-teal-700">
             CRESCENT HUB
           </h1>
