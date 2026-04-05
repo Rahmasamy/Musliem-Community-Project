@@ -381,7 +381,7 @@ const CreateEvent = () => {
             className="px-6 py-3 bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isLoading}
           >
-            {isLoading ? "Creating..." : "+ Create Event"}
+            {isLoading ? "Creating..." : "Submit Event for Admin Approval"}
           </button>
         </div>
       </form>

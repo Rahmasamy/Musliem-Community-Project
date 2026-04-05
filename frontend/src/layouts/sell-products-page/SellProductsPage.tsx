@@ -57,7 +57,7 @@ export default function SellProductsPage() {
     try {
       setIsLoading(true);
       if (checkUserData && !checkUserData.canAddMore) {
-        toast.error(" You can't create more events, limit reached!");
+        toast.error(" You can't submit more products, limit reached!");
         return;
       }
       // Validate required fields

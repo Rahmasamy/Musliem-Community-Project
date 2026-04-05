@@ -161,7 +161,7 @@ export default function AdvertisePage() {
     try {
       setIsLoading(true);
       if (checkUserData && !checkUserData.canAddMore) {
-    toast.error(" You can't create more events, limit reached!");
+    toast.error(" You can't submit more advertisements, limit reached!");
     return;
 }
       // Validate required fields
@@ -406,7 +406,7 @@ if (!isValidPhoneNumber(formData.contactNumber)) {
           disabled={isLoading}
           className="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isLoading ? "Creating..." : "Create Advertisement"}
+          {isLoading ? "Creating..." : "Submit Advertisement for Admin Approval"}
         </button>
       </div>
       {/* {

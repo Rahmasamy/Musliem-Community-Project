@@ -142,7 +142,7 @@ export default function ApplyForRolePage() {
     try {
       setIsLoading(true);
       if (checkUserData && !checkUserData.canAddMore) {
-        toast.error(" You can't create more events, limit reached!");
+        toast.error(" You can't create more services, limit reached!");
         return;
       }
       // Validate required fields
@@ -436,7 +436,7 @@ export default function ApplyForRolePage() {
         >
           {isLoading
             ? "Creating..."
-            : `Create ${getDisplayLabel(plan as ServiceType)} Service`}
+            : `Submit ${getDisplayLabel(plan as ServiceType)} Service for Admin Approval`}
         </button>
       </div>
     </div>

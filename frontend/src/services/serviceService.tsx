@@ -20,6 +20,12 @@ export interface ServiceItem {
   adminApprovalStatus: "pending" | "approved" | "rejected";
   createdAt: string;
   updatedAt: string;
+  user : {
+    _id:string;
+    fullName: string;
+    photo?:string;
+    email?:string;
+  }
 }
 
 export interface ServiceResponse {
