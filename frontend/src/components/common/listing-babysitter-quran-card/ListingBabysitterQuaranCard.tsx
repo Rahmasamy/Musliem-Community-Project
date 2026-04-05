@@ -10,8 +10,10 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import NoDataFound from "../no-data-found/NoData";
 import Services, { ServiceItem } from "@/services/serviceService";
-import { LoadingSkeleton } from "../loading/LoadingSkeleton";
 import { ListingServicesLoading } from "../loading/ListingServicesLoading";
+import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { useCreateOrGetPrivateChat } from "@/hooks/usePrivateChat";
 
 interface Props {
   defaultServiceType?: string;
@@ -25,6 +27,9 @@ export default function ListingServices({ defaultServiceType }: Props) {
   const [serviceType, setServiceType] = useState(defaultServiceType || "");
  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+   const auth = useAuth();
+  const navigate = useNavigate();
+  const createOrGetChat = useCreateOrGetPrivateChat();
   const limit = 6;
 
   // 🔁 Fetch data
@@ -39,7 +44,7 @@ export default function ListingServices({ defaultServiceType }: Props) {
           search,
           serviceType,
         });
-
+        console.log("fetched services", res.data);
         setServices(res.data);
         setTotalPages(res.pages);
       } catch (error) {
@@ -64,7 +69,38 @@ export default function ListingServices({ defaultServiceType }: Props) {
     setPage(event.selected + 1);
   };
 
-
+  const handleOpenChatWithSeller = async (
+    sellerId: string,
+    fullName: string,
+    photo: string
+  ) => {
+    const currentUserId = auth?.user?._id;
+    if (!currentUserId) {
+      alert("Please login to send message to the seller");
+      navigate("/login");
+      return;
+    }
+    try {
+      const chat = await createOrGetChat.mutateAsync({
+        userId1: currentUserId,
+        userId2: sellerId,
+      });
+      const chatId = chat._id || chat.id;
+      const chatName = fullName || "Private Chat";
+      navigate(`/messages/user/${currentUserId}/false`, {
+        state: {
+          selectedChat: {
+            id: chatId,
+            type: "private",
+            chatName,
+            photo,
+          },
+        },
+      });
+    } catch (error) {
+      console.error("Failed to create/get chat", error);
+    }
+  }; 
 if (loading) return <ListingServicesLoading count={3} />;
 if (error) return <p className="text-red-500">{error}</p>;
           
@@ -162,7 +198,7 @@ if (error) return <p className="text-red-500">{error}</p>;
                     </div>
                   </CardContent>
 
-                  <CardFooter className="p-4 flex justify-center border-t">
+                  {/* <CardFooter className="p-4 flex justify-center border-t">
                     <motion.a
                       whileHover={{ scale: 1.05 }}
                       href={`tel:${item.phone}`}
@@ -170,6 +206,22 @@ if (error) return <p className="text-red-500">{error}</p>;
                     >
                       {item.phone}
                     </motion.a>
+                  </CardFooter> */}
+                    <CardFooter className="p-4 flex justify-center border-t border-gray-100">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() =>
+                        handleOpenChatWithSeller(
+                          String(item.user?._id),
+                          String(item.user?.fullName),
+                          String(item.user?.photo)
+                        )
+                      }
+                      className="flex items-center justify-center gap-2 w-full text-sm font-semibold text-white bg-gradient-to-r from-orange-300 to-orange-500 hover:from-orange-500 hover:to-orange-700 px-5 py-2.5 rounded-xl shadow-md transition-all duration-300"
+                    >
+                      💬 Send Message
+                    </motion.button>
                   </CardFooter>
                 </Card>
               </motion.div>

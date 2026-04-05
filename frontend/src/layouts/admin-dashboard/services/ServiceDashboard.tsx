@@ -48,9 +48,9 @@ const {
                       {service?.user?.fullName || "Unknown User"}
                     </h3>
                     <p className="text-xs sm:text-sm text-gray-500 truncate">{service?.user?.email}</p>
-                    <button className="text-xs sm:text-sm text-blue-500 hover:underline mt-1">
+                    {/* <button className="text-xs sm:text-sm text-blue-500 hover:underline mt-1">
                       Send Message
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>

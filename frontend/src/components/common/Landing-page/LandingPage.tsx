@@ -2,7 +2,6 @@ import React from 'react'
 import OrangeButton from '../OrangeButton/OrangeButton'
 import landingage from '@/assets/icons/landing-img.png'
 import './LandingPage.css' 
-import downArrow from '@/assets/icons/arrow-down.png'
 import { useNavigate } from 'react-router-dom'
 
 export default function LandingPage() {
@@ -28,9 +27,7 @@ export default function LandingPage() {
           />
         
         </div>
-        <div className="down-arrow">
-            <img src={downArrow} alt="down arrow" />
-        </div>
+       
       </div>
     </div>
   )
